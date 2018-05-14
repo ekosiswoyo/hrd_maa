@@ -24,7 +24,7 @@
                     <a class="hiddenanchor" id="toforgot"></a>
                     <div id="wrapper">
                         <div id="login" class="animate form">
-                            <form id="authentication" autocomplete="on" method="post" action="{{ route('login') }}">
+                            <form id="authentication" autocomplete="on" method="POST" action="{{ route('login') }}">
                                 <h3 class="black_bg">
                                     <img src="img/logo.png" alt="logo">
                                     <br>Log In</h3>
@@ -55,11 +55,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label>
-                                        <input type="checkbox" name="remember-me" id="remember-me" {{ old('remember') ? 'checked' : '' }}  class="square-blue" /> Keep me logged in
+                                        <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}  class="square-blue" /> Keep me logged in
                                     </label>
                                 </div>
                                 <p class="login button">
-                                    <input type="submit" value="Log In" class="btn btn-success" />
+                                    <button type="submit" class="btn btn-success">
+                                        Login
+                                    </button>
                                 </p>
                                 <p class="change_link">
                                     <a href="#toforgot" class="btn btn-responsive botton-alignment btn-warning btn-sm">Forgot password
