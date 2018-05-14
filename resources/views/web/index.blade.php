@@ -24,27 +24,38 @@
                     <a class="hiddenanchor" id="toforgot"></a>
                     <div id="wrapper">
                         <div id="login" class="animate form">
-                            <form action="index.html" id="authentication" autocomplete="on" method="post">
+                            <form id="authentication" autocomplete="on" method="post" action="{{ route('login') }}">
                                 <h3 class="black_bg">
-                                    <img src="img/logo.png" alt="josh logo">
+                                    <img src="img/logo.png" alt="logo">
                                     <br>Log In</h3>
-                                <div class="form-group ">
-                                    <label style="margin-bottom:0;" for="email1" class="uname control-label"> <i class="livicon" data-name="mail" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i> E-mail
+                                <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+                                    <label style="margin-bottom:0;" for="email" class="uname control-label"> <i class="livicon" data-name="mail" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i> Email
                                     </label>
-                                    <input id="email1" name="email1" placeholder="E-mail" value="" />
+                                    <input id="email" name="email" placeholder="Email"  value="{{ old('email') }}" required autofocus/>
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                     @endif
+                                    
                                     <div class="col-sm-12">
                                     </div>
                                 </div>
-                                <div class="form-group ">
+                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} ">
                                     <label style="margin-bottom:0;" for="password" class="youpasswd"> <i class="livicon" data-name="key" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i> Password
                                     </label>
-                                    <input type="password" id="password" name="password" placeholder="Enter a password" />
+                                    <input type="password" id="password" name="password" placeholder="Enter a password" required/>
+                                    @if ($errors->has('password'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                     @endif
                                     <div class="col-sm-12">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>
-                                        <input type="checkbox" name="remember-me" id="remember-me" value="remember-me" class="square-blue" /> Keep me logged in
+                                        <input type="checkbox" name="remember-me" id="remember-me" {{ old('remember') ? 'checked' : '' }}  class="square-blue" /> Keep me logged in
                                     </label>
                                 </div>
                                 <p class="login button">
