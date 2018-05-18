@@ -26,4 +26,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function cabang()
+    {
+      return $this->belongsTo('App\Models\Cabang', 'id_cabang','id');
+    }
+
+    public function jabatan()
+    {
+      return $this->belongsTo('App\Models\Jabatan', 'id_jabatan','id');
+    }
+
+    public function bagian()
+    {
+      return $this->belongsTo('App\Models\Bagian', 'id_bagian','id');
+    }
 }
