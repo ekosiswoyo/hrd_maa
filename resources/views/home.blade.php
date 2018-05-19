@@ -31,11 +31,11 @@
                                 <div class="form-group">
                                     <label for="keperluan">Keperluan</label><br>
                                     <label class="radio-inline" for="keperluan-0">
-                                        <input type="radio" name="keperluan" id="keperluan-0" value="penambahan" checked="checked">
+                                        <input type="radio" name="keperluan" id="keperluan-0" class="flat-red" value="penambahan" >
                                         Penambahan
                                     </label> 
                                     <label class="radio-inline" for="keperluan-1">
-                                        <input type="radio" name="keperluan" id="keperluan-1" value="penggantian">
+                                        <input type="radio" name="keperluan" id="keperluan-1" class="flat-red" value="penggantian">
                                         Penggantian
                                     </label>
                                 </div>
@@ -44,24 +44,70 @@
                                 <div class="form-group">
                                         <label for="stat_kar">Status karyawan</label><br>
                                     <label class="radio-inline" for="stat_kar-0">
-                                        <input type="radio" name="stat_kar" id="stat_kar-0" value="kontrak" checked="checked">
+                                        <input type="radio" name="stat_kar" id="stat_kar-0" class="flat-red" value="kontrak">
                                         Kontrak
                                     </label> 
                                     <label class="radio-inline" for="stat_kar-1">
-                                        <input type="radio" name="stat_kar" id="stat_kar-1" value="tetap">
+                                        <input type="radio" name="stat_kar" id="stat_kar-1" class="flat-red" value="tetap">
                                         Tetap
                                     </label>
                                 </div>
                                 <div class="form-group">
                                     <label for="jns_kel">Jenis Kelamin</label><br>
                                 <label class="radio-inline" for="jns_kel-0">
-                                    <input type="radio" name="jns_kel" id="jns_kel-0" value="laki-laki" checked="checked">
+                                    <input type="radio" name="jns_kel" id="jns_kel-0" class="flat-red" value="laki-laki" >
                                     Laki-Laki
                                 </label> 
                                 <label class="radio-inline" for="jns_kel-1">
-                                    <input type="radio" name="jns_kel" id="jns_kel-1" value="perempuan">
+                                    <input type="radio" name="jns_kel" id="jns_kel-1" class="flat-red" value="perempuan">
                                     Perempuan
                                 </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="stat_nikah">Status Pernikahan</label><br>
+                                <label class="radio-inline" for="stat_nikah-0">
+                                    <input type="radio" name="stat_nikah" id="stat_nikah-0" class="flat-red" value="lajang" >
+                                    Lajang
+                                </label> 
+                                <label class="radio-inline" for="stat_nikah-1">
+                                    <input type="radio" name="stat_nikah" id="stat_nikah-1" class="flat-red" value="menikah">
+                                    Menikah
+                                </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pendidikan">Pendidikan</label><br>
+                                <label class="radio-inline" for="pendidikan-0">
+                                    <input type="radio" name="pendidikan" id="pendidikan-0" class="flat-red" value="d1" >
+                                    D1
+                                </label> 
+                                <label class="radio-inline" for="pendidikan-1">
+                                    <input type="radio" name="pendidikan" id="pendidikan-1" class="flat-red" value="d3">
+                                    D3
+                                </label>
+                                <label class="radio-inline" for="pendidikan-2">
+                                    <input type="radio" name="pendidikan" id="pendidikan-2" class="flat-red" value="s1" >
+                                    S1
+                                </label> 
+                                <label class="radio-inline" for="pendidikan-3">
+                                    <input type="radio" name="pendidikan" id="pendidikan-3" class="flat-red" value="s2">
+                                    S2
+                                </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pengalaman">Pengalaman Kerja</label><br>
+                                    <label>
+                                        <input type="checkbox" name="pengalaman" id="pengalamankerja" class="flat-red"/>
+                                        Pengalaman Kerja
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" name="pengalaman" id="freshgraduate" class="flat-red" />
+                                        Fresh Graduate
+                                    </label>
+                                </div>
+                                <div class="form-group input-group">
+                                    <label for="pengalaman">Minimal Pengalaman Kerja</label><br>
+                                        <input type="text" class="input-group" name="minpengalaman" id="minpengalaman">
+                                        <span class="input-group-addon">Tahun</span>
                                 </div>
                                     
                             </div>

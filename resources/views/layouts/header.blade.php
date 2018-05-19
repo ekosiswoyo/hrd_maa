@@ -13,6 +13,12 @@
     <![endif]-->
     <!-- global css -->
     <link href="css/app.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="vendors/iCheck/css/all.css">
+    <link rel="stylesheet" type="text/css" href="vendors/iCheck/css/line/line.css">
+    <link rel="stylesheet" type="text/css" href="vendors/bootstrap-switch/css/bootstrap-switch.css">
+    <link rel="stylesheet" type="text/css" href="vendors/switchery/css/switchery.css">
+    <link rel="stylesheet" type="text/css" href="vendors/awesome-bootstrap-checkbox/css/awesome-bootstrap-checkbox.css">
+    <link rel="stylesheet" href="css/pages/radio_checkbox.css">
     <!-- end of global css -->
     <!--page level css -->
     <!--end of page level css-->
@@ -691,6 +697,12 @@
     </a>
     <!-- global js -->
     <script src="js/app.js" type="text/javascript"></script>
+    <script type="text/javascript" src="vendors/iCheck/js/icheck.js"></script>
+    <script type="text/javascript" src="vendors/bootstrap-switch/js/bootstrap-switch.js"></script>
+    <script type="text/javascript" src="vendors/switchery/js/switchery.js"></script>
+    <script type="text/javascript" src="vendors/bootstrap-maxlength/js/bootstrap-maxlength.js"></script>
+    <script type="text/javascript" src="vendors/card/lib/js/jquery.card.js"></script>
+    <script type="text/javascript" src="js/pages/radio_checkbox.js"></script>
     <!-- end of global js -->
     <!-- begining of page level js -->
     <!-- end of page level js -->
