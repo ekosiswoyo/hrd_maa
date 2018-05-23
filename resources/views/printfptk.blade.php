@@ -16,8 +16,8 @@ bootstrap.min.css') }} "rel="stylesheet">
 <div class="panel-body">
         <table class ="table table-bordered table-hover">
                 <tr>
-                    <th>No</th>
-                    <th>Subject</th> 
+                    <th width="10px">No</th>
+                    <th width="350px">Subject</th> 
                     <th>Keterangan</th>
                 </tr>
                 @foreach ($abc as $xyz)
