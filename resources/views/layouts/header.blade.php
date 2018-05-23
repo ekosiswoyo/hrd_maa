@@ -171,7 +171,7 @@
                             <!-- User image -->
                             <li class="user-header bg-light-blue">
                                 <img src="img/authors/avatar3.jpg" width="90" class="img-circle img-responsive" height="90" alt="User Image" />
-                                <p class="topprofiletext"> {{ Auth::user()->nama }}</p>
+                                <p class="topprofiletext"> {{ Auth::user()->nama }}</p><br>
                             </li>
                             <!-- Menu Body -->
                             

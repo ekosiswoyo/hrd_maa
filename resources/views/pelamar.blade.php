@@ -41,7 +41,7 @@
                                     <label>Lokasi Kerja</label>
                                     <select name="cabang" class="form-control">
                                         @foreach (App\Models\Cabang::get() as $nama_cabang)
-                                        <option value="{{$nama_cabang->id}}">{{$nama_cabang->nama_cabang}}</option>
+                                        <option value="{{$nama_cabang->id}}">{{$nama_cabang->nama}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -95,19 +95,19 @@
                                 <div class="form-group">
                                     <label for="pendidikan">Pendidikan</label><br>
                                 <label class="radio-inline" for="pendidikan-0">
-                                    <input type="radio" name="pendidikan" id="pendidikan-0" class="flat-red" value="D1" >
+                                    <input type="radio" name="pendidikan" id="pendidikan-0" class="flat-red" value="d1" >
                                     D1
                                 </label> 
                                 <label class="radio-inline" for="pendidikan-1">
-                                    <input type="radio" name="pendidikan" id="pendidikan-1" class="flat-red" value="D3">
+                                    <input type="radio" name="pendidikan" id="pendidikan-1" class="flat-red" value="d3">
                                     D3
                                 </label>
                                 <label class="radio-inline" for="pendidikan-2">
-                                    <input type="radio" name="pendidikan" id="pendidikan-2" class="flat-red" value="S1" >
+                                    <input type="radio" name="pendidikan" id="pendidikan-2" class="flat-red" value="s1" >
                                     S1
                                 </label> 
                                 <label class="radio-inline" for="pendidikan-3">
-                                    <input type="radio" name="pendidikan" id="pendidikan-3" class="flat-red" value="S2">
+                                    <input type="radio" name="pendidikan" id="pendidikan-3" class="flat-red" value="s2">
                                     S2
                                 </label>
                                 </div>
@@ -141,8 +141,7 @@
                                     <textarea class="form-control" id="textarea" name="karakteristik" placeholder="Karakteristrik Pekerjaan"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-responsive button-alignment btn-danger" style="margin-bottom:7px;">Simpan</button>
-                                <a target="_blank" href="/printfptk" class="btn green btn-xs"><i
-                                    class="fa fa-download"></i>Download</a>
+                                 
                                
                                     
                             
