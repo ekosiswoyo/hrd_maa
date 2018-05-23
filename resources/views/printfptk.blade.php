@@ -17,8 +17,8 @@ bootstrap.min.css') }} "rel="stylesheet">
         <table class ="table table-bordered table-hover">
                 <tr>
                     <th width="10px">No</th>
-                    <th width="350px">Subject</th> 
-                    <th>Keterangan</th>
+                    <th width="180px">Subject</th> 
+                    <th width="350px">Keterangan</th>
                 </tr>
                 @foreach ($abc as $xyz)
                 <tr>
@@ -103,19 +103,9 @@ bootstrap.min.css') }} "rel="stylesheet">
                 </tr>
                 <tr>
                     <td  rowspan="5" colspan="3">Gambarkan struktur organisasi secara lengkap di unit kerja termasuk atasan dan bawahan sesuai dengan posisi yang diminta :</td>
+                    
                 </tr>
-                <tr>
-                    <td colspan="2" rowspan="3">Yang Mengajukan</td>
-                    <td rowspan="3">Mengetahui      Menyetujui,</td>
-                </tr>
-                <tr>
-                    <td colspan="2">User      Kabag</td>
-                    <td>Dir.OPR & Kepatuhan     Dir.Bisnis    Dir.Utama</td>
-                </tr>
-                <tr>
-                    <td colspan="2">tgl:        tgl:</td>
-                    <td>tgtl:    tgl:     tgl:</td>
-                </tr>
+                
                 @endforeach
                 
         </table>
