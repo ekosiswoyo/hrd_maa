@@ -31,9 +31,9 @@
                                 {{--  <div class="form-group ui-draggable-handle" style="position: static;"><label for="bagian">Divisi/Department</label>  --}}
                                     <input type="hidden" class="form-control" id="bagian" name="bagian" value="{{ Auth::user()->bagian ? Auth::user()->bagian->id : '' }}">
                                 {{--  </div>  --}}
-                                {{--  <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Nama Jabatan/Grade</label>  --}}
-                                    <input type="hidden" class="form-control" id="jabatan" name="jabatan" value="{{ Auth::user()->jabatan ? Auth::user()->jabatan->id : '' }}">
-                                {{--  </div>  --}}
+                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Nama Jabatan/Grade</label>
+                                    <input type="text" class="form-control" id="jabatan" name="jabatan">
+                                </div>
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="jml_sdm">Jumlah SDM</label>
                                     <input type="text" class="form-control" id="jml_sdm" name="jml_sdm" placeholder="Jumlah SDM yang dibutuhkan">
                                 </div>
@@ -141,8 +141,7 @@
                                     <textarea class="form-control" id="textarea" name="karakteristik" placeholder="Karakteristrik Pekerjaan"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-responsive button-alignment btn-danger" style="margin-bottom:7px;">Simpan</button>
-                                <a target="_blank" href="/printfptk" class="btn green btn-xs"><i
-                                    class="fa fa-download"></i>Download</a>
+                                
                                
                                     
                             

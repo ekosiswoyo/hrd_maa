@@ -19,6 +19,19 @@
     <link rel="stylesheet" type="text/css" href="vendors/switchery/css/switchery.css">
     <link rel="stylesheet" type="text/css" href="vendors/awesome-bootstrap-checkbox/css/awesome-bootstrap-checkbox.css">
     <link rel="stylesheet" href="css/pages/radio_checkbox.css">
+    <link href="vendors/fullcalendar/css/fullcalendar.css" rel="stylesheet" type="text/css" />
+    <link href="css/pages/calendar_custom.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" media="all" href="vendors/bower-jvectormap/css/jquery-jvectormap-1.2.2.css" />
+    <link rel="stylesheet" href="vendors/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="vendors/datetimepicker/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="css/pages/only_dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="vendors/datatables/css/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="vendors/datatables/css/buttons.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="vendors/datatables/css/colReorder.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="vendors/datatables/css/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="vendors/datatables/css/rowReorder.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="vendors/datatables/css/buttons.bootstrap.css" />
+    <link href="css/pages/tables.css" rel="stylesheet" type="text/css">
     <!-- end of global css -->
     <!--page level css -->
     <!--end of page level css-->
@@ -233,6 +246,18 @@
                             </a>
                         </li>
                         <li>
+                            <a href="/fptk">
+                                <i class="livicon" data-name="doc-portrait" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                <span class="title">FPTK</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/printfptk">
+                                <i class="livicon" data-name="printer" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                <span class="title">Cetak FPTK</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="#">
                                 <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
                                 <span class="title">Builders</span>
@@ -262,7 +287,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#"> <i class="livicon" data-name="doc-portrait" data-c="#5bc0de" data-hc="#5bc0de" data-size="18" data-loop="true"></i> <span class="title">Forms</span> <span class="fa arrow"></span> </a>
+                            <a href="#"> <i class="livicon" data-name="apple" data-c="#5bc0de" data-hc="#5bc0de" data-size="18" data-loop="true"></i> <span class="title">Forms</span> <span class="fa arrow"></span> </a>
                             <ul class="sub-menu">
                                 <li>
                                     <a href="form_examples.html"> <i class="fa fa-angle-double-right"></i> Form Examples </a>
@@ -703,6 +728,36 @@
     <script type="text/javascript" src="vendors/bootstrap-maxlength/js/bootstrap-maxlength.js"></script>
     <script type="text/javascript" src="vendors/card/lib/js/jquery.card.js"></script>
     <script type="text/javascript" src="js/pages/radio_checkbox.js"></script>
+    <script src="vendors/jquery.easy-pie-chart/js/easypiechart.min.js"></script>
+    <script src="vendors/jquery.easy-pie-chart/js/jquery.easypiechart.min.js"></script>
+    <script src="js/jquery.easingpie.js"></script>
+    <script src="vendors/moment/js/moment.min.js" type="text/javascript"></script>
+    <script src="vendors/fullcalendar/js/fullcalendar.min.js" type="text/javascript"></script>
+    <script src="vendors/flotchart/js/jquery.flot.js" type="text/javascript"></script>
+    <script src="vendors/flotchart/js/jquery.flot.resize.js" type="text/javascript"></script>
+    <script src="vendors/sparklinecharts/jquery.sparkline.js"></script>
+    <script type="text/javascript" src="vendors/countUp.js/js/countUp.js"></script>
+    <script src="vendors/bower-jvectormap/js/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="vendors/bower-jvectormap/js/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="vendors/chartjs/Chart.js"></script>
+    <script type="text/javascript" src="vendors/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <!--  todolist-->
+    <script src="js/pages/todolist.js"></script>
+    <script src="js/pages/dashboard.js" type="text/javascript"></script>
+    <script type="text/javascript" src="vendors/datatables/js/vfs_fonts.js"></script>
+    <script type="text/javascript" src="js/pages/table-advanced.js"></script>
+    <script type="text/javascript" src="vendors/datatables/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="vendors/jeditable/js/jquery.jeditable.js"></script>
+    <script type="text/javascript" src="vendors/datatables/js/dataTables.bootstrap.js"></script>
+    <script type="text/javascript" src="vendors/datatables/js/dataTables.buttons.js"></script>
+    <script type="text/javascript" src="vendors/datatables/js/dataTables.colReorder.js"></script>
+    <script type="text/javascript" src="vendors/datatables/js/dataTables.responsive.js"></script>
+    <script type="text/javascript" src="vendors/datatables/js/dataTables.rowReorder.js"></script>
+    <script type="text/javascript" src="vendors/datatables/js/buttons.colVis.js"></script>
+    <script type="text/javascript" src="vendors/datatables/js/buttons.html5.js"></script>
+    <script type="text/javascript" src="vendors/datatables/js/buttons.print.js"></script>
+    <script type="text/javascript" src="vendors/datatables/js/buttons.bootstrap.js"></script>
+    <script type="text/javascript" src="vendors/datatables/js/pdfmake.js"></script>
     <!-- end of global js -->
     <!-- begining of page level js -->
     <!-- end of page level js -->

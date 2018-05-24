@@ -27,7 +27,7 @@ class fptkController extends Controller
 
     $id = Auth::user()->id;
     $bagian = $request->input('bagian');
-    $jabatan = $id;
+    $jabatan = $request->input('jabatan');
     $jml_sdm = $request->input('jml_sdm');
     $cabang = $request->input('cabang');
     $keperluan = $request->input('keperluan');
@@ -47,7 +47,7 @@ class fptkController extends Controller
 
     $fptk = new fptk([
         'id_bagian' => $bagian,
-        'id_user' => $jabatan,
+        'grade' => $jabatan,
         'jml_sdm' => $jml_sdm,
         'id_cabang' => $cabang,
         'keperluan' => $keperluan,
@@ -74,7 +74,6 @@ class fptkController extends Controller
     $no = 0;
     $abc = DB::table('fptk')
           ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id')
-          ->join('users', 'fptk.id_user', '=', 'users.id')
           ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id')
           ->orderBy('fptk.id','desc')->take(1)->get();
     $pdf = PDF::loadView('printfptk',compact ('abc','no'));
@@ -82,6 +81,18 @@ class fptkController extends Controller
             
             return $pdf->download('fptk.pdf');
   }
+
+  // public function view(){
+  //   $id = Auth::user()->bagian ? Auth::user()->bagian->id : '';
+
+  //   $view = DB::table('fptk')
+  //           ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id')
+  //           ->join('users', 'fptk.id_user', '=', 'users.id')
+  //           ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id')
+  //           ->where('fptk.id_bagian','=',$id)
+  //           ->orderBy('fptk.id')->get();
+  //   return view('home_fptk', compact('view'));
+  // }
    
 }
 
