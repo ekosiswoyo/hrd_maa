@@ -75,25 +75,27 @@ class fptkController extends Controller
     $abc = DB::table('fptk')
           ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id')
           ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id')
-          ->orderBy('fptk.id','desc')->take(1)->get();
+          ->orderBy('fptk.id_fptk','desc')->take(1)->get();
     $pdf = PDF::loadView('printfptk',compact ('abc','no'));
     
             
             return $pdf->download('fptk.pdf');
   }
 
-  // public function view(){
-  //   $id = Auth::user()->bagian ? Auth::user()->bagian->id : '';
-
-  //   $view = DB::table('fptk')
-  //           ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id')
-  //           ->join('users', 'fptk.id_user', '=', 'users.id')
-  //           ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id')
-  //           ->where('fptk.id_bagian','=',$id)
-  //           ->orderBy('fptk.id')->get();
-  //   return view('home_fptk', compact('view'));
-  // }
-   
+  public function view(){
+    $statusawal = DB::table('fptk')
+            ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id')
+            ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id')
+            ->where('fptk.status','=',0)
+            ->orderBy('fptk.id_fptk','asc')->get();
+    $statusakhir = DB::table('fptk')
+    ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id')
+    ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id')
+    ->where('fptk.status','=',1)
+    ->orderBy('fptk.id_fptk','asc')->get();
+    return view('home_fptk', compact('statusawal','statusakhir'));
+  }
+  
 }
 
 

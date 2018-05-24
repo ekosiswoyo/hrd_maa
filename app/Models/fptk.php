@@ -10,6 +10,7 @@ class fptk extends Model
     protected $fillable = ['id_bagian','grade','jml_sdm','id_cabang','keperluan','ket_keperluan','status_karyawan','jns_kel',
     'stat_pernikahan','pend','pengalaman_kerja','min_pengalaman','syarat_wajib','syarat_dukung','uraian_tugas',
     'karakteristik','status'];
+    protected $dates = ['created_at'];
 
     public function user()
     {

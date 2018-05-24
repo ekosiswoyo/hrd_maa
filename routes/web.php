@@ -21,3 +21,4 @@ Route::get('/index', 'HomeController@index')->name('index');
 Route::get('/fptk', 'fptkController@index');
 Route::post('/fptk', 'fptkController@store');
 Route::get('/printfptk',  'fptkController@makePDF');
+Route::get('/home_fptk','fptkController@view');
