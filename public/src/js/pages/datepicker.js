@@ -39,6 +39,10 @@ $("#rangepicker4").daterangepicker({
         singleDatePicker: true,
         showDropdowns: true
     });
+    $("#rangepicker5").daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true
+    });
 //datetimepicker
 
 

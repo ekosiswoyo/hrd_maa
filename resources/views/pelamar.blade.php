@@ -43,7 +43,8 @@
                                                 <i class="livicon" data-name="calendar" data-size="14" data-loop="true"></i>
                                             </div>
                                             <input type="text" class="form-control" id="rangepicker4" name="tgl_lahir" required />
-                                        </div>
+                                        </div><br>
+
                                 <div class="form-group">
                                     <label for="jns_kel">Jenis Kelamin</label><br>
                                         <label class="radio-inline" for="jns_kel-0">
@@ -114,7 +115,7 @@
                                     <div class="input-group-addon">
                                         <i class="livicon" data-name="calendar" data-size="14" data-loop="true"></i>
                                     </div>
-                                    <input type="text" class="form-control" id="tgl_lamaran" name="tgl_lamaran" required />
+                                    <input type="text" class="form-control" id="rangepicker5" name="tgl_lamaran" required />
                                 </div>
                                 <br>
                                 <label>Tanggal Masuk Kerja</label>
@@ -122,7 +123,7 @@
                                     <div class="input-group-addon">
                                         <i class="livicon" data-name="calendar" data-size="14" data-loop="true"></i>
                                     </div>
-                                    <input type="text" class="form-control" id="tgl_kerja" name="tgl_kerja"  />
+                                    <input type="text" class="form-control" id="rangepicker6" name="tgl_kerja"  />
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-responsive button-alignment btn-danger" style="margin-bottom:7px;">Simpan</button>
