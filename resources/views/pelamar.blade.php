@@ -6,11 +6,11 @@
                 @if (Session::has('success_massage'))
                 <div class="alert alert-success alert-dismissable margin5" style="margin-top: 5px;margin-left: 5px;margin-right:  5px;">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <strong>Berhasil:</strong> menambahkan data FPTK.
+                        <strong>Berhasil:</strong> menambahkan data Pelamar.
                 </div>
                 @endif
             <section class="content-header">
-                <h1>Formulir Permintaan Tenaga Kerja (FPTK)</h1>
+                <h1>Formulir Input Data Pelamar</h1>
                 <ol class="breadcrumb">
                     <li>
                         <a href="index.html">
@@ -20,7 +20,7 @@
                     <li>
                         <a href="#">Pages</a>
                     </li>
-                    <li class="active">Blank page</li>
+                    <li class="active">Formulir Input Data Pelamar</li>
                 </ol>
             </section>
             <section class="content">
@@ -28,118 +28,103 @@
                             <div class="col-md-12" style="display: block;">
                                 <form action="" method="post" role="form">
                                         {{csrf_field()}}
-                                {{--  <div class="form-group ui-draggable-handle" style="position: static;"><label for="bagian">Divisi/Department</label>  --}}
-                                    <input type="hidden" class="form-control" id="bagian" name="bagian" value="{{ Auth::user()->bagian ? Auth::user()->bagian->id : '' }}">
-                                {{--  </div>  --}}
-                                {{--  <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Nama Jabatan/Grade</label>  --}}
-                                    <input type="hidden" class="form-control" id="jabatan" name="jabatan" value="{{ Auth::user()->jabatan ? Auth::user()->jabatan->id : '' }}">
-                                {{--  </div>  --}}
-                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="jml_sdm">Jumlah SDM</label>
-                                    <input type="text" class="form-control" id="jml_sdm" name="jml_sdm" placeholder="Jumlah SDM yang dibutuhkan">
+                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="nik">NIK</label> 
+                                    <input type="text" class="form-control" id="nik" name="nik" placeholder="NIK" required>
+                                 </div> 
+                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="nama">Nama </label> 
+                                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" required>
+                                 </div> 
+                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="tmp_lahir">Tempat Lahir</label>
+                                    <input type="text" class="form-control" id="tmp_lahir" name="tmp_lahir" placeholder="Tempat Lahir" required>
                                 </div>
-                                <div class="form-group">
-                                    <label>Lokasi Kerja</label>
-                                    <select name="cabang" class="form-control">
-                                        @foreach (App\Models\Cabang::get() as $nama_cabang)
-                                        <option value="{{$nama_cabang->id}}">{{$nama_cabang->nama}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="keperluan">Keperluan</label><br>
-                                    <label class="radio-inline" for="keperluan-0">
-                                        <input type="radio" name="keperluan" id="keperluan-0" class="flat-red" value="penambahan" >
-                                        Penambahan
-                                    </label> 
-                                    <label class="radio-inline" for="keperluan-1">
-                                        <input type="radio" name="keperluan" id="keperluan-1" class="flat-red" value="penggantian">
-                                        Penggantian
-                                    </label>
-                                </div>
-                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="ket_keperluan">Masukkan keterangan Keperluan</label>
-                                    <textarea class="form-control" id="textarea" name="ket_keperluan" placeholder="Keterangan Keperluan"></textarea>
-                                </div>
-                                <div class="form-group">
-                                        <label for="stat_kar">Status karyawan</label><br>
-                                    <label class="radio-inline" for="stat_kar-0">
-                                        <input type="radio" name="stat_kar" id="stat_kar-0" class="flat-red" value="kontrak">
-                                        Kontrak
-                                    </label> 
-                                    <label class="radio-inline" for="stat_kar-1">
-                                        <input type="radio" name="stat_kar" id="stat_kar-1" class="flat-red" value="tetap">
-                                        Tetap
-                                    </label>
-                                </div>
+                                <label>Tanggal Lahir</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="livicon" data-name="calendar" data-size="14" data-loop="true"></i>
+                                            </div>
+                                            <input type="text" class="form-control" id="rangepicker4" name="tgl_lahir" required />
+                                        </div>
                                 <div class="form-group">
                                     <label for="jns_kel">Jenis Kelamin</label><br>
-                                <label class="radio-inline" for="jns_kel-0">
-                                    <input type="radio" name="jns_kel" id="jns_kel-0" class="flat-red" value="laki-laki" >
-                                    Laki-Laki
-                                </label> 
-                                <label class="radio-inline" for="jns_kel-1">
-                                    <input type="radio" name="jns_kel" id="jns_kel-1" class="flat-red" value="perempuan">
-                                    Perempuan
-                                </label>
+                                        <label class="radio-inline" for="jns_kel-0">
+                                            <input type="radio" name="jns_kel" id="jns_kel-0" class="flat-red" value="laki-laki" >
+                                                Laki-Laki
+                                            </label> 
+                                        <label class="radio-inline" for="jns_kel-1">
+                                            <input type="radio" name="jns_kel" id="jns_kel-1" class="flat-red" value="perempuan">
+                                                Perempuan
+                                        </label>
                                 </div>
                                 <div class="form-group">
                                     <label for="stat_nikah">Status Pernikahan</label><br>
-                                <label class="radio-inline" for="stat_nikah-0">
-                                    <input type="radio" name="stat_nikah" id="stat_nikah-0" class="flat-red" value="lajang" >
-                                    Lajang
-                                </label> 
-                                <label class="radio-inline" for="stat_nikah-1">
-                                    <input type="radio" name="stat_nikah" id="stat_nikah-1" class="flat-red" value="menikah">
-                                    Menikah
-                                </label>
+                                    <label class="radio-inline" for="stat_nikah-0">
+                                        <input type="radio" name="stat_nikah" id="stat_nikah-0" class="flat-red" value="lajang" >
+                                        Lajang
+                                    </label> 
+                                    <label class="radio-inline" for="stat_nikah-1">
+                                        <input type="radio" name="stat_nikah" id="stat_nikah-1" class="flat-red" value="menikah">
+                                        Menikah
+                                    </label>
                                 </div>
                                 <div class="form-group">
-                                    <label for="pendidikan">Pendidikan</label><br>
-                                <label class="radio-inline" for="pendidikan-0">
-                                    <input type="radio" name="pendidikan" id="pendidikan-0" class="flat-red" value="d1" >
-                                    D1
-                                </label> 
-                                <label class="radio-inline" for="pendidikan-1">
-                                    <input type="radio" name="pendidikan" id="pendidikan-1" class="flat-red" value="d3">
-                                    D3
-                                </label>
-                                <label class="radio-inline" for="pendidikan-2">
-                                    <input type="radio" name="pendidikan" id="pendidikan-2" class="flat-red" value="s1" >
-                                    S1
-                                </label> 
-                                <label class="radio-inline" for="pendidikan-3">
-                                    <input type="radio" name="pendidikan" id="pendidikan-3" class="flat-red" value="s2">
-                                    S2
-                                </label>
-                                </div>
-                                <div class="form-group">
-                                    <label for="pengalaman">Pengalaman Kerja</label><br>
-                                    <label>
-                                        <input type="checkbox" name="pengalaman" value="Pengalaman Kerja" id="pengalamankerja" class="flat-red"/>
-                                        Pengalaman Kerja
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="pengalaman" id="freshgraduate" value="Fresh Graduate" class="flat-red" />
-                                        Fresh Graduate
-                                    </label>
+                                    <label>Posisi</label>
+                                    <select name="posisi" class="form-control" required>
+                                        {{-- @foreach (App\Models\Cabang::get() as $nama_cabang)
+                                        <option value="{{$nama_cabang->id}}">{{$nama_cabang->nama}}</option>
+                                        @endforeach --}}
+                                    </select>
                                 </div>
                                 
-                                <label for="pengalaman">Minimal Pengalaman Kerja</label>
-                                <div class="form-group input-group">
-                                    <input type="text" name ="min_pengalaman" class="form-control">
-                                    <span class="input-group-addon">Tahun</span>
+                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="alamat">Alamat KTP</label>
+                                    <textarea class="form-control" id="textarea" name="alamat_ktp" placeholder="Alamat KTP"></textarea>
                                 </div>
-                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="ket_keperluan">Persyaratan Pekerjaan/Wajib</label>
-                                    <textarea class="form-control" id="textarea" name="syarat_wajib" placeholder="Persyaratan Pekerjaan"></textarea>
+                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="alamat">Alamat Domisili</label>
+                                    <textarea class="form-control" id="textarea" name="alamat_domisili" placeholder="Alamat Domisili"></textarea>
                                 </div>
-                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="ket_keperluan">Syarat Pendukung</label>
-                                    <textarea class="form-control" id="textarea" name="syarat_pendukung" placeholder="Syarat Pendukung"></textarea>
+                                <label>No Telp</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="livicon" data-name="phone" data-size="14" data-loop="true"></i>
+                                        </div>
+                                        <input type="text" class="form-control" name="phone" data-mask="(999)9999-9999" placeholder="(999)9990-9999">
+                                    </div>
+                                    <br>
+                                <label>No Hp</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="livicon" data-name="phone" data-size="14" data-loop="true"></i>
+                                        </div>
+                                        <input type="text" class="form-control" name="hp" data-mask="(999)999-9999" placeholder="(999)999-9999">
+                                    </div>
+                                <br>
+                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="tmp_lahir">Pendidikan Terakhir</label>
+                                    <input type="text" class="form-control" id="pend" name="pend" placeholder="Pendidikan Terakhir" required>
                                 </div>
-                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="ket_keperluan">Uraian Tugas / Tanggung Jawab</label>
-                                    <textarea class="form-control" id="textarea" name="tanggung_jawab" placeholder="Uraian Tugas / Tanggung Jawab"></textarea>
+                                <div class="form-group">
+                                        <label>Pengalaman</label>
+                                        <select name="posisi" class="form-control" required>
+                                            {{-- @foreach (App\Models\Cabang::get() as $nama_cabang)
+                                            <option value="{{$nama_cabang->id}}">{{$nama_cabang->nama}}</option>
+                                            @endforeach --}}
+                                        </select>
                                 </div>
-                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="ket_keperluan">Karakteristrik Pekerjaan</label>
-                                    <textarea class="form-control" id="textarea" name="karakteristik" placeholder="Karakteristrik Pekerjaan"></textarea>
+
+                                <label>Tanggal Masuk Lamaran</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="livicon" data-name="calendar" data-size="14" data-loop="true"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="tgl_lamaran" name="tgl_lamaran" required />
                                 </div>
+                                <br>
+                                <label>Tanggal Masuk Kerja</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="livicon" data-name="calendar" data-size="14" data-loop="true"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="tgl_kerja" name="tgl_kerja"  />
+                                </div>
+                                <br>
                                 <button type="submit" class="btn btn-responsive button-alignment btn-danger" style="margin-bottom:7px;">Simpan</button>
                                  
                                
@@ -155,3 +140,4 @@
         </aside>
 
         @endsection
+        

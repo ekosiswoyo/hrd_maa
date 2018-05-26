@@ -29,16 +29,16 @@ class User extends Authenticatable
 
     public function cabang()
     {
-      return $this->belongsTo('App\Models\Cabang', 'id_cabang','id');
+      return $this->belongsTo('App\Models\Cabang', 'id_cabang','id_cabang');
     }
 
     public function jabatan()
     {
-      return $this->belongsTo('App\Models\Jabatan', 'id_jabatan','id');
+      return $this->belongsTo('App\Models\Jabatan', 'id_jabatan','id_jabatan');
     }
 
     public function bagian()
     {
-      return $this->belongsTo('App\Models\Bagian', 'id_bagian','id');
+      return $this->belongsTo('App\Models\Bagian', 'id_bagian','id_bagian');
     }
 }

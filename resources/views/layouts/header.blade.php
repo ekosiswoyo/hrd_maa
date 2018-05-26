@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -32,6 +33,10 @@
     <link rel="stylesheet" type="text/css" href="vendors/datatables/css/rowReorder.bootstrap.css">
     <link rel="stylesheet" type="text/css" href="vendors/datatables/css/buttons.bootstrap.css" />
     <link href="css/pages/tables.css" rel="stylesheet" type="text/css">
+    <link href="vendors/daterangepicker/css/daterangepicker.css" rel="stylesheet" type="text/css" />
+    <link href="vendors/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="vendors/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
+    <link href="vendors/jasny-bootstrap/css/jasny-bootstrap.css" rel="stylesheet" type="text/css" />
     <!-- end of global css -->
     <!--page level css -->
     <!--end of page level css-->
@@ -257,6 +262,14 @@
                                 <span class="title">Cetak FPTK</span>
                             </a>
                         </li>
+                        @if(Auth::user()->id_bagian == 36)
+                        <li>
+                            <a href="/home_fptk">
+                                <i class="livicon" data-name="doc-landscape" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                <span class="title">Data FPTK</span>
+                            </a>
+                        </li>
+                        @endif
                         <li>
                             <a href="#">
                                 <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
@@ -758,6 +771,15 @@
     <script type="text/javascript" src="vendors/datatables/js/buttons.print.js"></script>
     <script type="text/javascript" src="vendors/datatables/js/buttons.bootstrap.js"></script>
     <script type="text/javascript" src="vendors/datatables/js/pdfmake.js"></script>
+
+    <!-- begining of page level js -->
+    <script src="vendors/moment/js/moment.min.js" type="text/javascript"></script>
+    <script src="vendors/daterangepicker/js/daterangepicker.js" type="text/javascript"></script>
+    <script src="vendors/datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="vendors/clockface/js/clockface.js" type="text/javascript"></script>
+    <script src="vendors/jasny-bootstrap/js/jasny-bootstrap.js" type="text/javascript"></script>
+    <script src="js/pages/datepicker.js" type="text/javascript"></script>
+    <!-- end of page level js -->
     <!-- end of global js -->
     <!-- begining of page level js -->
     <!-- end of page level js -->

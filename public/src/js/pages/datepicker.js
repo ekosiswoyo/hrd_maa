@@ -27,12 +27,18 @@ $('#daterange3').daterangepicker({
     }
 }, cb);
 
+$("#tgl_lahir").daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true
+    });
+    $("#tgl_lamaran").daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true
+    });
 $("#rangepicker4").daterangepicker({
         singleDatePicker: true,
         showDropdowns: true
     });
-
-
 //datetimepicker
 
 

@@ -26,6 +26,7 @@ class fptkController extends Controller
   {
 
     $id = Auth::user()->id;
+   
     $bagian = $request->input('bagian');
     $jabatan = $request->input('jabatan');
     $jml_sdm = $request->input('jml_sdm');
@@ -73,9 +74,9 @@ class fptkController extends Controller
   public function makePDF(){ 
     $no = 0;
     $abc = DB::table('fptk')
-          ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id')
-          ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id')
-          ->orderBy('fptk.id_fptk','desc')->take(1)->get();
+          ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
+          ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
+          ->orderBy('fptk.id','desc')->take(1)->get();
     $pdf = PDF::loadView('printfptk',compact ('abc','no'));
     
             
@@ -84,17 +85,31 @@ class fptkController extends Controller
 
   public function view(){
     $statusawal = DB::table('fptk')
-            ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id')
-            ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id')
+            ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
+            ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
             ->where('fptk.status','=',0)
-            ->orderBy('fptk.id_fptk','asc')->get();
+            ->orderBy('fptk.id','asc')->get();
     $statusakhir = DB::table('fptk')
-    ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id')
-    ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id')
+    ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
+    ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
     ->where('fptk.status','=',1)
-    ->orderBy('fptk.id_fptk','asc')->get();
+    ->orderBy('fptk.id','asc')->get();
     return view('home_fptk', compact('statusawal','statusakhir'));
   }
+
+  public function print($id)
+    {
+      $no = 0;
+    $abc = DB::table('fptk')
+          ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
+          ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
+          ->where('fptk.id','=',$id)
+          ->orderBy('fptk.id','desc')->get();
+    $pdf = PDF::loadView('print',compact ('abc','no'));
+    
+            
+            return $pdf->download('fptk.pdf');
+    }
   
 }
 
