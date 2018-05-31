@@ -38,8 +38,8 @@ bootstrap.min.css') }} "rel="stylesheet">
                 
                 <tr>
                     <td>{{++$no}}</td>
-                    <td>Divisi/Department</td>
-                    <td>{{ $xyz->nama_bagian}}</td>
+                    <td>Divisi/Department/Cabang</td>
+                    <td>{{ $xyz->nama_bagian}} / {{$xyz->nama_cabang}}</td>
                 </tr>
                 <tr>
                     <td>{{++$no}}</td>

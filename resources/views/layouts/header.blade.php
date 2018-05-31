@@ -37,6 +37,7 @@
     <link href="vendors/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
     <link href="vendors/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
     <link href="vendors/jasny-bootstrap/css/jasny-bootstrap.css" rel="stylesheet" type="text/css" />
+    
     <!-- end of global css -->
     <!--page level css -->
     <!--end of page level css-->

@@ -29,7 +29,7 @@
                                 <form action="" method="post" role="form">
                                         {{csrf_field()}}
                                  <div class="form-group ui-draggable-handle" style="position: static;"><label for="nik">NIK</label> 
-                                    <input type="text" class="form-control" id="nik" name="nik" placeholder="NIK" required>
+                                    <input type="text" class="form-control" onkeypress="return isNumberKey(event)"  id="nik" name="nik" placeholder="NIK" required>
                                  </div> 
                                  <div class="form-group ui-draggable-handle" style="position: static;"><label for="nama">Nama </label> 
                                     <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" required>
@@ -44,6 +44,7 @@
                                             </div>
                                             <input type="text" class="form-control" id="rangepicker4" name="tgl_lahir" required />
                                         </div><br>
+                                        
 
                                 <div class="form-group">
                                     <label for="jns_kel">Jenis Kelamin</label><br>
@@ -70,9 +71,9 @@
                                 <div class="form-group">
                                     <label>Posisi</label>
                                     <select name="posisi" class="form-control" required>
-                                        {{-- @foreach (App\Models\Cabang::get() as $nama_cabang)
-                                        <option value="{{$nama_cabang->id}}">{{$nama_cabang->nama}}</option>
-                                        @endforeach --}}
+                                        @foreach (App\Models\Lowongan::get() as $nama_lowongan)
+                                        <option value="{{$nama_lowongan->id}}">{{$nama_lowongan->nama_lowongan}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 
@@ -87,7 +88,7 @@
                                         <div class="input-group-addon">
                                             <i class="livicon" data-name="phone" data-size="14" data-loop="true"></i>
                                         </div>
-                                        <input type="text" class="form-control" name="phone" data-mask="(999)9999-9999" placeholder="(999)9990-9999">
+                                        <input type="text" class="form-control" name="phone" data-mask="(999)9999-9999" placeholder="(999)9999-9999">
                                     </div>
                                     <br>
                                 <label>No Hp</label>
@@ -95,40 +96,58 @@
                                         <div class="input-group-addon">
                                             <i class="livicon" data-name="phone" data-size="14" data-loop="true"></i>
                                         </div>
-                                        <input type="text" class="form-control" name="hp" data-mask="(999)999-9999" placeholder="(999)999-9999">
+                                        <input type="text" class="form-control" name="hp" data-mask="(999)9999-9999" placeholder="(999)9999-9999">
                                     </div>
                                 <br>
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="tmp_lahir">Pendidikan Terakhir</label>
                                     <input type="text" class="form-control" id="pend" name="pend" placeholder="Pendidikan Terakhir" required>
                                 </div>
-                                <div class="form-group">
-                                        <label>Pengalaman</label>
-                                        <select name="posisi" class="form-control" required>
-                                            {{-- @foreach (App\Models\Cabang::get() as $nama_cabang)
-                                            <option value="{{$nama_cabang->id}}">{{$nama_cabang->nama}}</option>
-                                            @endforeach --}}
-                                        </select>
-                                </div>
-
-                                <label>Tanggal Masuk Lamaran</label>
+                                
+                                {{--  <label>Tanggal Masuk Lamaran</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="livicon" data-name="calendar" data-size="14" data-loop="true"></i>
                                     </div>
-                                    <input type="text" class="form-control" id="rangepicker5" name="tgl_lamaran" required />
-                                </div>
-                                <br>
+                                    <input type="text" class="form-control" id="tgl_lamaran" name="tgl_lamaran" required />
+                                </div><br>
                                 <label>Tanggal Masuk Kerja</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="livicon" data-name="calendar" data-size="14" data-loop="true"></i>
                                     </div>
-                                    <input type="text" class="form-control" id="rangepicker6" name="tgl_kerja"  />
-                                </div>
-                                <br>
+                                    <input type="text" class="form-control" id="tgl_kerja" name="tgl_kerja" required />
+                                </div><br>  --}}
+                               
                                 <button type="submit" class="btn btn-responsive button-alignment btn-danger" style="margin-bottom:7px;">Simpan</button>
                                  
-                               
+                                <div class="modal fade slideExpandUp" id="modal-10" role="dialog" aria-labelledby="Modallabel3dsign">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content ">
+                                            <div class="modal-header bg-info ">
+                                                <h4 class="modal-title" id="Modallabel3dsign">3D Expand Up</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>
+                                                    This is a modal window. You can do the following things with it:
+                                                </p>
+                                                <ul>
+                                                    <li>
+                                                        <strong>Read:</strong> modal windows will probably tell you something important so don't forget to read what they say.
+                                                    </li>
+                                                    <li>
+                                                        <strong>Look:</strong> a modal window enjoys a certain kind of attention; just look at it and appreciate its presence.
+                                                    </li>
+                                                    <li>
+                                                        <strong>Close:</strong> click on the button below to close the modal.
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-info" data-dismiss="modal">Close me! </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                     
                             
                             </form>
@@ -141,4 +160,15 @@
         </aside>
 
         @endsection
-        
+        <SCRIPT language=Javascript>
+            <!--
+            function isNumberKey(evt)
+            {
+               var charCode = (evt.which) ? evt.which : event.keyCode
+               if (charCode > 31 && (charCode < 48 || charCode > 57))
+                  return false;
+      
+               return true;
+            }
+            //-->
+         </SCRIPT>

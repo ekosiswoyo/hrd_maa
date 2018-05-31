@@ -1,13 +1,13 @@
 $("#daterange1").daterangepicker({
     locale: {
-        format: 'MM/DD/YYYY'
+        format: 'YYYY/MM/DD'
     }
 });
 $("#daterange2").daterangepicker({
     timePicker: true,
     timePickerIncrement: 1,
     locale: {
-        format: 'MM/DD/YYYY h:mm A'
+        format: 'YYYY/MM/DD h:mm A'
     }
 });
 
@@ -27,19 +27,15 @@ $('#daterange3').daterangepicker({
     }
 }, cb);
 
-$("#tgl_lahir").daterangepicker({
+$("#tgl_kerja").daterangepicker({
         singleDatePicker: true,
         showDropdowns: true
     });
-    $("#tgl_lamaran").daterangepicker({
+$("#tgl_lamaran").daterangepicker({
         singleDatePicker: true,
         showDropdowns: true
     });
-$("#rangepicker4").daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true
-    });
-    $("#rangepicker5").daterangepicker({
+$("#rangepickser4").daterangepicker({
         singleDatePicker: true,
         showDropdowns: true
     });
