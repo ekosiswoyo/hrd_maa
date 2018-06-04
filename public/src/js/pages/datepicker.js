@@ -1,13 +1,13 @@
 $("#daterange1").daterangepicker({
     locale: {
-        format: 'YYYY/MM/DD'
+        format: 'YYYY-MM-DD'
     }
 });
 $("#daterange2").daterangepicker({
     timePicker: true,
     timePickerIncrement: 1,
     locale: {
-        format: 'YYYY/MM/DD h:mm A'
+        format: 'YYYY-MM-DD h:mm A'
     }
 });
 
@@ -38,6 +38,7 @@ $("#tgl_lamaran").daterangepicker({
 $("#rangepickser4").daterangepicker({
         singleDatePicker: true,
         showDropdowns: true
+        
     });
 //datetimepicker
 

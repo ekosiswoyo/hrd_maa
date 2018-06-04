@@ -24,3 +24,4 @@ Route::get('/printfptk',  'fptkController@makePDF');
 Route::get('/home_fptk','fptkController@view');
 Route::get('/printfptk/{id}','fptkController@print');
 Route::get('/pelamar','PelamarController@index');
+Route::post('/pelamar', 'PelamarController@store');

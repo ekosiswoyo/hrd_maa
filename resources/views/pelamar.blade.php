@@ -83,22 +83,12 @@
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="alamat">Alamat Domisili</label>
                                     <textarea class="form-control" id="textarea" name="alamat_domisili" placeholder="Alamat Domisili"></textarea>
                                 </div>
-                                <label>No Telp</label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="livicon" data-name="phone" data-size="14" data-loop="true"></i>
-                                        </div>
-                                        <input type="text" class="form-control" name="phone" data-mask="(999)9999-9999" placeholder="(999)9999-9999">
-                                    </div>
-                                    <br>
-                                <label>No Hp</label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="livicon" data-name="phone" data-size="14" data-loop="true"></i>
-                                        </div>
-                                        <input type="text" class="form-control" name="hp" data-mask="(999)9999-9999" placeholder="(999)9999-9999">
-                                    </div>
-                                <br>
+                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="telp">No Telp</label> 
+                                    <input type="text" class="form-control" onkeypress="return isNumberKey(event)"  id="telp" name="telp" placeholder="No Telp" required>
+                                 </div> 
+                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="hp">No Hp</label> 
+                                    <input type="text" class="form-control" onkeypress="return isNumberKey(event)"  id="hp" name="hp" placeholder="No HP" required>
+                                 </div> 
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="tmp_lahir">Pendidikan Terakhir</label>
                                     <input type="text" class="form-control" id="pend" name="pend" placeholder="Pendidikan Terakhir" required>
                                 </div>
