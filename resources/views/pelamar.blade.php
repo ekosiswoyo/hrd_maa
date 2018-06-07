@@ -6,9 +6,15 @@
                 @if (Session::has('success_massage'))
                 <div class="alert alert-success alert-dismissable margin5" style="margin-top: 5px;margin-left: 5px;margin-right:  5px;">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <strong>Berhasil:</strong> menambahkan data Pelamar.
+                        <strong>Berhasil:</strong> Data pelamar berhasil ditambahkan.
+                </div>
+                @elseif (Session::has('errors'))
+                <div class="alert alert-success alert-dismissable margin5" style="margin-top: 5px;margin-left: 5px;margin-right:  5px;">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Errors:</strong> NIK Pelamar sudah terdaftar.
                 </div>
                 @endif
+                
             <section class="content-header">
                 <h1>Formulir Input Data Pelamar</h1>
                 <ol class="breadcrumb">
@@ -37,13 +43,16 @@
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="tmp_lahir">Tempat Lahir</label>
                                     <input type="text" class="form-control" id="tmp_lahir" name="tmp_lahir" placeholder="Tempat Lahir" required>
                                 </div>
-                                <label>Tanggal Lahir</label>
+                                <div class="form-group">
+                                        <label>Tanggal Lahir</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="livicon" data-name="calendar" data-size="14" data-loop="true"></i>
                                             </div>
-                                            <input type="text" class="form-control" id="rangepicker4" name="tgl_lahir" required />
-                                        </div><br>
+                                            <input type="text" class="form-control" name="tgl_lahir" id="tgl_lahir" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
+                                        </div>
+                                        <!-- /.input group -->
+                                </div>
                                         
 
                                 <div class="form-group">
@@ -92,52 +101,58 @@
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="tmp_lahir">Pendidikan Terakhir</label>
                                     <input type="text" class="form-control" id="pend" name="pend" placeholder="Pendidikan Terakhir" required>
                                 </div>
-                                
-                                {{--  <label>Tanggal Masuk Lamaran</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="livicon" data-name="calendar" data-size="14" data-loop="true"></i>
-                                    </div>
-                                    <input type="text" class="form-control" id="tgl_lamaran" name="tgl_lamaran" required />
-                                </div><br>
-                                <label>Tanggal Masuk Kerja</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="livicon" data-name="calendar" data-size="14" data-loop="true"></i>
-                                    </div>
-                                    <input type="text" class="form-control" id="tgl_kerja" name="tgl_kerja" required />
-                                </div><br>  --}}
-                               
+                                <div class="form-group">
+                                        <label>Tanggal Masuk Lamaran</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="livicon" data-name="calendar" data-size="14" data-loop="true"></i>
+                                            </div>
+                                            <input type="text" class="form-control" name="tgl_lamaran" id="tgl_lamaran" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
+                                        </div>
+                                        <!-- /.input group -->
+                                </div>
+                                <div class="form-group">
+                                        <label>Tanggal Masuk Kerja</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="livicon" data-name="calendar" data-size="14" data-loop="true"></i>
+                                            </div>
+                                            <input type="text" class="form-control" name="tgl_kerja" id="tgl_kerja" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
+                                        </div>
+                                        <!-- /.input group -->
+                                </div>
+                                <button class="btn btn-raised btn-info " data-toggle="modal" data-target="#modal-10">3D Expand Up</button>
+                                    
                                 <button type="submit" class="btn btn-responsive button-alignment btn-danger" style="margin-bottom:7px;">Simpan</button>
-                                 
+                               
                                 <div class="modal fade slideExpandUp" id="modal-10" role="dialog" aria-labelledby="Modallabel3dsign">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content ">
-                                            <div class="modal-header bg-info ">
-                                                <h4 class="modal-title" id="Modallabel3dsign">3D Expand Up</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>
-                                                    This is a modal window. You can do the following things with it:
-                                                </p>
-                                                <ul>
-                                                    <li>
-                                                        <strong>Read:</strong> modal windows will probably tell you something important so don't forget to read what they say.
-                                                    </li>
-                                                    <li>
-                                                        <strong>Look:</strong> a modal window enjoys a certain kind of attention; just look at it and appreciate its presence.
-                                                    </li>
-                                                    <li>
-                                                        <strong>Close:</strong> click on the button below to close the modal.
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-info" data-dismiss="modal">Close me! </button>
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content ">
+                                                <div class="modal-header bg-info ">
+                                                    <h4 class="modal-title" id="Modallabel3dsign">3D Expand Up</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>
+                                                        This is a modal window. You can do the following things with it:
+                                                    </p>
+                                                    <ul>
+                                                        <li>
+                                                            <strong>Read:</strong> modal windows will probably tell you something important so don't forget to read what they say.
+                                                        </li>
+                                                        <li>
+                                                            <strong>Look:</strong> a modal window enjoys a certain kind of attention; just look at it and appreciate its presence.
+                                                        </li>
+                                                        <li>
+                                                            <strong>Close:</strong> click on the button below to close the modal.
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-info" data-dismiss="modal">Close me! </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                     
                             
                             </form>

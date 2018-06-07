@@ -7,7 +7,9 @@ use PDF;
 use Illuminate\Support\Facades\DB;
 use App\Models\Pelamar;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 
 use Illuminate\Http\Request;
 
@@ -23,7 +25,14 @@ class PelamarController extends Controller
     }
     public function store(Request $request)
     {
-  
+        $validator = Validator::make(
+        Input::all(),
+        array(
+            "nik"                 => "required|unique:pelamar,nik",
+            "nama"              => "required"
+        )
+    );
+    if($validator->passes()){
       $id = Auth::user()->id;
      
       $nik = $request->input('nik');
@@ -38,6 +47,8 @@ class PelamarController extends Controller
       $telp = $request->input('telp');
       $hp = $request->input('hp');
       $pend = $request->input('pend');
+      $tgl_lamaran = $request->input('tgl_lamaran');
+      $tgl_kerja = $request->input('tgl_kerja');
       
   
   
@@ -53,12 +64,23 @@ class PelamarController extends Controller
           'alamat_domisili' => $alamat_domisili,
           'telp' => $telp,
           'hp' => $hp,
-          'pend_terakhir' => $pend
+          'pend_terakhir' => $pend,
+          'tgl_masuk_lamaran' => $tgl_lamaran,
+          'tgl_masuk_kerja' => $tgl_kerja
   
       ]);
       $pelamar->save();
      
       Session::flash('success_massage','Berhasil disimpan.');
       return redirect('/pelamar');
+    
+    }
+    else
+    {
+        Session::flash('errors','NIK pelamar sudah terdaftar.');
+        return Redirect::to('/pelamar')
+            ->withErrors($validator)
+            ->withInput();
+    }
     }
 }

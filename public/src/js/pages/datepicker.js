@@ -4,11 +4,8 @@ $("#daterange1").daterangepicker({
     }
 });
 $("#daterange2").daterangepicker({
-    timePicker: true,
-    timePickerIncrement: 1,
-    locale: {
-        format: 'YYYY-MM-DD h:mm A'
-    }
+    singleDatePicker: true,
+    showDropdowns: true
 });
 
 function cb(start, end) {
@@ -27,15 +24,7 @@ $('#daterange3').daterangepicker({
     }
 }, cb);
 
-$("#tgl_kerja").daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true
-    });
-$("#tgl_lamaran").daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true
-    });
-$("#rangepickser4").daterangepicker({
+$("#rangepicker4").daterangepicker({
         singleDatePicker: true,
         showDropdowns: true
         
