@@ -54,7 +54,7 @@
                                             <td>{{$views->nama_bagian}}</td>
                                             <td>{{$views->keperluan}}</td>
                                             <td>{{$views->jml_sdm}}</td>
-                                            <td><a href="/fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
+                                            <td><a href="/data-fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
                                             <td><a href="/printfptk/{{$views->id}}"><button type="button" class="btn btn-responsive button-alignment btn-danger">Hapus</button></a></td>
                                             <td><a href="/printfptk/{{$views->id}}"><button type="button" class="btn btn-responsive button-alignment btn-info">Cetak</button></a></td>
                                         </tr>
@@ -106,7 +106,7 @@
                                                 <td>{{$views->nama_bagian}}</td>
                                                 <td>{{$views->keperluan}}</td>
                                                 <td>{{$views->jml_sdm}}</td>
-                                                <td><a href="/fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
+                                                <td><a href="/data-fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
                                                 <td><a href="/printfptk/{{$views->id}}"><button type="button" class="btn btn-responsive button-alignment btn-danger">Hapus</button></a></td>
                                                 <td><a href="/printfptk/{{$views->id}}"><button type="button" class="btn btn-responsive button-alignment btn-info">Cetak</button></a></td>
                                             </tr>

@@ -13,32 +13,32 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <!-- global css -->
-    <link href="css/app.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="vendors/iCheck/css/all.css">
-    <link rel="stylesheet" type="text/css" href="vendors/iCheck/css/line/line.css">
-    <link rel="stylesheet" type="text/css" href="vendors/bootstrap-switch/css/bootstrap-switch.css">
-    <link rel="stylesheet" type="text/css" href="vendors/switchery/css/switchery.css">
-    <link rel="stylesheet" type="text/css" href="vendors/awesome-bootstrap-checkbox/css/awesome-bootstrap-checkbox.css">
-    <link rel="stylesheet" href="css/pages/radio_checkbox.css">
-    <link href="vendors/fullcalendar/css/fullcalendar.css" rel="stylesheet" type="text/css" />
-    <link href="css/pages/calendar_custom.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" media="all" href="vendors/bower-jvectormap/css/jquery-jvectormap-1.2.2.css" />
-    <link rel="stylesheet" href="vendors/animate/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="vendors/datetimepicker/css/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" href="css/pages/only_dashboard.css" />
-    <link rel="stylesheet" type="text/css" href="vendors/datatables/css/dataTables.bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="vendors/datatables/css/buttons.bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="vendors/datatables/css/colReorder.bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="vendors/datatables/css/dataTables.bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="vendors/datatables/css/rowReorder.bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="vendors/datatables/css/buttons.bootstrap.css" />
-    <link href="css/pages/tables.css" rel="stylesheet" type="text/css">
-    <link href="vendors/daterangepicker/css/daterangepicker.css" rel="stylesheet" type="text/css" />
-    <link href="vendors/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
-    <link href="vendors/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
-    <link href="vendors/jasny-bootstrap/css/jasny-bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="css/pages/advmodals.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/pages/tab.css" />
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/iCheck/css/all.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/iCheck/css/line/line.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/bootstrap-switch/css/bootstrap-switch.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/switchery/css/switchery.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/awesome-bootstrap-checkbox/css/awesome-bootstrap-checkbox.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pages/radio_checkbox.css') }}">
+    <link href="{{ asset('vendors/fullcalendar/css/fullcalendar.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/pages/calendar_custom.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" media="all" href="{{ asset('vendors/bower-jvectormap/css/jquery-jvectormap-1.2.2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('vendors/animate/animate.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pages/only_dashboard.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/dataTables.bootstrap.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/buttons.bootstrap.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/colReorder.bootstrap.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/dataTables.bootstrap.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/rowReorder.bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/buttons.bootstrap.css') }}" />
+    <link href="{{ asset('css/pages/tables.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('vendors/daterangepicker/css/daterangepicker.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendors/datetimepicker/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendors/clockface/css/clockface.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/pages/advmodals.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/pages/tab.css') }}" />
     <!-- end of global css -->
     <!--page level css -->
     <!--end of page level css-->
@@ -47,7 +47,7 @@
 <body class="skin-josh">
     <header class="header">
         <a href="index.html" class="logo">
-            <img src="img/logo.png" alt="logo">
+            <img src="{{ asset('img/logo.png') }}" alt="logo">
         </a>
         <nav class="navbar navbar-static-top" role="navigation">
             <!-- Sidebar toggle button-->
@@ -66,7 +66,7 @@
                             <li class="dropdown-title">4 New Messages</li>
                             <li class="unread message">
                                 <a href="javascript:;" class="message"> <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read"><span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span></i>
-                                    <img src="img/authors/avatar.jpg" class="img-responsive message-image" alt="icon" />
+                                    <img src="{{ asset('img/authors/avatar.jpg') }}" class="img-responsive message-image" alt="icon" />
                                     <div class="message-body"> <strong>Riot Zeast</strong>
                                         <br>Hello, You there?
                                         <br> <small>8 minutes ago</small> </div>
@@ -74,7 +74,7 @@
                             </li>
                             <li class="unread message">
                                 <a href="javascript:;" class="message"> <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read"><span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span></i>
-                                    <img src="img/authors/avatar1.jpg" class="img-responsive message-image" alt="icon" />
+                                    <img src="{{ asset('img/authors/avatar1.jpg') }}" class="img-responsive message-image" alt="icon" />
                                     <div class="message-body"> <strong>John Kerry</strong>
                                         <br>Can we Meet ?
                                         <br> <small>45 minutes ago</small> </div>
@@ -82,7 +82,7 @@
                             </li>
                             <li class="unread message">
                                 <a href="javascript:;" class="message"> <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read">                                         <span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span>                                     </i>
-                                    <img src="img/authors/avatar5.jpg" class="img-responsive message-image" alt="icon" />
+                                    <img src="{{ asset('img/authors/avatar5.jpg') }}" class="img-responsive message-image" alt="icon" />
                                     <div class="message-body"> <strong>Jenny Kerry</strong>
                                         <br>Dont forgot to call...
                                         <br> <small>An hour ago</small> </div>
@@ -90,7 +90,7 @@
                             </li>
                             <li class="unread message">
                                 <a href="javascript:;" class="message"> <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read">                                         <span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span>                                     </i>
-                                    <img src="img/authors/avatar4.jpg" class="img-responsive message-image" alt="icon" />
+                                    <img src="{{ asset('img/authors/avatar4.jpg') }}" class="img-responsive message-image" alt="icon" />
                                     <div class="message-body"> <strong>Ronny</strong>
                                         <br>Hey! sup Dude?
                                         <br> <small>3 Hours ago</small> </div>
@@ -176,7 +176,7 @@
                     </li>
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="img/authors/avatar3.jpg" width="35" class="img-circle img-responsive pull-left" height="35" alt="riot">
+                            <img src="{{ asset('img/authors/avatar3.jpg') }}" width="35" class="img-circle img-responsive pull-left" height="35" alt="riot">
                             <div class="riot">
                                 <div>
                                     {{ \Illuminate\Support\Str::limit(Auth::user()->nama, 10) }}
@@ -190,7 +190,7 @@
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header bg-light-blue">
-                                <img src="img/authors/avatar3.jpg" width="90" class="img-circle img-responsive" height="90" alt="User Image" />
+                                <img src="{{ asset('img/authors/avatar3.jpg') }}" width="90" class="img-circle img-responsive" height="90" alt="User Image" />
                                 <p class="topprofiletext"> {{ Auth::user()->nama }}</p><br>
                             </li>
                             <!-- Menu Body -->
@@ -743,52 +743,52 @@
         <i class="livicon" data-name="plane-up" data-size="18" data-loop="true" data-c="#fff" data-hc="white"></i>
     </a>
     <!-- global js -->
-    <script src="js/app.js" type="text/javascript"></script>
-    <script type="text/javascript" src="vendors/iCheck/js/icheck.js"></script>
-    <script type="text/javascript" src="vendors/bootstrap-switch/js/bootstrap-switch.js"></script>
-    <script type="text/javascript" src="vendors/switchery/js/switchery.js"></script>
-    <script type="text/javascript" src="vendors/bootstrap-maxlength/js/bootstrap-maxlength.js"></script>
-    <script type="text/javascript" src="vendors/card/lib/js/jquery.card.js"></script>
-    <script type="text/javascript" src="js/pages/radio_checkbox.js"></script>
-    <script src="vendors/jquery.easy-pie-chart/js/easypiechart.min.js"></script>
-    <script src="vendors/jquery.easy-pie-chart/js/jquery.easypiechart.min.js"></script>
-    <script src="js/jquery.easingpie.js"></script>
-    <script src="vendors/moment/js/moment.min.js" type="text/javascript"></script>
-    <script src="vendors/fullcalendar/js/fullcalendar.min.js" type="text/javascript"></script>
-    <script src="vendors/flotchart/js/jquery.flot.js" type="text/javascript"></script>
-    <script src="vendors/flotchart/js/jquery.flot.resize.js" type="text/javascript"></script>
-    <script src="vendors/sparklinecharts/jquery.sparkline.js"></script>
-    <script type="text/javascript" src="vendors/countUp.js/js/countUp.js"></script>
-    <script src="vendors/bower-jvectormap/js/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="vendors/bower-jvectormap/js/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="vendors/chartjs/Chart.js"></script>
-    <script type="text/javascript" src="vendors/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/bootstrap-switch/js/bootstrap-switch.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/switchery/js/switchery.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/bootstrap-maxlength/js/bootstrap-maxlength.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/card/lib/js/jquery.card.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/pages/radio_checkbox.js') }}"></script>
+    <script src="{{ asset('vendors/jquery.easy-pie-chart/js/easypiechart.min.js') }}"></script>
+    <script src="{{ asset('vendors/jquery.easy-pie-chart/js/jquery.easypiechart.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.easingpie.js') }}"></script>
+    <script src="{{ asset('vendors/moment/js/moment.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendors/fullcalendar/js/fullcalendar.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendors/flotchart/js/jquery.flot.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendors/flotchart/js/jquery.flot.resize.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendors/sparklinecharts/jquery.sparkline.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/countUp.js/js/countUp.js') }}"></script>
+    <script src="{{ asset('vendors/bower-jvectormap/js/jquery-jvectormap-1.2.2.min.js') }}"></script>
+    <script src="{{ asset('vendors/bower-jvectormap/js/jquery-jvectormap-world-mill-en.js') }}"></script>
+    <script src="{{ asset('vendors/chartjs/Chart.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
     <!--  todolist-->
-    <script src="js/pages/todolist.js"></script>
-    <script src="js/pages/dashboard.js" type="text/javascript"></script>
-    <script type="text/javascript" src="vendors/datatables/js/vfs_fonts.js"></script>
-    <script type="text/javascript" src="js/pages/table-advanced.js"></script>
-    <script type="text/javascript" src="vendors/datatables/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="vendors/jeditable/js/jquery.jeditable.js"></script>
-    <script type="text/javascript" src="vendors/datatables/js/dataTables.bootstrap.js"></script>
-    <script type="text/javascript" src="vendors/datatables/js/dataTables.buttons.js"></script>
-    <script type="text/javascript" src="vendors/datatables/js/dataTables.colReorder.js"></script>
-    <script type="text/javascript" src="vendors/datatables/js/dataTables.responsive.js"></script>
-    <script type="text/javascript" src="vendors/datatables/js/dataTables.rowReorder.js"></script>
-    <script type="text/javascript" src="vendors/datatables/js/buttons.colVis.js"></script>
-    <script type="text/javascript" src="vendors/datatables/js/buttons.html5.js"></script>
-    <script type="text/javascript" src="vendors/datatables/js/buttons.print.js"></script>
-    <script type="text/javascript" src="vendors/datatables/js/buttons.bootstrap.js"></script>
-    <script type="text/javascript" src="vendors/datatables/js/pdfmake.js"></script>
+    <script src="{{ asset('js/pages/todolist.js') }}"></script>
+    <script src="{{ asset('js/pages/dashboard.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('vendors/datatables/js/vfs_fonts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/pages/table-advanced.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/datatables/js/jquery.dataTables.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/jeditable/js/jquery.jeditable.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/datatables/js/dataTables.bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/datatables/js/dataTables.buttons.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/datatables/js/dataTables.colReorder.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/datatables/js/dataTables.responsive.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/datatables/js/dataTables.rowReorder.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/datatables/js/buttons.colVis.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/datatables/js/buttons.html5.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/datatables/js/buttons.print.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/datatables/js/buttons.bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/datatables/js/pdfmake.js') }}"></script>
 
     <!-- begining of page level js -->
-    <script src="vendors/moment/js/moment.min.js" type="text/javascript"></script>
-    <script src="vendors/daterangepicker/js/daterangepicker.js" type="text/javascript"></script>
-    <script src="vendors/datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
-    <script src="vendors/clockface/js/clockface.js" type="text/javascript"></script>
-    <script src="vendors/jasny-bootstrap/js/jasny-bootstrap.js" type="text/javascript"></script>
-    <script src="js/pages/datepicker.js" type="text/javascript"></script>
-    <script src="js/pages/tabs_accordions.js" type="text/javascript"></script>
+    <script src="{{ asset('vendors/moment/js/moment.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendors/daterangepicker/js/daterangepicker.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendors/clockface/js/clockface.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/pages/datepicker.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/pages/tabs_accordions.js') }}" type="text/javascript"></script>
     <!-- end of page level js -->
     <!-- end of global js -->
     <!-- begining of page level js -->

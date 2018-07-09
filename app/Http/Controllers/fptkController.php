@@ -133,8 +133,11 @@ class fptkController extends Controller
 
     public function ubahfptk($id)
   {
-
-    $fptk = fptk::find($id);
+    $fptk = DB::table('fptk')
+    ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
+    ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
+    ->where('fptk.id','=',$id)->first();
+    // $fptk = fptk::find($id);
     return view ('ubah-fptk', compact('fptk'));
   }
   

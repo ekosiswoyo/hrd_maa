@@ -5,7 +5,7 @@
         <aside class="right-side">
                 
             <section class="content-header">
-                <h1>Formulir Permintaan Tenaga Kerja (FPTK)</h1>
+                <h1>Formulir Ubah Permintaan Tenaga Kerja (FPTK)</h1>
                 <ol class="breadcrumb">
                     <li>
                         <a href="index.html">
@@ -23,24 +23,26 @@
                             <div class="col-md-12" style="display: block;">
                                 <form action="" method="post" role="form">
                                         {{csrf_field()}}
-                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="bagian">Divisi/Department</label> 
-                                    <input type="text" class="form-control" id="bagian" name="bagian" value="{{ $fptk->id_cabang}}">
-                                 </div> 
-                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Nama Jabatan/Grade</label>
-                                    <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $fptk->grade}}">
-                                </div>
-                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="jml_sdm">Jumlah SDM</label>
-                                    <input type="text" class="form-control" id="jml_sdm" name="jml_sdm" placeholder="Jumlah SDM yang dibutuhkan" value="{{ $fptk->jml_sdm}}">
-                                </div>
-                                {{-- <div class="form-group">
+                               
+                                 {{--  <div class="form-group ui-draggable-handle" style="position: static;"><label for="cabang">Lokasi Kerja</label>   --}}
+                                    <input type="hidden" class="form-control" id="cabang" name="cabang" value="{{ $fptk->id_cabang}}">
+                                 {{--  </div>  --}}
+                                 <div class="form-group">
                                     <label>Lokasi Kerja</label>
-                                    <select name="cabang" class="form-control" required>
+                                    <select name="cabang" class="form-control">
                                         <option value="" required>-- Pilih Lokasi Kerja --</option>
                                         @foreach (App\Models\Cabang::get() as $nama_cabang)
                                         <option value="{{$nama_cabang->id_cabang}}">{{$nama_cabang->nama_cabang}}</option>
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Nama Jabatan/Grade</label>
+                                    <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $fptk->grade}}">
+                                </div>
+                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="jml_sdm">Jumlah SDM</label>
+                                    <input type="text" class="form-control" id="jml_sdm" name="jml_sdm" placeholder="Jumlah SDM yang dibutuhkan" value="{{ $fptk->jml_sdm}}">
+                                </div>
+                                
                                 <div class="form-group">
                                     <label for="keperluan">Keperluan</label><br>
                                     <label class="radio-inline" for="keperluan-0">
