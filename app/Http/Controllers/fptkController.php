@@ -97,6 +97,26 @@ class fptkController extends Controller
     return view('home_fptk', compact('statusawal','statusakhir'));
   }
 
+  public function viewfptk(){
+    $id = Auth::user()->id_bagian;
+
+    $statusawal = DB::table('fptk')
+            ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
+            ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
+            ->where('fptk.id_bagian','=',$id)
+            ->where('fptk.status','=',0)
+            ->orderBy('fptk.id','asc')->get();
+    $statusakhir = DB::table('fptk')
+            ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
+            ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
+            ->where('fptk.id_bagian','=',$id)
+            ->where('fptk.status','=',1)
+            ->orderBy('fptk.id','asc')->get();
+    return view('data-fptk', compact('id','statusawal','statusakhir'));
+  }
+
+
+
   public function print($id)
     {
       $no = 0;
@@ -110,6 +130,13 @@ class fptkController extends Controller
             
             return $pdf->download('fptk.pdf');
     }
+
+    public function ubahfptk($id)
+  {
+
+    $fptk = fptk::find($id);
+    return view ('ubah-fptk', compact('fptk'));
+  }
   
 }
 

@@ -37,7 +37,8 @@
     <link href="vendors/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
     <link href="vendors/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
     <link href="vendors/jasny-bootstrap/css/jasny-bootstrap.css" rel="stylesheet" type="text/css" />
-      <link href="css/pages/advmodals.css" rel="stylesheet" />
+    <link href="css/pages/advmodals.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/pages/tab.css" />
     <!-- end of global css -->
     <!--page level css -->
     <!--end of page level css-->
@@ -270,7 +271,14 @@
                                 <span class="title">Data FPTK</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="/data_pelamar">
+                                <i class="livicon" data-name="doc-landscape" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                <span class="title">Data Pelamar</span>
+                            </a>
+                        </li>
                         @endif
+                        
                         <li>
                             <a href="#">
                                 <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
@@ -780,6 +788,7 @@
     <script src="vendors/clockface/js/clockface.js" type="text/javascript"></script>
     <script src="vendors/jasny-bootstrap/js/jasny-bootstrap.js" type="text/javascript"></script>
     <script src="js/pages/datepicker.js" type="text/javascript"></script>
+    <script src="js/pages/tabs_accordions.js" type="text/javascript"></script>
     <!-- end of page level js -->
     <!-- end of global js -->
     <!-- begining of page level js -->

@@ -121,40 +121,92 @@
                                         </div>
                                         <!-- /.input group -->
                                 </div>
-                                <button class="btn btn-raised btn-info " data-toggle="modal" data-target="#modal-10">3D Expand Up</button>
-                                    
-                                <button type="submit" class="btn btn-responsive button-alignment btn-danger" style="margin-bottom:7px;">Simpan</button>
-                               
-                                <div class="modal fade slideExpandUp" id="modal-10" role="dialog" aria-labelledby="Modallabel3dsign">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content ">
-                                                <div class="modal-header bg-info ">
-                                                    <h4 class="modal-title" id="Modallabel3dsign">3D Expand Up</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>
-                                                        This is a modal window. You can do the following things with it:
-                                                    </p>
-                                                    <ul>
-                                                        <li>
-                                                            <strong>Read:</strong> modal windows will probably tell you something important so don't forget to read what they say.
-                                                        </li>
-                                                        <li>
-                                                            <strong>Look:</strong> a modal window enjoys a certain kind of attention; just look at it and appreciate its presence.
-                                                        </li>
-                                                        <li>
-                                                            <strong>Close:</strong> click on the button below to close the modal.
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-info" data-dismiss="modal">Close me! </button>
+                                
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            <i class="livicon" data-name="briefcase" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
+                                            Pengalaman Kerja
+                                        </h3>
+                                        <span class="pull-right clickable">
+                                            <i class="glyphicon glyphicon-chevron-up"></i>
+                                        </span>
+                                    </div>
+                                    @for($i=0;$i<3;$i++)
+                                    <div class="panel-body"><div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="headingOne">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                        <h4 class="panel-title">Pengalaman Kerja</h4>
+                                                    </a>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                                <div class="panel-body">
+                                                    <div class="form-group ui-draggable-handle" style="position: static;"><label for="nama_perusahaan">Nama Perusahaan</label>
+                                                        <input type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan[]" placeholder="Nama Perusahaan" required>
+                                                    </div>
+                                                    <div class="form-group ui-draggable-handle" style="position: static;"><label for="posisi">Posisi</label>
+                                                        <input type="text" class="form-control" id="posisi" name="posisi[]" placeholder="Posisi" required>
+                                                    </div>
+                                                    <div class="form-group ui-draggable-handle" style="position: static;"><label for="nama_perusahaan">Lama Bekerja</label>
+                                                        <input type="text" class="form-control" id="jangka" name="jangka[]" placeholder="Lama Bekerja" required>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        {{--  <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="headingTwo">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                        <h4 class="panel-title">
+                                                        Pengalaman Kerja 2
+                                                            </h4>
+                                                            
+                                                    </a>
+                                            </div>
+                                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                                <div class="panel-body">
+                                                    <div class="form-group ui-draggable-handle" style="position: static;"><label for="nama_perusahaan">Nama Perusahaan</label>
+                                                        <input type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan" placeholder="Nama Perusahaan" required>
+                                                    </div>
+                                                    <div class="form-group ui-draggable-handle" style="position: static;"><label for="posisi">Posisi</label>
+                                                        <input type="text" class="form-control" id="posisi" name="posisi" placeholder="Posisi" required>
+                                                    </div>
+                                                    <div class="form-group ui-draggable-handle" style="position: static;"><label for="nama_perusahaan">Lama Bekerja</label>
+                                                        <input type="text" class="form-control" id="jangka" name="jangka" placeholder="Lama Bekerja" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="headingThree">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                        <h4 class="panel-title"> Pengalaman Kerja 3</h4>
+                                                    </a>
+                                            </div>
+                                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                                <div class="panel-body">
+                                                    <div class="form-group ui-draggable-handle" style="position: static;"><label for="nama_perusahaan">Nama Perusahaan</label>
+                                                        <input type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan" placeholder="Nama Perusahaan" required>
+                                                    </div>
+                                                    <div class="form-group ui-draggable-handle" style="position: static;"><label for="posisi">Posisi</label>
+                                                        <input type="text" class="form-control" id="posisi" name="posisi" placeholder="Posisi" required>
+                                                    </div>
+                                                    <div class="form-group ui-draggable-handle" style="position: static;"><label for="nama_perusahaan">Lama Bekerja</label>
+                                                        <input type="text" class="form-control" id="jangka" name="jangka" placeholder="Lama Bekerja" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>  --}}
                                     </div>
                                     
-                            
+                                        <!-- nav-tabs-custom -->
+                                    </div>
+                                    @endfor
+                                </div>
+                                <button class="btn btn-raised btn-info " data-toggle="modal" data-target="#ajax-modal">3D Expand Up</button>
+                                    
+                                <button type="submit" class="btn btn-responsive button-alignment btn-danger" style="margin-bottom:7px;">Simpan</button>
+                                
                             </form>
                             </div>
                            
