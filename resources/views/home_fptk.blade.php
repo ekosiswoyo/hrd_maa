@@ -58,7 +58,7 @@
                                             <td><a href="/data-fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
                                                 <td><button type="button" onClick="deleteData({{$views->id}})"  data-id="{{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td>
                                                 <td><a href="/printfptk/{{$views->id}}"><button type="button" class="btn btn-responsive button-alignment btn-info">Cetak</button></a></td>
-                                                <td><form method="post"> {{csrf_field()}}<a href="{{ route('login') }}"><button type="button" class="btn btn-responsive button-alignment btn-danger">Proses</button></a></form></td>
+                                                <td><form method="post" > {{csrf_field()}}<a href="/data-fptk/{{$views->id}}/proses"><button type="button" class="btn btn-responsive button-alignment btn-danger">Proses</button></a></form></td>
                                         </tr>
                                         @endforeach
                                     </tbody>

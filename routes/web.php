@@ -24,7 +24,7 @@ Route::get('/printfptk',  'fptkController@makePDF');
 Route::get('/home_fptk','fptkController@view');
 Route::get('/data-fptk/{id}/ubah', 'fptkController@ubahfptk');
 Route::post('/data-fptk/{id}', 'fptkController@updatefptk');
-Route::post('/data-fptk/{id}/proses', ['as' => 'proses', 'uses' => 'fptkController@proses']);
+Route::get('/data-fptk/{id}/proses', 'fptkController@proses');
 Route::delete('/data-fptk/deleteData/{id}',['uses' => 'fptkController@destroy']);
 Route::get('/data-fptk','fptkController@viewfptk');
 Route::get('/printfptk/{id}','fptkController@print');

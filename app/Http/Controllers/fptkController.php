@@ -188,7 +188,7 @@ class fptkController extends Controller
     $fptk->save();
 
     Session::flash('success_massage','Data FPTK, berhasil di edit');
-    return redirect('/home-fptk');
+    return redirect('/home_fptk');
   }
 }
 
