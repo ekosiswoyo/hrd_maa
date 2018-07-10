@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>E-Recruitment BPR MAA</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -38,6 +39,8 @@
     <link href="{{ asset('vendors/clockface/css/clockface.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/pages/advmodals.css') }}" rel="stylesheet" />
+    
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendors/sweetalert/css/sweetalert.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/pages/tab.css') }}" />
     <!-- end of global css -->
     <!--page level css -->
@@ -743,6 +746,9 @@
         <i class="livicon" data-name="plane-up" data-size="18" data-loop="true" data-c="#fff" data-hc="white"></i>
     </a>
     <!-- global js -->
+    {{-- <script type="text/javascript" src="{{ asset('js/pages/sweetalert.js') }}"></script> --}}
+    <script type="text/javascript" src="{{ asset('vendors/sweetalert/js/sweetalert.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/sweetalert/js/sweetalert-dev.js') }}"></script>
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
     <script type="text/javascript" src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
     <script type="text/javascript" src="{{ asset('vendors/bootstrap-switch/js/bootstrap-switch.js') }}"></script>

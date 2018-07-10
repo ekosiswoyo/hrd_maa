@@ -140,7 +140,56 @@ class fptkController extends Controller
     // $fptk = fptk::find($id);
     return view ('ubah-fptk', compact('fptk'));
   }
+
+  public function updatefptk(Request $request,$id)
+  {
+    $fptk = fptk::find($id);
   
+    $fptk->id_cabang = $request->cabang;
+    $fptk->grade = $request->jabatan;
+    $fptk->jml_sdm = $request->jml_sdm;
+    $fptk->keperluan = $request->keperluan;
+    $fptk->ket_keperluan = $request->ket_keperluan;
+    $fptk->status_karyawan = $request->stat_kar;
+
+    $fptk->jns_kel = $request->jns_kel;
+    $fptk->stat_pernikahan = $request->stat_nikah;
+    $fptk->pend = $request->pendidikan;
+    $fptk->pengalaman_kerja = $request->pengalaman;
+    $fptk->min_pengalaman = $request->min_pengalaman;
+    $fptk->syarat_wajib = $request->syarat_wajib;
+
+    $fptk->syarat_dukung = $request->syarat_pendukung;
+    $fptk->uraian_tugas = $request->tanggung_jawab;
+    $fptk->karakteristik = $request->karakteristik;
+    $fptk->save();
+
+    Session::flash('success_massage','Data FPTK, berhasil di edit');
+    return redirect('/data-fptk');
+  }
+  
+  public function destroy($id)
+    {
+        $fptk = fptk::findOrFail($id);
+
+        fptk::destroy($id);
+        return response()->json([
+            'success' => true,
+            'message' => 'Contact Deleted'
+        ]);
+        
+    }
+
+    public function proses(Request $request,$id)
+  {
+    $fptk = fptk::find($id);
+  
+    $fptk->status = '1';
+    $fptk->save();
+
+    Session::flash('success_massage','Data FPTK, berhasil di edit');
+    return redirect('/home-fptk');
+  }
 }
 
 
