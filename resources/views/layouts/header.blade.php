@@ -14,6 +14,11 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <!-- global css -->
+    <link href="{{ asset('vendors/select2/css/select2.min.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('vendors/select2/css/select2-bootstrap.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('vendors/bootstrapvalidator/css/bootstrapValidator.min.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/pages/wizard.css') }}" type="text/css" rel="stylesheet">
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('vendors/iCheck/css/all.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vendors/iCheck/css/line/line.css') }}">
@@ -264,7 +269,7 @@
                         <li>
                             <a href="/printfptk">
                                 <i class="livicon" data-name="printer" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
-                                <span class="title">Cetak FPTK</span>
+                                <span class="title">Cetak FPTK TERAKHIR</span>
                             </a>
                         </li>
                         @if(Auth::user()->id_bagian == 36)
@@ -278,6 +283,13 @@
                             <a href="/data_pelamar">
                                 <i class="livicon" data-name="doc-landscape" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
                                 <span class="title">Data Pelamar</span>
+                            </a>
+                        </li>
+                        @else
+                        <li>
+                            <a href="/data-fptk">
+                                <i class="livicon" data-name="doc-landscape" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                <span class="title">Data FPTK</span>
                             </a>
                         </li>
                         @endif
@@ -795,6 +807,12 @@
     <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/pages/datepicker.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/pages/tabs_accordions.js') }}" type="text/javascript"></script>
+    
+    <script src="{{ asset('vendors/select2/js/select2.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendors/bootstrapwizard/jquery.bootstrap.wizard.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendors/bootstrapvalidator/js/bootstrapValidator.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/pages/form_wizard.js') }}" type="text/javascript"></script>
+
     <!-- end of page level js -->
     <!-- end of global js -->
     <!-- begining of page level js -->

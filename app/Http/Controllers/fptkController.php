@@ -94,7 +94,8 @@ class fptkController extends Controller
     ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
     ->where('fptk.status','=',1)
     ->orderBy('fptk.id','asc')->get();
-    return view('home_fptk', compact('statusawal','statusakhir'));
+    $users = DB::table('fptk')->where('status','=',0)->count();
+    return view('home_fptk', compact('statusawal','statusakhir','users'));
   }
 
   public function viewfptk(){

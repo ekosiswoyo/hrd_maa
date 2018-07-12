@@ -29,5 +29,6 @@ Route::delete('/data-fptk/deleteData/{id}',['uses' => 'fptkController@destroy'])
 Route::get('/data-fptk','fptkController@viewfptk');
 Route::get('/printfptk/{id}','fptkController@print');
 Route::get('/pelamar','PelamarController@index');
+Route::get('/pelamar-pekerjaan','PelamarController@indexs');
 Route::post('/pelamar', 'PelamarController@store');
 Route::get('/data_pelamar','PelamarController@view');

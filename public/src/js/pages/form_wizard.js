@@ -6,7 +6,16 @@ $("#gender, #gender1").select2({
 });
 $("#commentForm").bootstrapValidator({
     fields: {
-        username: {
+        nik: {
+            validators: {
+                notEmpty: {
+                    message: 'The User name is required'
+                }
+            },
+            required: true,
+            minlength: 3
+        },
+        nama: {
             validators: {
                 notEmpty: {
                     message: 'The User name is required'
@@ -159,20 +168,20 @@ $('#rootwizard').bootstrapWizard({
         // If it's the last tab then hide the last button and show the finish instead
         if($current >= $total) {
             $('#rootwizard').find('.pager .next').hide();
-            $('#rootwizard').find('.pager .finish').show();
-            $('#rootwizard').find('.pager .finish').removeClass('disabled');
+            // $('#rootwizard').find('.pager .finish').show();
+            // $('#rootwizard').find('.pager .finish').removeClass('disabled');
         } else {
             $('#rootwizard').find('.pager .next').show();
             $('#rootwizard').find('.pager .finish').hide();
         }
-        $('#rootwizard .finish').click(function() {
-            var $validator = $('#commentForm').data('bootstrapValidator').validate();
-            if ($validator.isValid()) {
-                $('#myModal').modal('show');
-                return $validator.isValid();
-                $('#rootwizard').find("a[href='#tab1']").tab('show');
-            }
-        });
+        // $('#rootwizard .finish').click(function() {
+        //     var $validator = $('#commentForm').data('bootstrapValidator').validate();
+        //     if ($validator.isValid()) {
+        //         $('#myModal').modal('show');
+        //         return $validator.isValid();
+        //         $('#rootwizard').find("a[href='#tab1']").tab('show');
+        //     }
+        // });
 
     }});
 

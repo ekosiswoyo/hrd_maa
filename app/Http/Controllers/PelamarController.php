@@ -24,6 +24,10 @@ class PelamarController extends Controller
 
         return view('/pelamar');
     }
+    public function indexs(){
+
+        return view('/pelamar-pekerjaan');
+    }
     public function store(Request $request)
     {
             $validator = Validator::make(
@@ -42,15 +46,15 @@ class PelamarController extends Controller
                 $tmp_lahir = $request->input('tmp_lahir');
                 $tgl_lahir = $request->input('tgl_lahir');
                 $jns_kel = $request->input('jns_kel');
-                $stat_nikah = $request->input('stat_nikah');
                 $posisi = $request->input('posisi');
+                $tgl_lamaran = $request->input('tgl_lamaran');
+                $tgl_kerja = $request->input('tgl_kerja');
+                $stat_nikah =$request->input('stat_nikah');
                 $alamat_ktp = $request->input('alamat_ktp');
                 $alamat_domisili = $request->input('alamat_domisili');
                 $telp = $request->input('telp');
                 $hp = $request->input('hp');
                 $pend = $request->input('pend');
-                $tgl_lamaran = $request->input('tgl_lamaran');
-                $tgl_kerja = $request->input('tgl_kerja');
                 
   
   
@@ -61,31 +65,31 @@ class PelamarController extends Controller
                     'tanggal_lahir' => $tgl_lahir,
                     'jns_kel' => $jns_kel,
                     'stat_pernikahan' => $stat_nikah,
-                    'id_lowongan' => $posisi,
                     'alamat_ktp' => $alamat_ktp,
                     'alamat_domisili' => $alamat_domisili,
                     'telp' => $telp,
                     'hp' => $hp,
                     'pend_terakhir' => $pend,
-                    'tgl_masuk_lamaran' => $tgl_lamaran,
-                    'tgl_masuk_kerja' => $tgl_kerja
+                    'id_lowongan'=>$posisi,
+                    'tgl_masuk_lamaran'=>$tgl_lamaran,
+                    'tgl_masuk_kerja'=>$tgl_kerja,
   
                 ]);
             
                 $pelamar->save();
                 
 
-      $pengalaman = $request->pengalaman;
-      foreach ($users as $key => $value) {
-        $userteam = new UserTeam();
-        $userteam->id_team = $control->id;
-        $userteam->id_user = $value;
-        $userteam->status_user = 'User';
-        $userteam->save();
+    //   $pengalaman = $request->pengalaman;
+    //   foreach ($users as $key => $value) {
+    //     $userteam = new UserTeam();
+    //     $userteam->id_team = $control->id;
+    //     $userteam->id_user = $value;
+    //     $userteam->status_user = 'User';
+    //     $userteam->save();
       
-     }
+    //  }
                 Session::flash('success_massage','Berhasil disimpan.');
-                return redirect('/pelamar');
+                return redirect('/pelamar-pekerjaan');
     
             }else{
                 Session::flash('errors','NIK pelamar sudah terdaftar.');
