@@ -248,17 +248,15 @@
                             </div>
                             <div class="panel-body">
                                 <form id="commentForm" method="post" action="#">
+                                        {{csrf_field()}}
                                     <div id="rootwizard">
                                         <ul>
                                             <li>
                                                 <a href="{{ url('pelamar') }}" >Data Pribadi</a>
                                             </li>
-                                        </a>
-                                            <li class="active">
-                                                <a href="#tab3" data-toggle="tab">Data Pekerjaan</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ url('pelamar') }}" >Pengalaman Kerja</a>
+                                            
+                                            <li style="">
+                                                <a href="#tab3" style="background-color:#337ab7;color:#fff !important;" data-toggle="tab">Pengalaman Kerja</a>
                                             </li>
                                             <li>
                                                 <a href="{{ url('pelamar') }}">Upload File</a>
@@ -266,58 +264,7 @@
                                         </ul>
                                         <div class="tab-content">
                                            
-                                            <div class="tab-pane" id="tab2">
-                                                <h2 class="hidden">&nbsp;</h2>
-                                                <div class="form-group">
-                                                    <label>Posisi</label>
-                                                    <select name="posisi" class="form-control" required>
-                                                        @foreach (App\Models\Lowongan::get() as $nama_lowongan)
-                                                        <option value="{{$nama_lowongan->id}}">{{$nama_lowongan->nama_lowongan}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Tanggal Masuk Lamaran</label>
-                                                    <div class="input-group">
-                                                        
-                                                        <input type="text" class="form-control" name="tgl_lamaran" id="tgl_lamaran" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
-                                                    </div>
-                                                    <!-- /.input group -->
-                                                </div>
-                                                <div class="form-group">
-                                                        <label>Tanggal Masuk Kerja</label>
-                                                        <div class="input-group">
-                                                           
-                                                            <input type="text" class="form-control" name="tgl_kerja" id="tgl_kerja" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
-                                                        </div>
-                                                        <!-- /.input group -->
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="name" class="control-label">First name *</label>
-                                                    <input id="name" name="fname" placeholder="Enter your First name" type="text" class="form-control required">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="surname" class="control-label">Last name *</label>
-                                                    <input id="surname" name="lname" type="text" placeholder=" Enter your Last name" class="form-control required">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="email">Gender</label>
-                                                    <select class="form-control" name="gender" id="gender" title="Select an account type...">
-                                                        <option>Select</option>
-                                                        <option>MALE</option>
-                                                        <option>FEMALE</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="address">Address</label>
-                                                    <input id="address" name="address" type="text" class="form-control">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="age" class="control-label">Age *</label>
-                                                    <input id="age" name="age" type="text" maxlength="3" class="form-control required number" min="17" data-bv-greaterthan-inclusive="false" data-bv-greaterthan-message="The input must be greater than or equal to 18" max="100" data-bv-lessthan-inclusive="true" data-bv-lessthan-message="The input must be less than 100">
-                                                </div>
-                                            </div>
+                                           
                                             <div class="tab-pane active" id="tab3">
                                                     <div class="panel panel-default">
                                                             <div class="panel-heading">
@@ -329,7 +276,6 @@
                                                                     <i class="glyphicon glyphicon-chevron-up"></i>
                                                                 </span>
                                                             </div>
-                                                            @for($i=0;$i<3;$i++)
                                                             <div class="panel-body"><div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                                                 <div class="panel panel-default">
                                                                     <div class="panel-heading" role="tab" id="headingOne">
@@ -339,49 +285,40 @@
                                                                     </div>
                                                                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                                                         <div class="panel-body">
-                                                                            <div class="form-group ui-draggable-handle" style="position: static;"><label for="nama_perusahaan">Nama Perusahaan</label>
-                                                                                <input type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan[]" placeholder="Nama Perusahaan" required>
-                                                                            </div>
-                                                                            <div class="form-group ui-draggable-handle" style="position: static;"><label for="posisi">Posisi</label>
-                                                                                <input type="text" class="form-control" id="posisi" name="posisi[]" placeholder="Posisi" required>
-                                                                            </div>
-                                                                            <div class="form-group ui-draggable-handle" style="position: static;"><label for="nama_perusahaan">Lama Bekerja</label>
-                                                                                <input type="text" class="form-control" id="jangka" name="jangka[]" placeholder="Lama Bekerja" required>
+                                                                            <div class="form-group after-add-more">
+                                                                               
+                                                                                    <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                                                                               
                                                                             </div>
                                                                         </div>
                                                                     </div>
+
+                                                                    <div id="copy" class="copy hide">
+                                                                            <div class="form-group" style="margin-top:10px">
+                                                                            
+                                                                                <input type="text" style="position: static;" class="form-control" id="nama_perusahaan" name="nama_perusahaan[]" placeholder="Nama Perusahaan" >
+                                                                            
+                                                                                <input type="text" class="form-control" id="posisi" name="posisi[]" placeholder="Posisi" >
+                                                                           
+                                                                                <input type="text" class="form-control" id="jangka" name="jangka[]" placeholder="Lama Bekerja" >
+                                                                            
+                                                                            <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                                                        
+                                                                        </div>
+                                                                      </div>
                                                                 </div>
                                                                  </div>
                                                             
                                                             </div>
-                                                            @endfor  
                                                          </div>
-                                                <div class="form-group">
-                                                    <label>Home number *</label>
-                                                    <input type="text" class="form-control" id="phone1" name="phone1" placeholder="(999)999-9999">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Personal number *</label>
-                                                    <input type="text" class="form-control" id="phone2" name="phone2" placeholder="(999)999-9999">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Alternate number *</label>
-                                                    <input type="text" class="form-control" id="phone3" name="phone3" placeholder="(999)999-9999">
-                                                </div>
-                                                <h2 class="hidden">&nbsp;</h2>
-                                                <div class="form-group">
-                                                    <span>Terms and Conditions *</span>
-                                                    <label>
-                                                        <input id="acceptTerms" name="acceptTerms" type="checkbox" class="custom-checkbox"> I agree with the Terms and Conditions.
-                                                    </label>
-                                                </div>
+                                               
                                             </div>
                                             <ul class="pager wizard">
                                                 <li class="previous">
                                                     <a href="#">Previous</a>
                                                 </li>
                                                 <li class="next">
-                                                    <a href="#">Next</a>
+                                                    <button type="submit" id="hapus" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Next</button>
                                                 </li>
                                                 <li class="next finish" style="display:none;">
                                                     <a href="javascript:;">Finish</a>
@@ -415,16 +352,32 @@
             <!-- content -->
         </aside>
         @endsection
-        <SCRIPT language=Javascript>
-            <!--
-            function isNumberKey(evt)
-            {
-               var charCode = (evt.which) ? evt.which : event.keyCode
-               if (charCode > 31 && (charCode < 48 || charCode > 57))
-                  return false;
-      
-               return true;
-            }
-            //-->
-         </SCRIPT>
-         <script src="{{ asset('js/pages/form_wizard.js')}}" type="text/javascript"></script>
+        @section('script')
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".add-more").click(function(){ 
+                    var html = $(".copy").html();
+                    $(".after-add-more").after(html);
+                });
+                $("body").on("click",".remove",function(){ 
+                    $(this).parents(".form-group").remove();
+                });
+                
+              });
+
+              $("#hapus").click(function() {
+            $("#copy").remove();
+            })
+  
+              function isNumberKey(evt)
+              {
+                 var charCode = (evt.which) ? evt.which : event.keyCode
+                 if (charCode > 31 && (charCode < 48 || charCode > 57))
+                    return false;
+        
+                 return true;
+              }
+              //-->
+        </script>
+        @endsection
+        

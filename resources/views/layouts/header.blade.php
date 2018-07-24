@@ -14,6 +14,19 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <!-- global css -->
+
+    <link rel="stylesheet" href=""{{ asset('vendors/blueimp-gallery-with-desc/css/blueimp-gallery.min.css') }}" />
+    <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+    <link rel="stylesheet" href=""{{ asset('vendors/blueimp-file-upload/css/jquery.fileupload.css') }}" />
+    <link rel="stylesheet" href=""{{ asset('vendors/blueimp-file-upload/css/jquery.fileupload-ui.css') }}" />
+    <!-- CSS adjustments for browsers with JavaScript disabled -->
+    <noscript>
+        <link rel="stylesheet" href=""{{ asset('vendors/blueimp-file-upload/css/jquery.fileupload-noscript.css') }}" />
+        <link rel="stylesheet" href=""{{ asset('vendors/blueimp-file-upload/css/jquery.fileupload-ui-noscript.css') }}" />
+    </noscript>
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <link href="{{ asset('vendors/select2/css/select2.min.css') }}" type="text/css" rel="stylesheet">
     <link href="{{ asset('vendors/select2/css/select2-bootstrap.css') }}" type="text/css" rel="stylesheet">
     <link href="{{ asset('vendors/bootstrapvalidator/css/bootstrapValidator.min.css') }}" type="text/css" rel="stylesheet">
@@ -758,6 +771,7 @@
         <i class="livicon" data-name="plane-up" data-size="18" data-loop="true" data-c="#fff" data-hc="white"></i>
     </a>
     <!-- global js -->
+    @yield('script')
     {{-- <script type="text/javascript" src="{{ asset('js/pages/sweetalert.js') }}"></script> --}}
     <script type="text/javascript" src="{{ asset('vendors/sweetalert/js/sweetalert.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('vendors/sweetalert/js/sweetalert-dev.js') }}"></script>
@@ -812,7 +826,7 @@
     <script src="{{ asset('vendors/bootstrapwizard/jquery.bootstrap.wizard.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendors/bootstrapvalidator/js/bootstrapValidator.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/pages/form_wizard.js') }}" type="text/javascript"></script>
-
+    
     <!-- end of page level js -->
     <!-- end of global js -->
     <!-- begining of page level js -->

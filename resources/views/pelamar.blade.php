@@ -267,14 +267,11 @@
                                             </li>
                                             
                                             <li>
-                                                <a href="#tab2" data-toggle="tab">Data Pekerjaan</a>
-                                            </li>
-                                            {{-- <li>
                                                 <a href="#tab3" data-toggle="tab">Pengalaman Kerja</a>
                                             </li>
                                             <li>
                                                 <a href="#tab4" data-toggle="tab">Upload File</a>
-                                            </li> --}}
+                                            </li>
                                         </ul>
                                         <div class="tab-content">
                                             <div class="tab-pane" id="tab1">
@@ -293,7 +290,7 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="tgl_lahir" class="control-label">Tempat Lahir</label>
+                                                    <label for="tgl_lahir" class="control-label">Tanggal Lahir</label>
                                                         <input type="text" class="form-control" name="tgl_lahir" id="tgl_lahir" data-mask="9999-99-99" placeholder="YYYY-MM-DD" required>
                                                     
                                                 </div>
@@ -337,8 +334,20 @@
                                                     <input type="text" class="form-control" id="pend" name="pend" placeholder="Pendidikan Terakhir" required>
                                                 </div>
 
+                                                <div class="form-group">
+                                                    <label>Posisi</label>
+                                                    <select name="posisi" class="form-control" required>
+                                                        @foreach (App\Models\Lowongan::get() as $nama_lowongan)
+                                                        <option value="{{$nama_lowongan->id}}">{{$nama_lowongan->nama_lowongan}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="form-group" style="position: static;"><label for="tgl_lamaran" class="control-label">Tanggal Masuk Lamaran</label>
+                                                    <input type="text" class="form-control" name="tgl_lamaran" id="tgl_lamaran" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
+                                                </div>
+
                                             </div>
-                                            <div class="tab-pane" id="tab2">
+                                            {{--  <div class="tab-pane" id="tab2">
                                                 <h2 class="hidden">&nbsp;</h2>
                                                 <div class="form-group">
                                                     <label class="control-label">Posisi</label>
@@ -348,27 +357,19 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
+                                                
                                                 <div class="form-group">
                                                     <label class="control-label">Tanggal Masuk Lamaran</label>
-                                                    <div class="input-group">
-                                                        
                                                         <input type="text" class="form-control" name="tgl_lamaran" id="tgl_lamaran" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
-                                                    </div>
+                                                   
                                                 </div>
                                                 <div class="form-group">
                                                         <label class="control-label">Tanggal Masuk Kerja</label>
-                                                        <div class="input-group">
-                                                           
                                                             <input type="text" class="form-control" name="tgl_kerja" id="tgl_kerja" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
-                                                            <button type="submit" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Finish</button>
-
-                                                        </div>
-
-                                                                                                             <button type="submit" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Finish</button>
-
+                                                
                                                 </div>
-                                            </div>
-                                            {{-- <div class="tab-pane" id="tab3">
+                                            </div>  --}}
+                                            {{--  <div class="tab-pane" id="tab3">
                                                     <div class="panel panel-default">
                                                             <div class="panel-heading">
                                                                 <h3 class="panel-title">
@@ -379,6 +380,7 @@
                                                                     <i class="glyphicon glyphicon-chevron-up"></i>
                                                                 </span>
                                                             </div>
+                                                           
                                                             @for($i=0;$i<3;$i++)
                                                             <div class="panel-body"><div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                                                 <div class="panel panel-default">
@@ -405,21 +407,56 @@
                                                             
                                                             </div>
                                                             @endfor  
+                                                            <button type="submit" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Finish</button>
+
                                                          </div>
                                                
+                                            </div>  --}}
+                                            {{-- <div class="tab-pane" id="tab4">
+                                                <h2 class="hidden">&nbsp;</h2>
+                                                <label>Silahkan upload file pendukung</label>
+                                                
+                                                <div class="form-group">
+                                                    <label class="control-label">CV</label>                                                    
+                                                        
+                                                            <input type="file" id="cv" name="cv">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label">FOTO</label>                                                    
+                                                        
+                                                            <input type="file" id="foto" name="foto">
+                                                        
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label">KTP</label>                                                    
+                                                        
+                                                            <input type="file" id="ktp" name="ktp">
+                                                        
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label">KK</label>                                                  
+                                                        
+                                                            <input type="file" id="kk" name="kk">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label">IJAZAH</label>                                                   
+                                                        
+                                                            <input type="file" id="ijazah" name="ijazah">
+                                                </div>
+                                                
                                             </div> --}}
                                             <ul class="pager wizard">
                                                 <li class="previous">
                                                     <a href="#">Previous</a>
                                                 </li>
                                                 <li class="next">
-                                                        <a href="#">Next</a>
+                                                    <button type="submit" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Next</button>
                                                     {{-- <button type="submit" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Next</button> --}}
                                                 </li>
-                                                <li class="next finish">
-                                                    {{-- <a href="javascript:;">Finish</a> --}}
-                                                     <button type="submit" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Finish</button>
-                                                </li>
+                                                {{--  <li class="next finish">
+                                                    <button type="submit" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Finish</button>
+
+                                                </li>  --}}
                                             </ul>
                                         </div>
                                     </div>

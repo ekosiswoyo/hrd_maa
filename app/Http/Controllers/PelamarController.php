@@ -7,10 +7,12 @@ use PDF;
 use Illuminate\Support\Facades\DB;
 use App\Models\Pelamar;
 use App\Models\Pengalaman;
+use App\Models\UploadFile;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+
 
 use Illuminate\Http\Request;
 
@@ -24,9 +26,19 @@ class PelamarController extends Controller
 
         return view('/pelamar');
     }
-    public function indexs(){
+    public function indexs($idnik){
 
-        return view('/pelamar-pekerjaan');
+        $pelamar = DB::table('pelamar')
+        ->where('pelamar.nik','=',$idnik)->first();
+
+        return view('pelamar-pengalaman',compact('pelamar'));
+    }
+    public function indexss($idnik){
+
+        $pelamar = DB::table('pelamar')
+        ->where('pelamar.nik','=',$idnik)->first();
+
+        return view('pelamar-file',compact('pelamar'));
     }
     public function store(Request $request)
     {
@@ -75,21 +87,26 @@ class PelamarController extends Controller
                     'tgl_masuk_kerja'=>$tgl_kerja,
   
                 ]);
-            
+               
                 $pelamar->save();
-                
 
-    //   $pengalaman = $request->pengalaman;
-    //   foreach ($users as $key => $value) {
-    //     $userteam = new UserTeam();
-    //     $userteam->id_team = $control->id;
-    //     $userteam->id_user = $value;
-    //     $userteam->status_user = 'User';
-    //     $userteam->save();
-      
-    //  }
-                Session::flash('success_massage','Berhasil disimpan.');
-                return redirect('/pelamar-pekerjaan');
+                $idnik=$pelamar->nik;
+               
+                // foreach ($jangka as $key => $value) {
+                //     $pengalaman = new Pengalaman();
+                    
+                //     $pengalaman->nik = $pelamar->nik;
+                //     $pengalaman->nm_perusahaan = $nama_perusahaan[$key];
+                //     $pengalaman->posisi = $posisi[$key];
+                //     $pengalaman->jangka_kerja = $value;
+                //     $pengalaman->save();
+                //   }
+
+                  
+                  
+        
+                return redirect()->route('pengalaman', [$idnik]);
+
     
             }else{
                 Session::flash('errors','NIK pelamar sudah terdaftar.');
@@ -97,6 +114,93 @@ class PelamarController extends Controller
                     ->withErrors($validator)
                     ->withInput();
             }
+    }
+
+    public function storepengalaman(Request $request,$idnik)
+    {
+            
+              
+        $pelamar = DB::table('pelamar')
+        ->where('pelamar.nik','=',$idnik)->first();
+
+                $nik = $pelamar->nik;
+               
+                $nama_perusahaan = $request->input('nama_perusahaan');
+                $posisi = $request->input('posisi');
+                $jangka = $request->input('jangka');
+  
+  
+               
+               
+               
+                foreach ($jangka as $key => $value) {
+                    $pengalaman = new Pengalaman();
+                    
+                    $pengalaman->nik = $nik;
+                    $pengalaman->nm_perusahaan = $nama_perusahaan[$key];
+                    $pengalaman->posisi = $posisi[$key];
+                    $pengalaman->jangka_kerja = $value;
+                    $pengalaman->save();
+                  }
+
+                  
+                  
+        
+               
+                return redirect('/pelamar');
+    
+    }
+    public function uploadSubmit(InformasiRequest $request)
+    {
+  
+        $informasi = new Informasi;
+            $informasi->tanggal = $request->tanggal;
+            $informasi->jenis_id = $request->jenis_informasi;
+            $informasi->nomor = $request->nomor;
+            $informasi->perihal = $request->perihal;
+            $informasi->save();
+        // $informasi = Informasi::create($request->all());
+  
+        // foreach ($request->lampiran as $file) {
+  
+            $ubah_nama = $informasi->id.'.'.date('dmYHis').'.'.$request->lampiran->getClientOriginalName();
+  
+            $filename = $request->lampiran->storeAs('public/lampiran', $ubah_nama);
+            InformasiFile::create([
+                'informasi_id' => $informasi->id,
+                'filename' => $ubah_nama
+            ]);
+        // }
+        Session::flash('success_massage','Informasi'.$request->jenis_informasi.', berhasil ditambahkan');
+        return redirect()->route('uploadForm');
+    }
+  
+    public function storefile(Request $request,$idnik)
+    {
+        $cv = $idnik.'.'.date('dmYHis').'.'.$request->cv->getClientOriginalName();
+        $foto = $idnik.'.'.date('dmYHis').'.'.$request->foto->getClientOriginalName();
+        $ktp = $idnik.'.'.date('dmYHis').'.'.$request->ktp->getClientOriginalName();
+        $kk= $idnik.'.'.date('dmYHis').'.'.$request->kk->getClientOriginalName();
+        $ijazah = $idnik.'.'.date('dmYHis').'.'.$request->ijazah->getClientOriginalName();
+
+        $filenamecv = $request->cv->storeAs('public/lampiran', $cv);
+        $filenamefoto = $request->foto->storeAs('public/lampiran', $foto);
+        $filenamektp = $request->ktp->storeAs('public/lampiran', $ktp);      
+        $filenamekk = $request->kk->storeAs('public/lampiran', $kk);
+        $filenameijazah = $request->ijazah->storeAs('public/lampiran', $ijazah);
+
+        UploadFile::create([
+            'nik' => $idnik,
+            'cv' => $cv,
+            'foto' => $foto,
+            'ktp' => $ktp,
+            'kk' => $kk,
+            'ijazah' => $ijazah
+        ]);
+        
+               
+                return redirect('/pelamar');
+    
     }
 
     public function view(){

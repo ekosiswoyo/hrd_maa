@@ -19,5 +19,9 @@ class Pelamar extends Model
     {
       return $this->belongsTo('App\Models\Pengalaman', 'id_pengalaman','id');
     }
+    public function informasi_files()
+  {
+    return $this->belongsTo('App\Models\UploadFile', 'nik', 'nik');
+  }
 
 }

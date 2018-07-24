@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use DB;
+use \Apps\Models\pelamar;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Pengalaman extends Model
