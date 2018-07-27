@@ -29,10 +29,9 @@
                                  {{--  </div>  --}}
                                  <div class="form-group">
                                     <label>Lokasi Kerja</label>
-                                    <select name="cabang" class="form-control">
-                                        <option value="" required>-- Pilih Lokasi Kerja --</option>
+                                    <select name="cabang" class="form-control" title="-- Pilih Lokasi Kerja --">
                                         @foreach (App\Models\Cabang::get() as $nama_cabang)
-                                        <option value="{{$nama_cabang->id_cabang}}">{{$nama_cabang->nama_cabang}}</option>
+                                        <option value="{{$nama_cabang->id_cabang}}" {{ $fptk->id_cabang == $nama_cabang->id_cabang ? 'selected' : ''}}>{{$nama_cabang->nama_cabang}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -42,15 +41,14 @@
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="jml_sdm">Jumlah SDM</label>
                                     <input type="text" class="form-control" id="jml_sdm" name="jml_sdm" placeholder="Jumlah SDM yang dibutuhkan" value="{{ $fptk->jml_sdm}}">
                                 </div>
-                                <input type="hidden" class="form-control" id="keperluan" name="keperluan" value="{{ $fptk->keperluan}}">
                                 <div class="form-group">
                                     <label for="keperluan">Keperluan</label><br>
                                     <label class="radio-inline" for="keperluan-0">
-                                        <input type="radio" name="keperluan" id="keperluan-0" class="flat-red" value="penambahan">
+                                        <input type="radio" name="keperluan" id="keperluan-0" class="flat-red" value="penambahan"  {{ $fptk->keperluan == 'penambahan' ? 'checked' : '' }} >
                                         Penambahan
                                     </label> 
                                     <label class="radio-inline" for="keperluan-1">
-                                        <input type="radio" name="keperluan" id="keperluan-1" class="flat-red" value="penggantian">
+                                        <input type="radio" name="keperluan" id="keperluan-1" class="flat-red" value="penggantian" {{ $fptk->keperluan == 'penggantian' ? 'checked' : '' }}>
                                         Penggantian
                                     </label>
                                 </div>
@@ -59,71 +57,66 @@
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="ket_keperluan">Masukkan keterangan Keperluan</label>
                                     <textarea class="form-control" id="textarea" name="ket_keperluan" placeholder="Keterangan Keperluan">{{ $fptk->ket_keperluan}}</textarea>
                                 </div>
-                                <input type="hidden" class="form-control" id="stat_kar" name="stat_kar" value="{{ $fptk->status_karyawan}}">
                                 <div class="form-group">
                                         <label for="stat_kar">Status karyawan</label><br>
                                     <label class="radio-inline" for="stat_kar-0">
-                                        <input type="radio" name="stat_kar" id="stat_kar-0" class="flat-red" value="kontrak">
+                                        <input type="radio" name="stat_kar" id="stat_kar-0" class="flat-red" value="kontrak" {{ $fptk->status_karyawan == 'kontrak' ? 'checked' : '' }}>
                                         Kontrak
                                     </label> 
                                     <label class="radio-inline" for="stat_kar-1">
-                                        <input type="radio" name="stat_kar" id="stat_kar-1" class="flat-red" value="tetap">
+                                        <input type="radio" name="stat_kar" id="stat_kar-1" class="flat-red" value="tetap" {{ $fptk->status_karyawan == 'tetap' ? 'checked' : '' }}>
                                         Tetap
                                     </label>
                                 </div>
-                                <input type="hidden" class="form-control" id="jns_kel" name="jns_kel" value="{{ $fptk->jns_kel}}">
                                 <div class="form-group">
                                     <label for="jns_kel">Jenis Kelamin</label><br>
                                 <label class="radio-inline" for="jns_kel-0">
-                                    <input type="radio" name="jns_kel" id="jns_kel-0" class="flat-red" value="laki-laki" >
+                                    <input type="radio" name="jns_kel" id="jns_kel-0" class="flat-red" value="laki-laki" {{ $fptk->jns_kel == 'laki-laki' ? 'checked' : '' }}>
                                     Laki-Laki
                                 </label> 
                                 <label class="radio-inline" for="jns_kel-1">
-                                    <input type="radio" name="jns_kel" id="jns_kel-1" class="flat-red" value="perempuan">
+                                    <input type="radio" name="jns_kel" id="jns_kel-1" class="flat-red" value="perempuan" {{ $fptk->jns_kel == 'perempuan' ? 'checked' : '' }}>
                                     Perempuan
                                 </label>
                                 </div>
-                                <input type="hidden" class="form-control" id="stat_nikah" name="stat_nikah" value="{{ $fptk->stat_pernikahan}}">
                                 <div class="form-group">
                                     <label for="stat_nikah">Status Pernikahan</label><br>
                                 <label class="radio-inline" for="stat_nikah-0">
-                                    <input type="radio" name="stat_nikah" id="stat_nikah-0" class="flat-red" value="lajang" >
+                                    <input type="radio" name="stat_nikah" id="stat_nikah-0" class="flat-red" value="lajang" {{ $fptk->stat_pernikahan == 'lajang' ? 'checked' : '' }}>
                                     Lajang
                                 </label> 
                                 <label class="radio-inline" for="stat_nikah-1">
-                                    <input type="radio" name="stat_nikah" id="stat_nikah-1" class="flat-red" value="menikah">
+                                    <input type="radio" name="stat_nikah" id="stat_nikah-1" class="flat-red" value="menikah" {{ $fptk->stat_pernikahan == 'menikah' ? 'checked' : '' }}>
                                     Menikah
                                 </label>
                                 </div>
-                                <input type="hidden" class="form-control" id="pendidikan" name="pendidikan" value="{{ $fptk->pend}}">
                                 <div class="form-group">
                                     <label for="pendidikan">Pendidikan</label><br>
                                 <label class="radio-inline" for="pendidikan-0">
-                                    <input type="radio" name="pendidikan" id="pendidikan-0" class="flat-red" value="D1" >
+                                    <input type="radio" name="pendidikan" id="pendidikan-0" class="flat-red" value="D1" {{ $fptk->pend == 'D1' ? 'checked' : '' }}>
                                     D1
                                 </label> 
                                 <label class="radio-inline" for="pendidikan-1">
-                                    <input type="radio" name="pendidikan" id="pendidikan-1" class="flat-red" value="D3">
+                                    <input type="radio" name="pendidikan" id="pendidikan-1" class="flat-red" value="D3" {{ $fptk->pend == 'D3' ? 'checked' : '' }}>
                                     D3
                                 </label>
                                 <label class="radio-inline" for="pendidikan-2">
-                                    <input type="radio" name="pendidikan" id="pendidikan-2" class="flat-red" value="S1" >
+                                    <input type="radio" name="pendidikan" id="pendidikan-2" class="flat-red" value="S1" {{ $fptk->pend == 'S1' ? 'checked' : '' }}>
                                     S1
                                 </label> 
                                 <label class="radio-inline" for="pendidikan-3">
-                                    <input type="radio" name="pendidikan" id="pendidikan-3" class="flat-red" value="S2">
+                                    <input type="radio" name="pendidikan" id="pendidikan-3" class="flat-red" value="S2" {{ $fptk->pend == 'S2' ? 'checked' : '' }}>
                                     S2
                                 </label>
                                 </div>
-                                <input type="hidden" class="form-control" id="pengalaman" name="pengalaman" value="{{ $fptk->pengalaman_kerja}}">
                                 <div class="form-group">
                                     <label for="pengalaman">Pengalaman Kerja</label><br>
                                     <label>
-                                        <input type="checkbox" name="pengalaman" value="Pengalaman Kerja" id="pengalamankerja" class="flat-red"/>
+                                        <input type="checkbox" name="pengalaman" value="Pengalaman Kerja" id="pengalamankerja" class="flat-red" {{ $fptk->pengalaman_kerja == 'Pengalaman Kerja' ? 'checked' : '' }}/>
                                         Pengalaman Kerja
                                     </label>
                                     <label>
-                                        <input type="checkbox" name="pengalaman" id="freshgraduate" value="Fresh Graduate" class="flat-red" />
+                                        <input type="checkbox" name="pengalaman" id="freshgraduate" value="Fresh Graduate" class="flat-red" {{ $fptk->pengalaman_kerja == 'Fresh Graduate' ? 'checked' : '' }}/>
                                         Fresh Graduate
                                     </label>
                                 </div>

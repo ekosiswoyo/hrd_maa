@@ -1,3 +1,4 @@
+{{dd($file)}}
 @extends('layouts.header')
 
 @section('content')
@@ -57,7 +58,7 @@
                                                 <h2 class="hidden">&nbsp;</h2>
                                                 
                                                 <label>Silahkan upload file pendukung</label>
-                                                
+                                                <input type="hidden" name="id" value="{{$file->nik}}">
                                                 <div class="form-group">
                                                     <label class="control-label">CV</label>                                                    
                                                         

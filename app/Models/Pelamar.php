@@ -1,6 +1,11 @@
 <?php
 
 namespace App\Models;
+use \Apps\Models\Lowongan;
+use \Apps\Models\Pengalaman;
+use \Apps\Models\UploadFile;
+
+
 
 use Illuminate\Database\Eloquent\Model;
 

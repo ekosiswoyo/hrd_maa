@@ -1,3 +1,4 @@
+{{--  {{dd($pengalaman)}}  --}}
 @extends('layouts.header')
 
 @section('content')
@@ -247,7 +248,7 @@
                                 </span>
                             </div>
                             <div class="panel-body">
-                                <form id="commentForm" method="post" action="#">
+                                <form id="commentForm" method="post" action="/pengalamankerja">
                                         {{csrf_field()}}
                                     <div id="rootwizard">
                                         <ul>
@@ -286,7 +287,16 @@
                                                                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                                                         <div class="panel-body">
                                                                             <div class="form-group after-add-more">
-                                                                               
+                                                                                @foreach($pengalaman as $value)
+                                                                                <input type="hidden" name="id[]" value="{{$value->id}}">
+                                                                                <h4>Pengalaman Kerja {{$no++}}</h4>
+                                                                                <label for="ket_keperluan">Nama Perusahaan</label>
+                                                                                    <input type="text" style="position: static;" class="form-control" id="nama_perusahaan" name="nama_perusahaan[]" placeholder="Nama Perusahaan" value="{{$value->nm_perusahaan}}">
+                                                                            <label for="ket_keperluan">Posisi</label>
+                                                                                    <input type="text" class="form-control" id="posisi" name="posisi[]" placeholder="Posisi" value="{{$value->posisi}}">
+                                                                               <label for="ket_keperluan">Lama Bekerja</label>
+                                                                                    <input type="text" class="form-control" id="jangka" name="jangka[]" placeholder="Lama Bekerja" value="{{$value->jangka_kerja}}">
+                                                                                @endforeach
                                                                                     <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
                                                                                
                                                                             </div>
@@ -318,7 +328,9 @@
                                                     <a href="#">Previous</a>
                                                 </li>
                                                 <li class="next">
-                                                    <button type="submit" id="hapus" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Next</button>
+                                                        <a href="/uploadfile/{{$id}}/ubah" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Next</a>
+                                                        <button type="submit" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Simpan</button>
+                                                    {{--  <button type="submit" id="hapus" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Next</button>  --}}
                                                 </li>
                                                 <li class="next finish" style="display:none;">
                                                     <a href="javascript:;">Finish</a>

@@ -306,6 +306,18 @@
                             </a>
                         </li>
                         @endif
+                        <li>
+                                <a href="/lowongan">
+                                    <i class="livicon" data-name="doc-landscape" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                    <span class="title">Data Lowongan</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="/seleksi">
+                                    <i class="livicon" data-name="doc-landscape" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                    <span class="title">Data Jenis Tes</span>
+                                </a>
+                        </li>
                         
                         <li>
                             <a href="#">
