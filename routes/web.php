@@ -30,6 +30,8 @@ Route::get('/data-fptk','fptkController@viewfptk');
 Route::get('/printfptk/{id}','fptkController@print');
 Route::get('/pelamar','PelamarController@index');
 Route::get('/pelamar/{idnik}/ubah', 'PelamarController@ubahpelamar');
+Route::get('/pelamar/{idnik}/proses','PelamarController@proses');
+Route::get('/pelamar/{idnik}/unproses','PelamarController@unproses');
 Route::post('/pelamar/{idnik}', 'PelamarController@updatepelamar');
 Route::get('/pengalaman/{idnik}','PelamarController@indexs')->name('pengalaman');
 Route::get('/pengalaman/{idnik}/ubah','PelamarController@ubahpengalaman')->name('ubahpengalaman');
@@ -47,6 +49,8 @@ Route::post('/lowongan/{id}', 'LowonganController@update');
 Route::delete('/lowongan/deleteData/{id}',['uses' => 'LowonganController@destroy']);
 Route::get('/tambahlowongan', 'LowonganController@view');
 Route::post('/tambahlowongan', 'LowonganController@store');
+Route::get('/proses','PelamarController@prosesseleksi');
+Route::get('/proses/seleksi/{id}', 'PelamarController@proseleksi');
 
 
 Route::get('/seleksi','SeleksiController@index');

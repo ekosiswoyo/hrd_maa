@@ -325,11 +325,11 @@
                                             </div>
                                             <ul class="pager wizard">
                                                 <li class="previous">
-                                                    <a href="#">Previous</a>
+                                                    <a href="{{ URL::previous() }}">Previous</a>
                                                 </li>
                                                 <li class="next">
                                                         <a href="/uploadfile/{{$id}}/ubah" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Next</a>
-                                                        <button type="submit" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Simpan</button>
+                                                        <button type="submit" style="color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Simpan</button>
                                                     {{--  <button type="submit" id="hapus" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Next</button>  --}}
                                                 </li>
                                                 <li class="next finish" style="display:none;">

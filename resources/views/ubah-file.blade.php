@@ -1,4 +1,3 @@
-{{dd($file)}}
 @extends('layouts.header')
 
 @section('content')
@@ -36,7 +35,7 @@
                                 </span>
                             </div>
                             <div class="panel-body">
-                                <form id="commentForm" method="post" action="" enctype="multipart/form-data" >
+                                <form id="commentForm" method="post" action="/uploadfile" enctype="multipart/form-data" >
                                         {{csrf_field()}}
                                     <div id="rootwizard">
                                         <ul>
@@ -95,7 +94,7 @@
                                             </div>
                                             <ul class="pager wizard">
                                                 <li class="previous">
-                                                    <a href="#">Previous</a>
+                                                    <a href="{{ URL::previous() }}">Previous</a>
                                                 </li>
                                                 <li class="next">
                                                     <button type="submit" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Finish</button>

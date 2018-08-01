@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Pelamar;
 use App\Models\Pengalaman;
 use App\Models\UploadFile;
+use App\Models\Activity;
+use Carbon\Carbon;
+use Charts;
+
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -165,9 +169,14 @@ class PelamarController extends Controller
     public function view(){
         $view = DB::table('pelamar')
                 ->join('lowongan', 'pelamar.id_lowongan', '=', 'lowongan.id')
+                ->where('pelamar.status_akhir','0')
+                ->orderBy('pelamar.tgl_masuk_lamaran','desc')->get();
+        $status = DB::table('pelamar')
+                ->join('lowongan', 'pelamar.id_lowongan', '=', 'lowongan.id')
+                ->where('pelamar.status_akhir','1')
                 ->orderBy('pelamar.tgl_masuk_lamaran','desc')->get();
         $no = 1;
-        return view('data_pelamar', compact('view','no'));
+        return view('data_pelamar', compact('view','status','no'));
     }
 
     public function ubahpelamar($idnik)
@@ -181,6 +190,8 @@ class PelamarController extends Controller
 
     public function ubahpengalaman($idnik)
     {
+
+        
       $pengalaman = DB::table('pengalaman_kerja')
       ->where('pengalaman_kerja.nik','=',$idnik)->get();
     //   $abc = $pengalaman->id;
@@ -284,7 +295,7 @@ class PelamarController extends Controller
 public function ubahfile($idnik)
     {
       $file = DB::table('upload_file')
-      ->where('nik','=',$idnik)->get();
+      ->where('nik','=',$idnik)->first();
     //   $abc = $pengalaman->id;
     $id = $idnik;
 
@@ -292,5 +303,101 @@ public function ubahfile($idnik)
       $no++;
       // $fptk = fptk::find($id);
       return view ('ubah-file', compact('abc','file','no','id'));
+    }
+
+    public function updatefile(Request $request)
+  {
+    $id = $request->input('id');
+
+    $cv = $id.'.'.date('dmYHis').'.'.$request->cv->getClientOriginalName();
+        $foto = $id.'.'.date('dmYHis').'.'.$request->foto->getClientOriginalName();
+        $ktp = $id.'.'.date('dmYHis').'.'.$request->ktp->getClientOriginalName();
+        $kk= $id.'.'.date('dmYHis').'.'.$request->kk->getClientOriginalName();
+        $ijazah = $id.'.'.date('dmYHis').'.'.$request->ijazah->getClientOriginalName();
+        $srt = $id.'.'.date('dmYHis').'.'.$request->srt->getClientOriginalName();
+        
+        
+        $filenamecv = $request->cv->storeAs('public/lampiran', $cv);
+        $filenamefoto = $request->foto->storeAs('public/lampiran', $foto);
+        $filenamektp = $request->ktp->storeAs('public/lampiran', $ktp);      
+        $filenamekk = $request->kk->storeAs('public/lampiran', $kk);
+        $filenameijazah = $request->ijazah->storeAs('public/lampiran', $ijazah);
+        $filenamesrt = $request->srt->storeAs('public/lampiran', $srt);
+
+        DB::table('upload_file')
+        ->where('nik',$request->id)
+        ->update([
+            'cv' => $cv,
+            'foto' => $foto,
+            'ktp' => $ktp,
+            'kk' => $kk,
+            'ijazah' => $ijazah,
+            'srt_pengalaman' => $srt
+    ]);
+
+    Session::flash('success_massage','Data Pelamar, berhasil di edit');
+    return redirect('/data_pelamar');
+}
+
+public function proses(Request $request,$idnik)
+{
+  $file = DB::table('pelamar')
+  ->where('nik','=',$idnik)->update(['status_akhir' => '1'
+  ]); 
+  $carbon = Carbon::today();
+  $format = $carbon->format('Y-m-d H:i:s');
+
+  $activity = new Activity();
+       $activity->nik = $idnik;
+       $activity->id_seleksi = '1';
+       $activity->tgl_panggilan = $format;
+       $activity->save();
+
+  Session::flash('success_massage','Data FPTK, berhasil di edit');
+  return redirect('/data_pelamar');
+}
+public function unproses(Request $request,$idnik)
+{
+  $file = DB::table('pelamar')
+  ->where('nik','=',$idnik)->update(['status_akhir' => '0'
+  ]);  
+
+  Session::flash('success_massage','Data FPTK, berhasil di edit');
+  return redirect('/data_pelamar');
+}
+public function prosesseleksi()
+    {
+        $no = 0;
+        $no++;
+        $pelamar = DB::table('activity')
+                ->join('pelamar','activity.nik','=','pelamar.nik')
+                ->join('jns_tes','activity.id_seleksi','=','jns_tes.id')
+                ->join('lowongan','pelamar.id_lowongan','=','lowongan.id')
+                ->get();
+
+        return view('prosesseleksi',compact('pelamar','no'));
+    }
+public function proseleksi($id)
+    {
+        $no = 0;
+        $no++;
+        $pelamar = DB::table('activity')
+        ->join('pelamar','activity.nik','=','pelamar.nik')
+        ->join('jns_tes','activity.id_seleksi','=','jns_tes.id')
+        ->join('lowongan','pelamar.id_lowongan','=','lowongan.id')
+        ->where('activity.id_seleksi','=',$id)
+        ->get();
+
+        return view('proseleksi', compact('pelamar','no'));
+    }
+    public function pass(Request $request,$id)
+    {
+      $fptk = fptk::find($id);
+    
+      $fptk->status = '1';
+      $fptk->save();
+  
+      Session::flash('success_massage','Data FPTK, berhasil di edit');
+      return redirect('/home_fptk');
     }
 }

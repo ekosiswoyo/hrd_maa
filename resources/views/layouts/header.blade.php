@@ -63,6 +63,7 @@
     <!-- end of global css -->
     <!--page level css -->
     <!--end of page level css-->
+    @yield('css')
 </head>
 
 <body class="skin-josh">
