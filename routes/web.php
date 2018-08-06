@@ -51,8 +51,9 @@ Route::get('/tambahlowongan', 'LowonganController@view');
 Route::post('/tambahlowongan', 'LowonganController@store');
 Route::get('/proses','PelamarController@prosesseleksi');
 Route::get('/proses/seleksi/{id}', 'PelamarController@proseleksi');
-
-
+Route::post('/proses/seleksi/update','PelamarController@updateseleksi');
+Route::get('/riwayat/{id}','PelamarController@riwayat');
+Route::post('/pelamar/{id}/kerja','PelamarController@kerja');
 Route::get('/seleksi','SeleksiController@index');
 Route::get('/seleksi/{id}/ubah', 'SeleksiController@ubah');
 Route::post('/seleksi/{id}', 'SeleksiController@update');

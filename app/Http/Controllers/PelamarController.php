@@ -362,6 +362,11 @@ public function unproses(Request $request,$idnik)
   ->where('nik','=',$idnik)->update(['status_akhir' => '0'
   ]);  
 
+  DB::table('activity')
+  ->where('nik','=',$idnik)
+  ->update([
+      'hasil' =>'2'
+]);
   Session::flash('success_massage','Data FPTK, berhasil di edit');
   return redirect('/data_pelamar');
 }
@@ -373,6 +378,7 @@ public function prosesseleksi()
                 ->join('pelamar','activity.nik','=','pelamar.nik')
                 ->join('jns_tes','activity.id_seleksi','=','jns_tes.id')
                 ->join('lowongan','pelamar.id_lowongan','=','lowongan.id')
+                ->groupBy('jns_tes.id')
                 ->get();
 
         return view('prosesseleksi',compact('pelamar','no'));
@@ -381,14 +387,34 @@ public function proseleksi($id)
     {
         $no = 0;
         $no++;
+        $proses = DB::table('activity')
+        ->join('pelamar','activity.nik','=','pelamar.nik')
+        ->join('jns_tes','activity.id_seleksi','=','jns_tes.id')
+        ->join('lowongan','pelamar.id_lowongan','=','lowongan.id')
+        ->where('activity.id_seleksi','=',$id)
+        ->whereNull('activity.hasil')
+        ->get();
+
         $pelamar = DB::table('activity')
         ->join('pelamar','activity.nik','=','pelamar.nik')
         ->join('jns_tes','activity.id_seleksi','=','jns_tes.id')
         ->join('lowongan','pelamar.id_lowongan','=','lowongan.id')
         ->where('activity.id_seleksi','=',$id)
+        ->where('activity.hasil','=','0')
+        ->whereNotNull('activity.hasil')
         ->get();
 
-        return view('proseleksi', compact('pelamar','no'));
+        $hasil = DB::table('activity')
+        ->join('pelamar','activity.nik','=','pelamar.nik')
+        ->join('jns_tes','activity.id_seleksi','=','jns_tes.id')
+        ->join('lowongan','pelamar.id_lowongan','=','lowongan.id')
+        ->where('activity.id_seleksi','=',$id)
+        ->where('activity.hasil','=','1')
+        ->whereNotNull('activity.hasil')
+        ->get();
+
+
+        return view('proseleksi', compact('proses','pelamar','hasil','no'));
     }
     public function pass(Request $request,$id)
     {
@@ -400,4 +426,67 @@ public function proseleksi($id)
       Session::flash('success_massage','Data FPTK, berhasil di edit');
       return redirect('/home_fptk');
     }
+
+    public function updateseleksi(Request $request)
+    {
+        $id = $request->input("id");
+        if($request->hasil == '1'){
+            $carbon = Carbon::today();
+  $format = $carbon->format('Y-m-d H:i:s');
+            DB::table('activity')->where('id_ac','=',$id)->update([
+                
+                'hasil' => $request->hasil,
+                'keterangan' => $request->ket,
+                'tanggal' => $request->tgl
+                ]);
+
+            $activity = new Activity();
+            $activity->nik = $request->nik;
+            $activity->id_seleksi = $request->selectbasic; 
+            $activity->tgl_panggilan = $format;
+            $activity->save();
+        }else{
+            DB::table('activity')->where('id_ac','=',$id)->update([
+                
+                'hasil' => $request->hasil,
+                'keterangan' => $request->ket
+                ]);
+        }
+     
+      Session::flash('success_massage','Data Pelamar, berhasil di edit');
+      return redirect('/proses');
+    }
+
+    public function riwayat($id)
+    {
+        $pelamar = DB::table('activity')
+        ->join('pelamar','activity.nik','=','pelamar.nik')
+        ->join('jns_tes','activity.id_seleksi','=','jns_tes.id')
+        ->join('lowongan','pelamar.id_lowongan','=','lowongan.id')
+        ->where('activity.nik','=',$id)
+        ->get();
+    
+  
+        return view('riwayat', compact('pelamar'));
+    }
+    public function kerja(Request $request,$id)
+    {
+        $nik = $request->input("nik");
+
+        DB::table('activity')
+        ->where('nik','=',$nik)
+        ->update([
+            'status' =>'1'
+        ]);
+
+        DB::table('pelamar')
+        ->where('nik','=',$nik)
+        ->update([
+            'status_akhir' =>'2',
+            'tgl_masuk_kerja' => $request->tgl
+        ]);
+  
+        return redirect('/proses');
+    }
+  
 }

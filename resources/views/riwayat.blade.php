@@ -88,9 +88,7 @@
                                   
                                     <thead>
                                         <tr>
-                                            <th>No</th>
                                             <th>NIK</th>
-                                            <th>Nama</th>
                                             <th>Posisi</th>
                                             <th>Jenis Tes</th>
                                             <th>Hasil</th></th>
@@ -100,9 +98,7 @@
                                    
                                     <tbody>@foreach ($pelamar as $views)
                                         <tr> 
-                                            <td>{{$no++}}</td> 
                                             <td>{{$views->nik}}</td>
-                                            <td>{{$views->nama}}</td>
                                             <td>{{$views->nama_lowongan}}</td>
                                             <td>{{$views->nama_tes}}</td>
                                             <td>{{$views->hasil == '1' ? 'Lulus' : 'Tidak Lulus' }}</td>

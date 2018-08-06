@@ -1,4 +1,4 @@
-{{--  {{dd($pelamar)}}  --}}
+ {{--  {{dd($pelamar)}}  --}}
 @extends('layouts.header')
 @section('css')
 <style>
@@ -62,8 +62,8 @@
                 </ol>
             </section>
             <!--section ends-->
-            
             <section class="content">
+                    <!-- row-->
                     <div class="dropdown">
                             <button onclick="myFunction()" style="float:right;margin-left:33px" class="dropbtn">Pilih Jenis Tes</button>
                               <div id="myDropdown" class="dropdown-content">
@@ -74,13 +74,62 @@
                               </div>
                             
                             </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-success filterable" style="overflow:auto;">
+                                <div class="panel-heading" style="background-color: #418bca;border-color: #418bca;">
+                                    <h3 class="panel-title">
+                                        <i class="livicon" data-name="tasks" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> DATA PELAMAR PROSES SELEKSI                                   </h3>
+                                </div>
+                                <div class="panel-body table-responsive">
+                                    <table class="table table-striped table-bordered" id="table3">
+                                      
+                                            <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>NIK</th>
+                                                        <th>Nama</th>
+                                                        <th>Posisi</th>
+                                                        <th>Jenis Tes</th>
+                                                        <th>Keterangan</th></th>
+                                                    </tr>
+                                                </thead>
+                                               
+                                                <tbody>@foreach ($proses as $views)
+                                                    <tr> 
+                                                        <td>{{$no++}}</td> 
+                                                        <td>{{$views->nik}}</td>
+                                                        <td>{{$views->nama}}</td>
+                                                        <td>{{$views->nama_lowongan}}</td>
+                                                        <td>{{$views->nama_tes}}</td>
+                                                        <td>Belum Tes</td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                               
+                                       
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- row-->
+                    
+                   
+                    
+                    
+                    <!-- /.modal ends here -->
+                </section>
+            <!-- content -->
+            <section class="content">
+                   
                 <!-- row-->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="panel panel-success filterable" style="overflow:auto;">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
-                                    <i class="livicon" data-name="tasks" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> DATA PELAMAR BPR MAA
+                                    <i class="livicon" data-name="tasks" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> DATA PELAMAR LOLOS SELEKSI
                                 </h3>
                             </div>
                             <div class="panel-body table-responsive">
@@ -100,16 +149,16 @@
                                         </tr>
                                     </thead>
                                    
-                                    <tbody>@foreach ($pelamar as $views)
+                                    <tbody>@foreach ($hasil as $views)
                                         <tr> 
                                             <td>{{$no++}}</td> 
                                             <td>{{$views->nik}}</td>
                                             <td>{{$views->nama}}</td>
                                             <td>{{$views->nama_lowongan}}</td>
                                             <td>{{$views->nama_tes}}</td>
-                                            <td>{{$views->hasil}}</td>
+                                            <td>{{$views->hasil == '1' ? 'Lulus' : 'Tidak Lulus' }}</td>
                                             <td>{{$views->keterangan}}</td>
-                                            <td><a class="btn btn-raised btn-info btn-large" data-toggle="modal" data-href="#full-width" href="#full-width">View Demo</a></td>
+                                            <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-id="{{$views->id_ac}}" data-nik="{{$views->nik}}" data-href="#full-width" href="#full-width">Hasil</a></td>
 
                                         </tr>
                                         @endforeach
@@ -129,16 +178,45 @@
                                     <h4 class="modal-title">Full Width</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <p>
-                                        This modal will resize itself to the same dimensions as the container class.
-                                    </p>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sollicitudin ipsum ac ante fermentum suscipit. In ac augue non purus accumsan lobortis id sed nibh. Nunc egestas hendrerit ipsum, et porttitor augue volutpat non. Aliquam erat volutpat. Vestibulum scelerisque lobortis pulvinar. Aenean hendrerit risus neque, eget tincidunt leo. Vestibulum est tortor, commodo nec cursus nec, vestibulum vel nibh. Morbi elit magna, ornare placerat euismod semper, dignissim vel odio. Phasellus elementum quam eu ipsum euismod pretium.
-                                    </p>
+                                    <form role="form" action="{{url('proses/seleksi/update')}}" method="POST" id="contactForm">
+                                        <input type="hidden" name="id" id="id" class="modal_hiddenid" value="">
+                                        <input type="hidden" name="nik" id="nik" class="modal_hiddennik" value="">
+
+                                        {{ csrf_field() }}
+                                        <div class="form-group">
+                                                <label for="keperluan">Hasil</label><br>
+
+                                                <label class="radio-inline" for="keperluan-0">
+                                                    <input type="radio" onclick="document.getElementById('selectbasic').disabled = false;" name="hasil" id="hasil-0" value="1" required>
+                                                    Lulus
+                                                </label> 
+                                                <label class="radio-inline" for="hasil-1">
+                                                    <input type="radio" name="hasil" id="hasil-1" value="0"  onclick="document.getElementById('selectbasic').disabled = true;" >
+                                                    Tidak Lulus
+                                                </label>
+                                            </div>
+                                        <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Keterangan</label>
+                                            <input type="text" class="form-control ket" id="ket" name="ket" value="">
+                                        </div>
+                                        <label for="jabatan">Seleksi Selanjutnya</label>
+                                            <select id="selectbasic" name="selectbasic" class="form-control">
+                                                @foreach (App\Models\Seleksi::get() as $nama)
+                                                <option value="{{$nama->id}}">{{$nama->nama_tes}}</option>
+                                                @endforeach
+                                              </select>
+                                        <label>Tanggal Tes</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="livicon" data-name="calendar" data-size="14" data-loop="true"></i>
+                                            </div>
+                                            <input type="text" class="form-control" name="tgl" id="tgl" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
+                                        </div>
+                                       
+                                  </form>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <button type="submit" id="submitContact" form="contactForm" class="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
                         </div>
@@ -148,6 +226,55 @@
                 
                 <!-- /.modal ends here -->
             </section>
+            <section class="content">
+                    <!-- row-->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-success filterable" style="overflow:auto;">
+                                <div class="panel-heading" style="background-color: #418bca;border-color: #418bca;">
+                                    <h3 class="panel-title">
+                                        <i class="livicon" data-name="tasks" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> DATA PELAMAR TIDAK LOLOS SELEKSI                                    </h3>
+                                </div>
+                                <div class="panel-body table-responsive">
+                                    <table class="table table-striped table-bordered" id="table3">
+                                      
+                                            <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>NIK</th>
+                                                        <th>Nama</th>
+                                                        <th>Posisi</th>
+                                                        <th>Jenis Tes</th>
+                                                        <th>Hasil</th></th>
+                                                    </tr>
+                                                </thead>
+                                               
+                                                <tbody>@foreach ($pelamar as $views)
+                                                    <tr> 
+                                                        <td>{{$no++}}</td> 
+                                                        <td>{{$views->nik}}</td>
+                                                        <td>{{$views->nama}}</td>
+                                                        <td>{{$views->nama_lowongan}}</td>
+                                                        <td>{{$views->nama_tes}}</td>
+                                                        <td>{{$views->hasil == '1' ? 'Lulus' : 'Tidak Lulus' }}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                               
+                                       
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- row-->
+                    
+                   
+                    
+                    
+                    <!-- /.modal ends here -->
+                </section>
+            <!-- content -->
            
             
         </aside>
@@ -156,6 +283,16 @@
 @endsection
 @section('script')
 <script>
+        $(document).ready(function(){
+            $(document).on('click','.openModal',function(){
+                $('.modal_hiddenid').val($(this).data('id'))
+                $('.modal_hiddennik').val($(this).data('nik'))
+
+
+
+            });
+          })
+
         /* When the user clicks on the button, 
         toggle between hiding and showing the dropdown content */
         function myFunction() {
