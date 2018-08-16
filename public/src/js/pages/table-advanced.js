@@ -15,6 +15,22 @@ $(document).ready(function() {
 
     new $.fn.dataTable.ColReorder(table2);
 
+    var table4 = $('#table4').dataTable({
+        responsive:true
+    });
+
+    new $.fn.dataTable.ColReorder(table4);
+
+// // add row, delete row example
+// var table4 = $('#table4').DataTable({
+//     "order": [
+//         [0, "desc"]
+//     ],
+//     responsive:true
+// });
+// //total number of existing rows
+// var counter = 18;
+
 
     // add row, delete row example
     var table3 = $('#table3').DataTable({

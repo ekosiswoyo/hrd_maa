@@ -36,7 +36,7 @@ class SeleksiController extends Controller
         foreach ($nama as $key => $value) {
             $seleksi = new Seleksi();
             
-            $seleksi->nama = $value;
+            $seleksi->nama_tes = $value;
             $seleksi->save();
           }
 
@@ -56,7 +56,7 @@ class SeleksiController extends Controller
     {
     $seleksi = Seleksi::find($id);
   
-    $seleksi->nama = $request->nama;
+    $seleksi->nama_tes = $request->nama;
     $seleksi->save();
 
 

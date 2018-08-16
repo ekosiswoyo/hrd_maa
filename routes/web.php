@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::post('/data-fptk/proses', 'fptkController@updateall');
+Route::post('/pelamar/updateall', 'PelamarController@updateall');
+Route::post('/pelamar/unproses', 'PelamarController@unprosesall');
+Route::post('/data-fptk/selesai', 'fptkController@selesaiall');
 Route::get('/index', 'HomeController@index')->name('index');
 Route::get('/fptk', 'fptkController@index');
 Route::post('/fptk', 'fptkController@store');

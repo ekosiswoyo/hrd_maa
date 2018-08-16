@@ -10,14 +10,11 @@
                 <h1>Data Pelamar</h1>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="index.html">
-                            <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Dashboard
+                        <a href="/index">
+                            <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Halaman Utama
                         </a>
                     </li>
-                    <li>
-                        <a href="#">Data FPTK</a>
-                    </li>
-                    <li class="active">Data Pelamar BPR MAA</li>
+                    <li class="active">Data Lowongan</li>
                 </ol>
             </section>
             <!--section ends-->

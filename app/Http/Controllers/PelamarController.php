@@ -175,8 +175,12 @@ class PelamarController extends Controller
                 ->join('lowongan', 'pelamar.id_lowongan', '=', 'lowongan.id')
                 ->where('pelamar.status_akhir','1')
                 ->orderBy('pelamar.tgl_masuk_lamaran','desc')->get();
+        $akhir = DB::table('pelamar')
+                ->join('lowongan', 'pelamar.id_lowongan', '=', 'lowongan.id')
+                ->where('pelamar.status_akhir','2')
+                ->orderBy('pelamar.tgl_masuk_lamaran','desc')->get();
         $no = 1;
-        return view('data_pelamar', compact('view','status','no'));
+        return view('data_pelamar', compact('view','status','no','akhir'));
     }
 
     public function ubahpelamar($idnik)
@@ -380,6 +384,13 @@ public function prosesseleksi()
                 ->join('lowongan','pelamar.id_lowongan','=','lowongan.id')
                 ->groupBy('jns_tes.id')
                 ->get();
+        // $chart = Charts::database(activity::with('jns_tes')->select('id')->get(), 'pie', 'fusioncharts')
+        //         // ->title('Grafik persentase jumlah karyawan per Kantor')
+        //         // // ->elementLabel("Total ".$cabang->user->count())
+        //         // ->colors([ '#FF0F00','#FF6600', '#FF9E01','#FCD202','#F8FF01','#B0DE09','#04D215','#0D8ECF','#0D52D1','#2A0CD0','#8A0CCF','#CD0D74','#754DEB','#DDDDDD','#999999','#333333','#000000'])
+        //         // ->dimensions(0, 375)
+        //         // // ->responsive(true)
+        //         // ->groupBy('id','jns_tes.nama_tes');
 
         return view('prosesseleksi',compact('pelamar','no'));
     }
@@ -392,6 +403,7 @@ public function proseleksi($id)
         ->join('jns_tes','activity.id_seleksi','=','jns_tes.id')
         ->join('lowongan','pelamar.id_lowongan','=','lowongan.id')
         ->where('activity.id_seleksi','=',$id)
+        ->where('activity.status','!=','1')
         ->whereNull('activity.hasil')
         ->get();
 
@@ -401,6 +413,7 @@ public function proseleksi($id)
         ->join('lowongan','pelamar.id_lowongan','=','lowongan.id')
         ->where('activity.id_seleksi','=',$id)
         ->where('activity.hasil','=','0')
+        ->where('activity.status','!=','1')
         ->whereNotNull('activity.hasil')
         ->get();
 
@@ -410,6 +423,7 @@ public function proseleksi($id)
         ->join('lowongan','pelamar.id_lowongan','=','lowongan.id')
         ->where('activity.id_seleksi','=',$id)
         ->where('activity.hasil','=','1')
+        ->where('activity.status','!=','1')
         ->whereNotNull('activity.hasil')
         ->get();
 
@@ -488,5 +502,52 @@ public function proseleksi($id)
   
         return redirect('/proses');
     }
+    public function updateall(Request $request)
+    {
+        $ids = $request->select;
+        
+        
+        $carbon = Carbon::today();
+        $format = $carbon->format('Y-m-d H:i:s');
+      
+        for($i = 0; $i <= count($ids); $i++) {
+
+        DB::table('pelamar')->whereIn('nik', $ids)->update(array(
+                'status_akhir' => '1',
+            ));
+
+        
+                
+      }
+      foreach($ids as $key){
+      DB::table('activity')->insert(
+        ['nik' => $key,
+        'id_seleksi' => 1,
+        'tgl_panggilan' => $format
+        ]
+    );
+}
+      return redirect('/data_pelamar');
+
+    }
+    public function unprosesall(Request $request)
+    {
+        $ids = $request->check;
+        
+        
+
+        for($i = 0; $i <= count($ids); $i++) {
+
+          DB::table('pelamar')->whereIn('nik', $ids)->update(array(
+                    'status_akhir' => '0',
+                ));
+  
+  
+      }
+      return redirect('/data_pelamar');
+
+    }
+
+    
   
 }

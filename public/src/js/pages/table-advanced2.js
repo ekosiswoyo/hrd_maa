@@ -84,7 +84,42 @@ $(document).ready(function() {
             }
         } );
     } );
+    $(document).ready(function() {
+        var table4 = $('#table4').DataTable( {
+            "ajax": "js/pages/data.txt",
+            "columns": [
+                {
+                    "className":      'details-control',
+                    "orderable":      false,
+                    "data":           null,
+                    "defaultContent": ''
+                },
+                { "data": "#" },
+                { "data": "FirstName" },
+                { "data": "LastName" },
+                { "data": "UserE-mail" }
+            ],
+            "order": [[1, 'asc']],
+            "responsive":true
+        } );
 
+        // Add event listener for opening and closing details
+        $('#table4 tbody').on('click', 'td', function () {
+            var tr = $(this).closest('tr');
+            var row = table4.row( tr );
+
+            if ( row.child.isShown() ) {
+                // This row is already open - close it
+                row.child.hide();
+                tr.removeClass('shown');
+            }
+            else {
+                // Open this row
+                row.child( format(row.data()) ).show();
+                tr.addClass('shown');
+            }
+        } );
+    } );
 
 
     //table3

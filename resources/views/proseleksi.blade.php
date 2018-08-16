@@ -50,15 +50,12 @@
                 <!--section starts-->
                 <h1>Data Pelamar</h1>
                 <ol class="breadcrumb">
-                    <li>
-                        <a href="index.html">
-                            <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">Data FPTK</a>
-                    </li>
-                    <li class="active">Data Pelamar BPR MAA</li>
+                        <li>
+                                <a href="index.html">
+                                    <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Halaman Utama
+                                </a>
+                            </li>
+                    <li class="active">Proses Seleksi</li>
                 </ol>
             </section>
             <!--section ends-->
@@ -92,6 +89,7 @@
                                                         <th>Posisi</th>
                                                         <th>Jenis Tes</th>
                                                         <th>Keterangan</th></th>
+                                                        <th>Hasil</th>
                                                     </tr>
                                                 </thead>
                                                
@@ -103,6 +101,8 @@
                                                         <td>{{$views->nama_lowongan}}</td>
                                                         <td>{{$views->nama_tes}}</td>
                                                         <td>Belum Tes</td>
+                                                        <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-id="{{$views->id_ac}}" data-nik="{{$views->nik}}" data-href="#full-width" href="#full-width">Hasil</a></td>
+
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -144,7 +144,7 @@
                                             <th>Jenis Tes</th>
                                             <th>Hasil</th></th>
                                             <th>Keterangan</th>
-                                            <th>Lulus</th>
+                                            {{--  <th>Lulus</th>  --}}
                                             {{--  <th>Tidak Lulus</th>  --}}
                                         </tr>
                                     </thead>
@@ -158,7 +158,6 @@
                                             <td>{{$views->nama_tes}}</td>
                                             <td>{{$views->hasil == '1' ? 'Lulus' : 'Tidak Lulus' }}</td>
                                             <td>{{$views->keterangan}}</td>
-                                            <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-id="{{$views->id_ac}}" data-nik="{{$views->nik}}" data-href="#full-width" href="#full-width">Hasil</a></td>
 
                                         </tr>
                                         @endforeach
@@ -205,10 +204,7 @@
                                                 @endforeach
                                               </select>
                                         <label>Tanggal Tes</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="livicon" data-name="calendar" data-size="14" data-loop="true"></i>
-                                            </div>
+                                        <div class="form-group">
                                             <input type="text" class="form-control" name="tgl" id="tgl" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
                                         </div>
                                        

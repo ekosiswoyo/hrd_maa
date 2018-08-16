@@ -7,20 +7,20 @@
         <aside class="right-side">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <!--section starts-->
-                <h1>Form Wizards</h1>
-                <ol class="breadcrumb">
-                    <li>
-                        <a href="index.html">
-                            <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">Forms</a>
-                    </li>
-                    <li class="active">Data Pelamar</li>
-                </ol>
-            </section>
+                    <!--section starts-->
+                    <h1>Form Wizards</h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/index">
+                                <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Halaman Utama
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/data_pelamar">Data Pelamar</a>
+                        </li>
+                        <li class="active">Tambah Data Pelamar</li>
+                    </ol>
+                </section>
             <!--section ends-->
             <section class="content">
                 <div class="row">

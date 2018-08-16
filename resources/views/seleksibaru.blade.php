@@ -9,15 +9,15 @@
                 <!--section starts-->
                 <h1>Form Data Jenis Tes</h1>
                 <ol class="breadcrumb">
+                        <li>
+                                <a href="index.html">
+                                    <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Halaman Utama
+                                </a>
+                            </li>
                     <li>
-                        <a href="index.html">
-                            <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Dashboard
-                        </a>
+                        <a href="/seleksi">Data Jenis Tes</a>
                     </li>
-                    <li>
-                        <a href="#">Forms</a>
-                    </li>
-                    <li class="active">Data Jenis Tes</li>
+                    <li class="active">Tambah Data Jenis Tes</li>
                 </ol>
             </section>
             <!--section ends-->

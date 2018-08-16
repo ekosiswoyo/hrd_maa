@@ -47,20 +47,17 @@
         <aside class="right-side">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <!--section starts-->
-                <h1>Data Pelamar</h1>
-                <ol class="breadcrumb">
-                    <li>
-                        <a href="index.html">
-                            <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">Data FPTK</a>
-                    </li>
-                    <li class="active">Data Pelamar BPR MAA</li>
-                </ol>
-            </section>
+                    <!--section starts-->
+                    <h1>Data Pelamar</h1>
+                    <ol class="breadcrumb">
+                            <li>
+                                    <a href="index.html">
+                                        <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Halaman Utama
+                                    </a>
+                                </li>
+                        <li class="active">Proses Seleksi</li>
+                    </ol>
+                </section>
             <!--section ends-->
             
             <section class="content">
@@ -118,7 +115,6 @@
                     </div>
                 </div>
                 <!-- row-->
-                
                
                 
                 

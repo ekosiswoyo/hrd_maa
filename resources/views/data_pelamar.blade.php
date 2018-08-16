@@ -10,12 +10,9 @@
                 <h1>Data Pelamar</h1>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="index.html">
-                            <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Dashboard
+                        <a href="/index">
+                            <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Halaman Utama
                         </a>
-                    </li>
-                    <li>
-                        <a href="#">Data FPTK</a>
                     </li>
                     <li class="active">Data Pelamar BPR MAA</li>
                 </ol>
@@ -33,11 +30,16 @@
                                 </h3>
                             </div>
                             <div class="panel-body table-responsive">
+                                    <form action="/pelamar/updateall" method="POST">
+                                        {{csrf_field()}}
+                                        <button type="submit" style="margin-bottom: 10px" class="btn btn-primary delete_all" >Proses Data yang di Pilih</button>
+                                        <a href="/pelamar" style="margin-left:15px;"><button type="button" style="margin-bottom: 10px;" class="btn btn-responsive button-alignment btn-info">Tambah Data Pelamar</button></a>
                                 <table class="table table-striped table-bordered" id="table2">
-                                  
+                                       
+
                                     <thead>
                                         <tr>
-                                            <th>No</th>
+                                            <th>#</th>
                                             <th>NIK</th>
                                             <th>Nama</th>
                                             <th>Tempat,Tanggal Lahir</th>
@@ -51,7 +53,9 @@
                                    
                                     <tbody>@foreach ($view as $views)
                                         <tr> 
-                                            <td>{{$no++}}</td> 
+                                            
+                                            
+                                            <td><input type="checkbox" name="select[]" value="{{$views->nik}}"></td>
                                             <td>{{$views->nik}}</td>
                                             <td>{{$views->nama}}</td>
                                             <td>{{$views->tempat_lahir}},{{$views->tanggal_lahir}}</td>
@@ -65,6 +69,7 @@
                                     </tbody>
                                    
                                 </table>
+                                    </form>
                             </div>
                         </div>
                     </div>
@@ -86,11 +91,14 @@
                                         <i class="livicon" data-name="tasks" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> DATA PELAMAR BPR MAA PROSES SELEKSI                                    </h3>
                                 </div>
                                 <div class="panel-body table-responsive">
-                                    <table class="table table-striped table-bordered" id="table3">
+                                        <form action="/pelamar/unproses" method="POST">
+                                            {{csrf_field()}}
+                                            <button type="submit" style="margin-bottom: 10px" class="btn btn-primary delete_all" >UnProses Data yang di Pilih</button>
+                                    <table class="table table-striped table-bordered" id="table4">
                                       
                                         <thead>
                                             <tr>
-                                                <th>No</th>
+                                                <th>#</th>
                                                         <th>NIK</th>
                                                         <th>Nama</th>
                                                         <th>Tempat,Tanggal Lahir</th>
@@ -106,7 +114,7 @@
                                        
                                         <tbody>@foreach ($status as $views)
                                             <tr>
-                                                <td>{{$no++}}</td> 
+                                                <td><input type="checkbox" name="check[]" class="sub_chk" value="{{$views->nik}}"></td>
                                                 <td>{{$views->nik}}</td>
                                                 <td>{{$views->nama}}</td>
                                                 <td>{{$views->tempat_lahir}},{{$views->tanggal_lahir}}</td>
@@ -118,6 +126,93 @@
                                                 <td><a href="/riwayat/{{$views->nik}}"><button type="button" class="btn btn-responsive button-alignment btn-warning">Riwayat</button></a></td>
                                                 {{--  <td><a href="/pelamar/{{$views->nik}}/kerja"><button type="button" class="btn btn-responsive button-alignment btn-primary">Diterima</button></a></td>  --}}
                                                 <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-nik="{{$views->nik}}" data-href="#full-width" href="#full-width">Diterima</a></td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                       
+                                    </table>
+                                        </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- row-->
+                    
+                   
+                    
+                    
+                    <!-- /.modal ends here -->
+                    <div class="modal fade in" id="full-width" tabindex="-1" role="dialog" aria-hidden="false">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title">Diterima Kerja</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form role="form" action="{{url('pelamar/{id}/kerja')}}" method="POST" id="contactForm">
+                                            <input type="hidden" name="nik" id="nik" class="modal_hiddennik" value="">
+    
+                                            {{ csrf_field() }}
+                                            
+                                            <label>Tanggal Masuk Kerja</label>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="tgl" id="tgl" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
+                                            </div>
+                                           
+                                      </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                                        <button type="submit" id="submitContact" form="contactForm" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   
+                    
+                    
+                    <!-- /.modal ends here -->
+                </section>
+            <!-- content -->
+            <section class="content">
+                    <!-- row-->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-success filterable" style="overflow:auto;">
+                                <div class="panel-heading" style="background-color: #418bca;border-color: #418bca;">
+                                    <h3 class="panel-title">
+                                        <i class="livicon" data-name="tasks" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> DATA PELAMAR DITERIMA KERJA</h3>
+                                </div>
+                                <div class="panel-body table-responsive">
+                                       
+                                    <table class="table table-striped table-bordered" id="table3">
+                                      
+                                        <thead>
+                                            <tr>
+                                                        <th>NIK</th>
+                                                        <th>Nama</th>
+                                                        <th>Tempat,Tanggal Lahir</th>
+                                                        <th>Posisi</th>
+                                                        <th>Tanggal Masuk Lamaran</th> 
+                                                        <th>Tanggal di Terima </th>
+                                                        <th>Ubah</th>
+                                                        <th>Hapus</th>
+                                                        <th>Riwayat</th>
+                                            </tr>
+                                        </thead>
+                                       
+                                        <tbody>@foreach ($akhir as $views)
+                                            <tr>
+                                                <td>{{$views->nik}}</td>
+                                                <td>{{$views->nama}}</td>
+                                                <td>{{$views->tempat_lahir}},{{$views->tanggal_lahir}}</td>
+                                                <td>{{$views->nama_lowongan}}</td>
+                                                 <td>{{$views->tgl_masuk_lamaran}}</td> 
+                                                 <td>{{$views->tgl_masuk_kerja}}</td>
+                                                <td><a href="/pelamar/{{$views->nik}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
+                                                <td><button type="button" onClick="deleteData({{$views->nik}})"  data-id=" {{$views->nik}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td>
+                                                <td><a href="/riwayat/{{$views->nik}}"><button type="button" class="btn btn-responsive button-alignment btn-warning">Riwayat</button></a></td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -138,7 +233,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                        <h4 class="modal-title">Full Width</h4>
+                                        <h4 class="modal-title">Diterima Kerja</h4>
                                     </div>
                                     <div class="modal-body">
                                         <form role="form" action="{{url('pelamar/{id}/kerja')}}" method="POST" id="contactForm">
@@ -147,10 +242,7 @@
                                             {{ csrf_field() }}
                                             
                                             <label>Tanggal Masuk Kerja</label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon">
-                                                    <i class="livicon" data-name="calendar" data-size="14" data-loop="true"></i>
-                                                </div>
+                                            <div class="form-group">
                                                 <input type="text" class="form-control" name="tgl" id="tgl" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
                                             </div>
                                            
@@ -169,7 +261,6 @@
                     <!-- /.modal ends here -->
                 </section>
             <!-- content -->
-            
         </aside>
 
        

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Seleksi extends Model
 {
     protected $table = 'jns_tes';
-    protected $fillable = ['nama'];
+    protected $fillable = ['nama_tes'];
 
     public function activity()
     {

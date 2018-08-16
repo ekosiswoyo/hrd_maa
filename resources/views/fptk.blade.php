@@ -13,14 +13,11 @@
                 <h1>Formulir Permintaan Tenaga Kerja (FPTK)</h1>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="index.html">
-                            <i class="livicon" data-name="home" data-size="16" data-color="#000"></i> Dashboard
+                        <a href="/index">
+                            <i class="livicon" data-name="home" data-size="16" data-color="#000"></i> Halaman Utama
                         </a>
                     </li>
-                    <li>
-                        <a href="#">Pages</a>
-                    </li>
-                    <li class="active">Blank page</li>
+                    <li class="active">FPTK</li>
                 </ol>
             </section>
             <section class="content">

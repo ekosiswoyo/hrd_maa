@@ -11,13 +11,10 @@
                 <ol class="breadcrumb">
                     <li>
                         <a href="index.html">
-                            <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Dashboard
+                            <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Halaman Utama
                         </a>
                     </li>
-                    <li>
-                        <a href="#">Data FPTK</a>
-                    </li>
-                    <li class="active">Data Pelamar BPR MAA</li>
+                    <li class="active">Data Jenis Tes</li>
                 </ol>
             </section>
             <!--section ends-->
@@ -49,7 +46,7 @@
                                     <tbody>@foreach ($view as $views)
                                         <tr>
                                             <td>{{$no++}}</td> 
-                                            <td>{{$views->nama}}</td>
+                                            <td>{{$views->nama_tes}}</td>
                                             <td><a href="/seleksi/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
                                             <td><button type="button" onClick="deleteData({{$views->id}})"  data-id=" {{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td>
                                         </tr>

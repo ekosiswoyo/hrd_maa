@@ -94,8 +94,13 @@ class fptkController extends Controller
     ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
     ->where('fptk.status','=',1)
     ->orderBy('fptk.id','asc')->get();
+    $akhir = DB::table('fptk')
+    ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
+    ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
+    ->where('fptk.status','=',2)
+    ->orderBy('fptk.id','asc')->get();
     $users = DB::table('fptk')->where('status','=',0)->count();
-    return view('home_fptk', compact('statusawal','statusakhir','users'));
+    return view('home_fptk', compact('statusawal','statusakhir','users','akhir'));
   }
 
   public function viewfptk(){
@@ -166,7 +171,7 @@ class fptkController extends Controller
     $fptk->save();
 
     Session::flash('success_massage','Data FPTK, berhasil di edit');
-    return redirect('/data-fptk');
+    return redirect('/home_fptk');
   }
   
   public function destroy($id)
@@ -191,6 +196,42 @@ class fptkController extends Controller
     Session::flash('success_massage','Data FPTK, berhasil di edit');
     return redirect('/home_fptk');
   }
+
+  public function updateall(Request $request)
+    {
+        $ids = $request->check;
+        
+        
+
+        for($i = 0; $i <= count($ids); $i++) {
+
+          DB::table('fptk')->whereIn('id', $ids)->update(array(
+                    'status' => '1',
+                ));
+  
+  
+      }
+      return redirect('/home_fptk');
+
+    }
+
+    public function selesaiall(Request $request)
+    {
+        $ids = $request->selesai;
+        
+        
+
+        for($i = 0; $i <= count($ids); $i++) {
+
+          DB::table('fptk')->whereIn('id', $ids)->update(array(
+                    'status' => '2',
+                ));
+  
+  
+      }
+      return redirect('/home_fptk');
+
+    }
 }
 
 
