@@ -43,6 +43,10 @@
                                             <th>Divisi</th>
                                             <th>Keperluan</th>
                                             <th>Jumlah SDM</th>
+                                            <th>Tanggal ACC</th>
+                                            <th>Status ACC</th>
+                                            <th>Keterangan</th>
+                                            <th>ACC</th>
                                             <th>Ubah</th>
                                             <th>Hapus</th>
                                             <th>Cetak</th>
@@ -57,6 +61,10 @@
                                             <td>{{$views->nama_bagian}}</td>
                                             <td>{{$views->keperluan}}</td>
                                             <td>{{$views->jml_sdm}}</td>
+                                            <td>{{$views->tgl_acc}}</td>
+                                            <td>{{$views->status_acc == '1' ? 'ACC' : 'Tidak ACC' }}</td>
+                                            <td>{{$views->keterangan_acc}}</td>
+                                            <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-id="{{$views->id}}" data-nik="{{$views->id}}" data-href="#full-width" href="#full-width">Hasil</a></td>
                                             <td><a href="/data-fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
                                             <td><button type="button" onClick="deleteData({{$views->id}})"  data-id=" {{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td>
                                             <td><a href="/printfptk/{{$views->id}}"><button type="button" class="btn btn-responsive button-alignment btn-info">Cetak</button></a></td>
@@ -73,7 +81,51 @@
                 </div>
                 <!-- row-->
                 
+                <div class="modal fade in" id="full-width" tabindex="-1" role="dialog" aria-hidden="false">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title">Hasil FPTK</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form role="form" action="{{url('fptk/proses/update')}}" method="POST" id="contactForm">
+                                        <input type="hidden" name="id" id="id" class="modal_hiddenid" value="">
+
+                                        {{ csrf_field() }}
+                                        <div class="form-group">
+                                                <label for="keperluan">Hasil</label><br>
+
+                                                <label class="radio-inline" for="keperluan-0">
+                                                    <input type="radio" onclick="document.getElementById('selectbasic').disabled = false;" name="hasil" id="hasil-0" value="1" required>
+                                                    ACC
+                                                </label> 
+                                                <label class="radio-inline" for="hasil-1">
+                                                    <input type="radio" name="hasil" id="hasil-1" value="0"  onclick="document.getElementById('selectbasic').disabled = true;" >
+                                                    Tidak ACC
+                                                </label>
+                                            </div>
+                                        <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Keterangan</label>
+                                            <input type="text" class="form-control ket" id="ket" name="ket" value="">
+                                        </div>
+                                        <label>Tanggal ACC</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="tgl" id="tgl" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
+                                        </div>
+                                       
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                                    <button type="submit" id="submitContact" form="contactForm" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                
+                
+                
+                <!-- /.modal ends here -->
                 
                 
                 <!-- /.modal ends here -->
@@ -192,6 +244,14 @@
 @endsection
 @section('script')
 <script type="text/javascript">
+    $(document).ready(function(){
+        $(document).on('click','.openModal',function(){
+            $('.modal_hiddenid').val($(this).data('id'))
+
+
+
+        });
+      })
     {{-- $(document).ready(function(){
         $(document).on('click','.sub_chk',function(){
             $('.sub_chk').val($(this).data('id'))

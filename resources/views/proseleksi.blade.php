@@ -1,4 +1,4 @@
- {{--  {{dd($pelamar)}}  --}}
+  {{-- {{dd($hasil)}}  --}}
 @extends('layouts.header')
 @section('css')
 <style>
@@ -48,7 +48,7 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <!--section starts-->
-                <h1>Data Pelamar</h1>
+                <h1>Data Seleksi</h1>
                 <ol class="breadcrumb">
                         <li>
                                 <a href="index.html">
@@ -89,6 +89,7 @@
                                                         <th>Posisi</th>
                                                         <th>Jenis Tes</th>
                                                         <th>Keterangan</th></th>
+                                                        <th>Tanggal Panggilan</th>
                                                         <th>Hasil</th>
                                                     </tr>
                                                 </thead>
@@ -101,6 +102,7 @@
                                                         <td>{{$views->nama_lowongan}}</td>
                                                         <td>{{$views->nama_tes}}</td>
                                                         <td>Belum Tes</td>
+                                                        <td>{{$views->tgl_panggilan}}</td>
                                                         <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-id="{{$views->id_ac}}" data-nik="{{$views->nik}}" data-href="#full-width" href="#full-width">Hasil</a></td>
 
                                                     </tr>
@@ -144,6 +146,8 @@
                                             <th>Jenis Tes</th>
                                             <th>Hasil</th></th>
                                             <th>Keterangan</th>
+                                            <th>Tanggal Panggilan</th>
+                                            <th>Tanggal Lulus Tes</th>
                                             {{--  <th>Lulus</th>  --}}
                                             {{--  <th>Tidak Lulus</th>  --}}
                                         </tr>
@@ -158,6 +162,8 @@
                                             <td>{{$views->nama_tes}}</td>
                                             <td>{{$views->hasil == '1' ? 'Lulus' : 'Tidak Lulus' }}</td>
                                             <td>{{$views->keterangan}}</td>
+                                            <td>{{$views->tgl_panggilan}}</td>
+                                            <td>{{$views->tanggal}}</td>
 
                                         </tr>
                                         @endforeach
@@ -174,7 +180,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <h4 class="modal-title">Full Width</h4>
+                                    <h4 class="modal-title">Hasil Seleksi</h4>
                                 </div>
                                 <div class="modal-body">
                                     <form role="form" action="{{url('proses/seleksi/update')}}" method="POST" id="contactForm">
@@ -232,7 +238,7 @@
                                         <i class="livicon" data-name="tasks" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> DATA PELAMAR TIDAK LOLOS SELEKSI                                    </h3>
                                 </div>
                                 <div class="panel-body table-responsive">
-                                    <table class="table table-striped table-bordered" id="table3">
+                                    <table class="table table-striped table-bordered" id="table4">
                                       
                                             <thead>
                                                     <tr>
@@ -242,6 +248,7 @@
                                                         <th>Posisi</th>
                                                         <th>Jenis Tes</th>
                                                         <th>Hasil</th></th>
+                                                        <th>Tanggal Panggilan</th>
                                                     </tr>
                                                 </thead>
                                                
@@ -253,6 +260,8 @@
                                                         <td>{{$views->nama_lowongan}}</td>
                                                         <td>{{$views->nama_tes}}</td>
                                                         <td>{{$views->hasil == '1' ? 'Lulus' : 'Tidak Lulus' }}</td>
+                                                        <td>{{$views->tgl_panggilan}}</td>
+                                                        
                                                     </tr>
                                                     @endforeach
                                                 </tbody>

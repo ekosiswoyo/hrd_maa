@@ -22,6 +22,8 @@ Route::post('/pelamar/updateall', 'PelamarController@updateall');
 Route::post('/pelamar/unproses', 'PelamarController@unprosesall');
 Route::post('/data-fptk/selesai', 'fptkController@selesaiall');
 Route::get('/index', 'HomeController@index')->name('index');
+Route::post('/fptk/proses/update','fptkController@updateproses');
+
 Route::get('/fptk', 'fptkController@index');
 Route::post('/fptk', 'fptkController@store');
 Route::get('/printfptk',  'fptkController@makePDF');

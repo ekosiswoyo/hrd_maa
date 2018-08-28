@@ -1,4 +1,4 @@
-{{--  {{dd($pelamar)}}  --}}
+ {{-- {{dd($pelamar)}}  --}}
 @extends('layouts.header')
 @section('css')
 <style>
@@ -89,7 +89,9 @@
                                     <thead>
                                         <tr>
                                             <th>NIK</th>
+                                            <th>Nama</th>
                                             <th>Posisi</th>
+                                            <th>Tanggal Panggilan</th>
                                             <th>Jenis Tes</th>
                                             <th>Hasil</th></th>
                                             <th>Keterangan</th>
@@ -99,7 +101,9 @@
                                     <tbody>@foreach ($pelamar as $views)
                                         <tr> 
                                             <td>{{$views->nik}}</td>
+                                            <td>{{$views->nama}}</td>
                                             <td>{{$views->nama_lowongan}}</td>
+                                            <td>{{$views->tgl_panggilan}}</td>
                                             <td>{{$views->nama_tes}}</td>
                                             <td>{{$views->hasil == '1' ? 'Lulus' : 'Tidak Lulus' }}</td>
                                             <td>{{$views->keterangan}}</td>

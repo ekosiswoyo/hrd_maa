@@ -7,8 +7,12 @@ use PDF;
 use Illuminate\Support\Facades\DB;
 use App\Models\fptk;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
+
+use App\Mail\fptkMail;
+use Illuminate\Support\Facades\Mail;
 
 class fptkController extends Controller
 {
@@ -46,26 +50,49 @@ class fptkController extends Controller
     
 
 
-    $fptk = new fptk([
-        'id_bagian' => $bagian,
-        'grade' => $jabatan,
-        'jml_sdm' => $jml_sdm,
-        'id_cabang' => $cabang,
-        'keperluan' => $keperluan,
-        'ket_keperluan' => $ket_keperluan,
-        'status_karyawan' => $stat_kar,
-        'jns_kel' => $jns_kel,
-        'stat_pernikahan' => $stat_nikah,
-        'pend' => $pendidikan,
-        'pengalaman_kerja' => $pengalaman,
-        'min_pengalaman' => $min_pengalaman,
-        'syarat_wajib' => $syarat_wajib,
-        'syarat_dukung' => $syarat_pendukung,
-        'uraian_tugas' => $tanggung_jawab,
-        'karakteristik' => $karakteristik
+    $fptkMail = new fptk;
+    $fptkMail->id_bagian = $bagian;
+    $fptkMail->grade = $jabatan;
+    $fptkMail->jml_sdm = $jml_sdm;
+    $fptkMail->id_cabang = $cabang;
+    $fptkMail->keperluan= $keperluan;
+    $fptkMail->ket_keperluan = $ket_keperluan;
+    $fptkMail->status_karyawan = $stat_kar;
+    $fptkMail->jns_kel = $jns_kel;
+    $fptkMail->stat_pernikahan = $stat_nikah;
+    $fptkMail->pend = $pendidikan;
+    $fptkMail->pengalaman_kerja = $pengalaman;
+    $fptkMail->min_pengalaman = $min_pengalaman;
+    $fptkMail->syarat_wajib = $syarat_wajib;
+    $fptkMail->syarat_dukung = $syarat_pendukung;
+    $fptkMail->uraian_tugas = $tanggung_jawab;
+    $fptkMail->karakteristik = $karakteristik;
 
-    ]);
-    $fptk->save();
+
+
+
+
+    // ([
+    //     'id_bagian' => $bagian,
+    //     'grade' => $jabatan,
+    //     'jml_sdm' => $jml_sdm,
+    //     'id_cabang' => $cabang,
+    //     'keperluan' => $keperluan,
+    //     'ket_keperluan' => $ket_keperluan,
+    //     'status_karyawan' => $stat_kar,
+    //     'jns_kel' => $jns_kel,
+    //     'stat_pernikahan' => $stat_nikah,
+    //     'pend' => $pendidikan,
+    //     'pengalaman_kerja' => $pengalaman,
+    //     'min_pengalaman' => $min_pengalaman,
+    //     'syarat_wajib' => $syarat_wajib,
+    //     'syarat_dukung' => $syarat_pendukung,
+    //     'uraian_tugas' => $tanggung_jawab,
+    //     'karakteristik' => $karakteristik
+
+    // ]);
+    $fptkMail->save();
+    Mail::to('it.bprmaa@gmail.com')->send(new fptkMail($fptkMail));
    
     Session::flash('success_massage','Berhasil disimpan.');
     return redirect('/fptk');
@@ -194,6 +221,22 @@ class fptkController extends Controller
     $fptk->save();
 
     Session::flash('success_massage','Data FPTK, berhasil di edit');
+    return redirect('/home_fptk');
+  }
+  public function updateproses(Request $request)
+  {
+      $id = $request->input("id");
+        $carbon = Carbon::today();
+      $format = $carbon->format('Y-m-d H:i:s');
+          DB::table('fptk')->where('id','=',$id)->update([
+              
+              'status_acc' => $request->hasil,
+              'keterangan_acc' => $request->ket,
+              'tgl_acc' => $request->tgl
+              ]);
+
+     
+    Session::flash('success_massage','Data Pelamar, berhasil di edit');
     return redirect('/home_fptk');
   }
 

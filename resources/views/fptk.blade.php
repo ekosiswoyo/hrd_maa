@@ -71,13 +71,17 @@
                                 <div class="form-group">
                                     <label for="jns_kel">Jenis Kelamin</label><br>
                                 <label class="radio-inline" for="jns_kel-0">
-                                    <input type="radio" name="jns_kel" id="jns_kel-0" class="flat-red" value="laki-laki" required>
+                                    <input type="radio" name="jns_kel" id="jns_kel-0" class="flat-red" value="Laki-Laki" required>
                                     Laki-Laki
                                 </label> 
                                 <label class="radio-inline" for="jns_kel-1">
-                                    <input type="radio" name="jns_kel" id="jns_kel-1" class="flat-red" value="perempuan">
+                                    <input type="radio" name="jns_kel" id="jns_kel-1" class="flat-red" value="Perempuan">
                                     Perempuan
                                 </label>
+                                <label class="radio-inline" for="jns_kel-1">
+                                        <input type="radio" name="jns_kel" id="jns_kel-1" class="flat-red" value="Laki-Laki/Perempuan">
+                                        Laki-Laki/Perempuan
+                                    </label>
                                 </div>
                                 <div class="form-group">
                                     <label for="stat_nikah">Status Pernikahan</label><br>
@@ -119,12 +123,15 @@
                                         <input type="checkbox" name="pengalaman" id="freshgraduate" value="Fresh Graduate" class="flat-red" />
                                         Fresh Graduate
                                     </label>
+                                    <label>
+                                            <input type="checkbox" name="pengalaman" value="Pengalaman Kerja & Fresh Graduate" id="pengalamankerja" class="flat-red"/>
+                                            Pengalaman Kerja & Fresh Graduate
+                                        </label>
                                 </div>
                                 
                                 <label for="pengalaman">Minimal Pengalaman Kerja</label>
-                                <div class="form-group input-group">
+                                <div class="form-group">
                                     <input type="text" name ="min_pengalaman" class="form-control" required>
-                                    <span class="input-group-addon">Tahun</span>
                                 </div>
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="ket_keperluan">Persyaratan Pekerjaan/Wajib</label>
                                     <textarea class="form-control" id="textarea" name="syarat_wajib" placeholder="Persyaratan Pekerjaan" required></textarea>

@@ -48,7 +48,7 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                     <!--section starts-->
-                    <h1>Data Pelamar</h1>
+                    <h1>Data Seleksi</h1>
                     <ol class="breadcrumb">
                             <li>
                                     <a href="index.html">
@@ -58,10 +58,11 @@
                         <li class="active">Proses Seleksi</li>
                     </ol>
                 </section>
+                {{-- {!! $chart->container() !!} --}}
             <!--section ends-->
-            
-            <section class="content">
-                    <div class="dropdown">
+           <section class="content">
+                {{-- {!! $chart->script() !!}        --}}
+                             <div class="dropdown">
                             <button onclick="myFunction()" style="float:right;margin-left:33px" class="dropbtn">Pilih Jenis Tes</button>
                               <div id="myDropdown" class="dropdown-content">
                                 @foreach (App\Models\Seleksi::get() as $nama)
@@ -150,4 +151,7 @@
         }
         </script>
 
+@endsection
+@section('script')
+ <script src="path/to/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 @endsection

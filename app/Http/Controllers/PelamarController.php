@@ -10,7 +10,9 @@ use App\Models\Pengalaman;
 use App\Models\UploadFile;
 use App\Models\Activity;
 use Carbon\Carbon;
-use Charts;
+// use Charts;
+
+use App\Charts\SampleChart;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -98,7 +100,7 @@ class PelamarController extends Controller
                 return redirect()->route('pengalaman', [$idnik]);
 
             }else{
-                Session::flash('errors','NIK pelamar sudah terdaftar.');
+                Session::flash('NIK sudah terdaftar.');
                 return Redirect::to('/pelamar')
                     ->withErrors($validator)
                     ->withInput();
@@ -384,15 +386,17 @@ public function prosesseleksi()
                 ->join('lowongan','pelamar.id_lowongan','=','lowongan.id')
                 ->groupBy('jns_tes.id')
                 ->get();
-        // $chart = Charts::database(activity::with('jns_tes')->select('id')->get(), 'pie', 'fusioncharts')
-        //         // ->title('Grafik persentase jumlah karyawan per Kantor')
-        //         // // ->elementLabel("Total ".$cabang->user->count())
-        //         // ->colors([ '#FF0F00','#FF6600', '#FF9E01','#FCD202','#F8FF01','#B0DE09','#04D215','#0D8ECF','#0D52D1','#2A0CD0','#8A0CCF','#CD0D74','#754DEB','#DDDDDD','#999999','#333333','#000000'])
-        //         // ->dimensions(0, 375)
-        //         // // ->responsive(true)
-        //         // ->groupBy('id','jns_tes.nama_tes');
+        // $chart = SampleChart::database(activity::with('jns_tes')->select('id')->get(), 'pie', 'fusioncharts')
+        //         ->title('Grafik persentase jumlah karyawan per Kantor')
+        //         // ->elementLabel("Total ".$cabang->user->count())
+        //         ->colors([ '#FF0F00','#FF6600', '#FF9E01','#FCD202','#F8FF01','#B0DE09','#04D215','#0D8ECF','#0D52D1','#2A0CD0','#8A0CCF','#CD0D74','#754DEB','#DDDDDD','#999999','#333333','#000000'])
+        //         ->dimensions(0, 375)
+        //         // ->responsive(true)
+        //         ->groupBy('id','jns_tes.nama_tes');
+        $chart = new SampleChart;
+        // $chart->dataset('Sample', 'line', [100, 65, 84, 45, 90])->options(['borderColor' => '#ff0000'])->width(50);
 
-        return view('prosesseleksi',compact('pelamar','no'));
+        return view('prosesseleksi', ['chart' => $chart],compact('pelamar','no'));
     }
 public function proseleksi($id)
     {

@@ -208,25 +208,26 @@
                     <div class="clearfix"></div>
                     <!-- BEGIN SIDEBAR MENU -->
                     <ul id="menu" class="page-sidebar-menu">
+                       
+                        @if(Auth::user()->nip == '017050599')
                         <li>
-                            <a href="/index">
-                                <i class="livicon" data-name="home" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
-                                <span class="title">Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/fptk">
-                                <i class="livicon" data-name="doc-portrait" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
-                                <span class="title">FPTK</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/printfptk">
-                                <i class="livicon" data-name="printer" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
-                                <span class="title">Cetak FPTK TERAKHIR</span>
-                            </a>
-                        </li>
-                        @if(Auth::user()->id_bagian == 36)
+                                <a href="/index">
+                                    <i class="livicon" data-name="home" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                    <span class="title">Dashboard</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/fptk">
+                                    <i class="livicon" data-name="doc-portrait" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                    <span class="title">FPTK</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/printfptk">
+                                    <i class="livicon" data-name="printer" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                    <span class="title">Cetak FPTK TERAKHIR</span>
+                                </a>
+                            </li>
                         <li>
                             <a href="/home_fptk">
                                 <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
@@ -239,36 +240,108 @@
                                 <span class="title">Data Pelamar</span>
                             </a>
                         </li>
+                       
+                            
+                            <li>
+                                    <a href="/lowongan">
+                                        <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                        <span class="title">Data Lowongan</span>
+                                    </a>
+                            </li>
+                            <li>
+                                    <a href="/seleksi">
+                                        <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                        <span class="title">Data Jenis Tes</span>
+                                    </a>
+                            </li>
+                            <li>
+                                    <a href="/proses">
+                                        <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                        <span class="title">Proses Seleksi</span>
+                                    </a>
+                            </li>
+                            
+                            
+                           
+                        @elseif (Auth::user()->nip == '017010632')
+                        <li>
+                                <a href="/index">
+                                    <i class="livicon" data-name="home" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                    <span class="title">Dashboard</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/fptk">
+                                    <i class="livicon" data-name="doc-portrait" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                    <span class="title">FPTK</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/printfptk">
+                                    <i class="livicon" data-name="printer" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                    <span class="title">Cetak FPTK TERAKHIR</span>
+                                </a>
+                            </li>
+                        <li>
+                                <a href="/home_fptk">
+                                    <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                    <span class="title">Data FPTK</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/data_pelamar">
+                                    <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                    <span class="title">Data Pelamar</span>
+                                </a>
+                            </li>
+                
+                                
+                                <li>
+                                        <a href="/lowongan">
+                                            <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                            <span class="title">Data Lowongan</span>
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="/seleksi">
+                                            <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                            <span class="title">Data Jenis Tes</span>
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="/proses">
+                                            <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                            <span class="title">Proses Seleksi</span>
+                                        </a>
+                                </li>
+                                
                         @else
                         <li>
-                            <a href="/data-fptk">
-                                <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
-                                <span class="title">Data FPTK</span>
-                            </a>
-                        </li>
-                        @endif
-                        <li>
-                                <a href="/lowongan">
-                                    <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
-                                    <span class="title">Data Lowongan</span>
+                                <a href="/index">
+                                    <i class="livicon" data-name="home" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                    <span class="title">Dashboard</span>
                                 </a>
-                        </li>
-                        <li>
-                                <a href="/seleksi">
-                                    <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
-                                    <span class="title">Data Jenis Tes</span>
+                            </li>
+                            <li>
+                                <a href="/fptk">
+                                    <i class="livicon" data-name="doc-portrait" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                    <span class="title">FPTK</span>
                                 </a>
-                        </li>
-                        <li>
-                                <a href="/proses">
-                                    <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
-                                    <span class="title">Proses Seleksi</span>
+                            </li>
+                            <li>
+                                <a href="/printfptk">
+                                    <i class="livicon" data-name="printer" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                    <span class="title">Cetak FPTK TERAKHIR</span>
                                 </a>
-                        </li>
-                        
-                        
+                            </li>
+                            <li>
+                                    <a href="/data-fptk">
+                                        <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                        <span class="title">Data FPTK</span>
+                                    </a>
+                                </li>
                        
-                      
+                        @endif
                        
                        
                        

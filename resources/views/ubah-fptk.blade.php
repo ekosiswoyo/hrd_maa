@@ -68,12 +68,16 @@
                                 <div class="form-group">
                                     <label for="jns_kel">Jenis Kelamin</label><br>
                                 <label class="radio-inline" for="jns_kel-0">
-                                    <input type="radio" name="jns_kel" id="jns_kel-0" class="flat-red" value="laki-laki" {{ $fptk->jns_kel == 'laki-laki' ? 'checked' : '' }}>
+                                    <input type="radio" name="jns_kel" id="jns_kel-0" class="flat-red" value="laki-laki" {{ $fptk->jns_kel == 'Laki-Laki' ? 'checked' : '' }}>
                                     Laki-Laki
                                 </label> 
                                 <label class="radio-inline" for="jns_kel-1">
-                                    <input type="radio" name="jns_kel" id="jns_kel-1" class="flat-red" value="perempuan" {{ $fptk->jns_kel == 'perempuan' ? 'checked' : '' }}>
+                                    <input type="radio" name="jns_kel" id="jns_kel-1" class="flat-red" value="perempuan" {{ $fptk->jns_kel == 'Perempuan' ? 'checked' : '' }}>
                                     Perempuan
+                                </label>
+                                <label class="radio-inline" for="jns_kel-1">
+                                        <input type="radio" name="jns_kel" id="jns_kel-1" class="flat-red" value="Laki-Laki/Perempuan" {{ $fptk->jns_kel == 'Laki-Laki/Perempuan' ? 'checked' : '' }}>
+                                        Laki-Laki/Perempuan
                                 </label>
                                 </div>
                                 <div class="form-group">
@@ -116,6 +120,11 @@
                                         <input type="checkbox" name="pengalaman" id="freshgraduate" value="Fresh Graduate" class="flat-red" {{ $fptk->pengalaman_kerja == 'Fresh Graduate' ? 'checked' : '' }}/>
                                         Fresh Graduate
                                     </label>
+                                    <label>
+                                            <input type="checkbox" name="pengalaman" id="freshgraduate" value="Pengalaman Kerja & Fresh Graduate" class="flat-red" {{ $fptk->pengalaman_kerja == 'Pengalaman Kerja & Fresh Graduate' ? 'checked' : '' }}/>
+                                            Pengalaman Kerja & Fresh Graduate
+                                    </label>
+                                    
                                 </div>
                                 
                                 <label for="pengalaman">Minimal Pengalaman Kerja</label>

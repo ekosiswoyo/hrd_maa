@@ -14,6 +14,6 @@ class Activity extends Model
 
     public function seleksi()
     {
-      return $this->hasMany('App\Models\Seleksi', 'id_seleksi','id');
+      return $this->hasMany('App\Models\Seleksi', 'id','id_seleksi');
     }
 }
