@@ -31,13 +31,13 @@
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Nama Jabatan/Grade</label>
                                     <input type="text" class="form-control" id="jabatan" name="jabatan" required>
                                 </div>
-                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="jml_sdm">Jumlah SDM</label>
-                                    <input type="text" class="form-control" id="jml_sdm" name="jml_sdm" placeholder="Jumlah SDM yang dibutuhkan" required>
+                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="jml_sdm">Bagian</label>
+                                    <input type="text" class="form-control" id="jml_sdm" name="jml_sdm" placeholder="Bagian yang dibutuhkan" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Lokasi Kerja</label>
-                                    <select name="cabang" class="form-control" required>
-                                        <option value="" required>-- Pilih Lokasi Kerja --</option>
+                                    <select name="cabang" class="form-control" title="Pilih Lokasi Kerja.." required>
+                                        {{-- <option value="" required>-- Pilih Lokasi Kerja --</option> --}}
                                         @foreach (App\Models\Cabang::get() as $nama_cabang)
                                         <option value="{{$nama_cabang->id_cabang}}">{{$nama_cabang->nama_cabang}}</option>
                                         @endforeach
@@ -123,17 +123,14 @@
                                         <input type="checkbox" name="pengalaman" id="freshgraduate" value="Fresh Graduate" class="flat-red" />
                                         Fresh Graduate
                                     </label>
-                                    <label>
-                                            <input type="checkbox" name="pengalaman" value="Pengalaman Kerja & Fresh Graduate" id="pengalamankerja" class="flat-red"/>
-                                            Pengalaman Kerja & Fresh Graduate
-                                        </label>
+                                    
                                 </div>
                                 
                                 <label for="pengalaman">Minimal Pengalaman Kerja</label>
                                 <div class="form-group">
-                                    <input type="text" name ="min_pengalaman" class="form-control" required>
+                                    <input type="text" name ="min_pengalaman" class="form-control" >
                                 </div>
-                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="ket_keperluan">Persyaratan Pekerjaan/Wajib</label>
+                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="ket_keperluan">Syarat Kemampuan Minimal</label>
                                     <textarea class="form-control" id="textarea" name="syarat_wajib" placeholder="Persyaratan Pekerjaan" required></textarea>
                                 </div>
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="ket_keperluan">Syarat Pendukung</label>
@@ -142,9 +139,7 @@
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="ket_keperluan">Uraian Tugas / Tanggung Jawab</label>
                                     <textarea class="form-control" id="textarea" name="tanggung_jawab" placeholder="Uraian Tugas / Tanggung Jawab" required></textarea>
                                 </div>
-                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="ket_keperluan">Karakteristrik Pekerjaan</label>
-                                    <textarea class="form-control" id="textarea" name="karakteristik" placeholder="Karakteristrik Pekerjaan" required></textarea>
-                                </div>
+                               
                                 <button type="submit" class="btn btn-responsive button-alignment btn-danger" style="margin-bottom:7px;">Simpan</button>
                                 
                                

@@ -21,6 +21,12 @@ $(document).ready(function() {
 
     new $.fn.dataTable.ColReorder(table4);
 
+     var table6 = $('#table6').dataTable({
+        responsive:true
+    });
+
+    new $.fn.dataTable.ColReorder(table6);
+
 // // add row, delete row example
 // var table4 = $('#table4').DataTable({
 //     "order": [

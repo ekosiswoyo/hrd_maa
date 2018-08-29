@@ -31,24 +31,67 @@
                                 </h3>
                             </div>
                             <div class="panel-body table-responsive">
-                                <form action="/data-fptk/proses/" method="POST">
+                             {{--    <form action="/data-fptk/proses/" method="POST"  id="contact">
                                     {{csrf_field()}}
-                                    <button type="submit" style="margin-bottom: 10px" class="btn btn-primary delete_all" >Proses Data yang di Pilih</button>
+                                    <button type="submit" style="margin-bottom: 10px" class="btn btn-primary delete_all" >Proses Data yang di Pilih</button> --}}
+                        <form action="/data-fptk/proses/" method="POST" style="background: #ffffff;" id="contact">
+                                        {{csrf_field()}}
+                                         <div class="modal fade in" id="width" tabindex="-1" role="dialog" aria-hidden="false">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                <h4 class="modal-title">Proses FPTK</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                    <input type="hidden" name="id" id="id" class="modal_hiddenid" value="">
 
+                                                        {{ csrf_field() }}
+                                                       <div class="form-group">
+                                                <label for="keperluan">Hasil</label><br>
+
+                                                <label class="radio-inline" for="keperluan-0">
+                                                    <input type="radio" onclick="document.getElementById('selectbasic').disabled = false;" name="hasil" id="hasil-0" value="ACC" required>
+                                                    ACC
+                                                </label> 
+                                                <label class="radio-inline" for="hasil-1">
+                                                    <input type="radio" name="hasil" id="hasil-1" value="Tidak ACC"  onclick="document.getElementById('selectbasic').disabled = true;" >
+                                                    Tidak ACC
+                                                </label>
+                                            </div>
+                                        <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Keterangan</label>
+                                            <input type="text" class="form-control ket" id="ket" name="ket" value="">
+                                        </div>
+                                        <label>Tanggal ACC</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="tgl" id="tgl" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
+                                        </div>
+                                                   
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                                                <button type="submit" id="submitContact" form="contact" class="btn btn-primary">Save changes</button>
+                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal"  style="margin-top: 10px"  data-href="#width" href="#width">Proses Data yang di Pilih</a>
                                 <table class="table table-striped table-bordered" id="table2">
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            {{-- <th>ID. FPTK</th> --}}
                                             <th>Nama Jabatan/Grade</th>
                                             <th>Divisi</th>
                                             <th>Keperluan</th>
-                                            <th>Jumlah SDM</th>
-                                            <th>Tanggal ACC</th>
+                                            <th>Bagian</th>
+                                            
                                             <th>Status ACC</th>
-                                            <th>Keterangan</th>
+                                            {{-- <th>Keterangan</th> --}}
+                                            <th>Detail</th>
                                             <th>ACC</th>
                                             <th>Ubah</th>
-                                            <th>Hapus</th>
+                                            {{-- <th>Hapus</th> --}}
                                             <th>Cetak</th>
                                             {{-- <th>Proses</th> --}}
                                         </tr>
@@ -57,16 +100,17 @@
                                     <tbody>@foreach ($statusawal as $views)
                                         <tr> 
                                             <td><input type="checkbox" name="check[]" class="sub_chk" value="{{$views->id}}"></td>
-                                            <td>{{$views->grade}}</td>
+                                            {{-- <td>{{$views->id}}</td> --}}
+                                            <td>{{$views->id}} - {{$views->grade}}</td>
                                             <td>{{$views->nama_bagian}}</td>
                                             <td>{{$views->keperluan}}</td>
-                                            <td>{{$views->jml_sdm}}</td>
-                                            <td>{{$views->tgl_acc}}</td>
-                                            <td>{{$views->status_acc == '1' ? 'ACC' : 'Tidak ACC' }}</td>
-                                            <td>{{$views->keterangan_acc}}</td>
+                                            <td>{{$views->bagian}}</td>
+                                            <td>{{$views->status_acc}}</td>
+                                            <td><a href="/data-fptk/{{$views->id}}/detail"><button type="button" class="btn btn-responsive button-alignment btn-primary">Detail</button></a></td>
+                                            {{-- <td>{{$views->keterangan_acc}}</td> --}}
                                             <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-id="{{$views->id}}" data-nik="{{$views->id}}" data-href="#full-width" href="#full-width">Hasil</a></td>
                                             <td><a href="/data-fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
-                                            <td><button type="button" onClick="deleteData({{$views->id}})"  data-id=" {{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td>
+                                            {{-- <td><button type="button" onClick="deleteData({{$views->id}})"  data-id=" {{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td> --}}
                                             <td><a href="/printfptk/{{$views->id}}"><button type="button" class="btn btn-responsive button-alignment btn-info">Cetak</button></a></td>
                                             {{-- <td><form method="post" > {{csrf_field()}}<a href="/data-fptk/{{$views->id}}/proses"><button type="button" class="btn btn-responsive button-alignment btn-danger">Proses</button></a></form></td> --}}
                                         </tr>
@@ -97,11 +141,11 @@
                                                 <label for="keperluan">Hasil</label><br>
 
                                                 <label class="radio-inline" for="keperluan-0">
-                                                    <input type="radio" onclick="document.getElementById('selectbasic').disabled = false;" name="hasil" id="hasil-0" value="1" required>
+                                                    <input type="radio" onclick="document.getElementById('selectbasic').disabled = false;" name="hasil" id="hasil-0" value="ACC" required>
                                                     ACC
                                                 </label> 
                                                 <label class="radio-inline" for="hasil-1">
-                                                    <input type="radio" name="hasil" id="hasil-1" value="0"  onclick="document.getElementById('selectbasic').disabled = true;" >
+                                                    <input type="radio" name="hasil" id="hasil-1" value="Tidak ACC"  onclick="document.getElementById('selectbasic').disabled = true;" >
                                                     Tidak ACC
                                                 </label>
                                             </div>
@@ -130,6 +174,7 @@
                 
                 <!-- /.modal ends here -->
             </section>
+            
             <section class="content">
                     <!-- row-->
                     <div class="row">
@@ -137,7 +182,7 @@
                             <div class="panel panel-success filterable" style="overflow:auto;">
                                 <div class="panel-heading" style="background-color: #418bca;border-color: #418bca;">
                                     <h3 class="panel-title">
-                                        <i class="livicon" data-name="tasks" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> DATA FPTK DALAM PROSES
+                                        <i class="livicon" data-name="tasks" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> DATA FPTK DI ACC DAN DALAM PROSES
                                     </h3>
                                 </div>
                                 <div class="panel-body table-responsive">
@@ -152,9 +197,11 @@
                                                 <th>Nama Jabatan/Grade</th>
                                                 <th>Divisi</th>
                                                 <th>Keperluan</th>
-                                                <th>Jumlah SDM</th>
+                                                <th>Bagian</th>
+                                                <th>Tanggal ACC</th>
+                                                <th>Keterangan</th>
+                                                <th>Detail</th>
                                                 <th>Ubah</th>
-                                                <th>Hapus</th>
                                                 <th>Cetak</th>
                                             </tr>
                                         </thead>
@@ -162,12 +209,16 @@
                                         <tbody>@foreach ($statusakhir as $views)
                                             <tr> 
                                                 <td><input type="checkbox" name="selesai[]" class="sub_chk" value="{{$views->id}}"></td>
-                                                <td>{{$views->grade}}</td>
+                                                <td>{{$views->id}} - {{$views->grade}}</td>
                                                 <td>{{$views->nama_bagian}}</td>
                                                 <td>{{$views->keperluan}}</td>
-                                                <td>{{$views->jml_sdm}}</td>
+                                                <td>{{$views->bagian}}</td>
+                                                <td>{{$views->tgl_acc}}</td>
+                                                <td>{{$views->keterangan_acc}}</td>
+                                                  <td><a href="/data-fptk/{{$views->id}}/detail"><button type="button" class="btn btn-responsive button-alignment btn-primary">Detail</button></a></td>
+                                                
                                                 <td><a href="/data-fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
-                                                <td><button type="button" onClick="deleteData({{$views->id}})"  data-id="{{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td>
+                                                {{-- <td><button type="button" onClick="deleteData({{$views->id}})"  data-id="{{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td> --}}
                                                 <td><a href="/printfptk/{{$views->id}}"><button type="button" class="btn btn-responsive button-alignment btn-info">Cetak</button></a></td>
                                             </tr>
                                             @endforeach
@@ -187,6 +238,7 @@
                     
                     <!-- /.modal ends here -->
                 </section>
+               
             <!-- content -->
 
             <section class="content">
@@ -207,27 +259,85 @@
                                                 <th>Nama Jabatan/Grade</th>
                                                 <th>Divisi</th>
                                                 <th>Keperluan</th>
-                                                <th>Jumlah SDM</th>
+                                                <th>Bagian</th>
+                                                <th>Detail</th>
                                                 <th>Ubah</th>
-                                                <th>Hapus</th>
+                                                {{-- <th>Hapus</th> --}}
                                                 <th>Cetak</th>
                                             </tr>
                                         </thead>
                                        
                                         <tbody>@foreach ($akhir as $views)
                                             <tr> 
-                                                <td>{{$views->grade}}</td>
+                                                <td>{{$views->id}} - {{$views->grade}}</td>
                                                 <td>{{$views->nama_bagian}}</td>
                                                 <td>{{$views->keperluan}}</td>
-                                                <td>{{$views->jml_sdm}}</td>
+                                                <td>{{$views->bagian}}</td>
+                                                  <td><a href="/data-fptk/{{$views->id}}/detail"><button type="button" class="btn btn-responsive button-alignment btn-primary">Detail</button></a></td>
                                                 <td><a href="/data-fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
-                                                <td><button type="button" onClick="deleteData({{$views->id}})"  data-id="{{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td>
+                                               {{--  <td><button type="button" onClick="deleteData({{$views->id}})"  data-id="{{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td> --}}
                                                 <td><a href="/printfptk/{{$views->id}}"><button type="button" class="btn btn-responsive button-alignment btn-info">Cetak</button></a></td>
                                             </tr>
                                             @endforeach
                                         </tbody>
                                        
                                     </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- row-->
+                    
+                   
+                    
+                    
+                    <!-- /.modal ends here -->
+                </section>
+                  <section class="content">
+                    <!-- row-->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-success filterable" style="overflow:auto;">
+                                <div class="panel-heading" style="background-color: #418bca;border-color: #418bca;">
+                                    <h3 class="panel-title">
+                                        <i class="livicon" data-name="tasks" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> DATA FPTK TIDAK DI ACC
+                                    </h3>
+                                </div>
+                                <div class="panel-body table-responsive">
+                                     
+                                    <table class="table table-striped table-bordered" id="table6">
+                                      
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Nama Jabatan/Grade</th>
+                                                <th>Divisi</th>
+                                                <th>Keperluan</th>
+                                                <th>Bagian</th>
+                                                <th>Detail</th>
+                                                {{-- <th>Hapus</th>
+                                                <th>Cetak</th> --}}
+                                            </tr>
+                                        </thead>
+                                       
+                                        <tbody>@foreach ($noacc as $views)
+                                            <tr> 
+                                                <td><input type="checkbox" name="selesai[]" class="sub_chk" value="{{$views->id}}"></td>
+                                                <td>{{$views->grade}}</td>
+                                                <td>{{$views->nama_bagian}}</td>
+                                                <td>{{$views->keperluan}}</td>
+                                                <td>{{$views->bagian}}</td>
+                                                  <td><a href="/data-fptk/{{$views->id}}/detail"><button type="button" class="btn btn-responsive button-alignment btn-primary">Detail</button></a></td>
+                                                {{-- <td><a href="/data-fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
+                                                <td><button type="button" onClick="deleteData({{$views->id}})"  data-id="{{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td>
+                                                <td><a href="/printfptk/{{$views->id}}"><button type="button" class="btn btn-responsive button-alignment btn-info">Cetak</button></a></td> --}}
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                       
+                                    </table>
+                                    
+                            </form>
                                 </div>
                             </div>
                         </div>

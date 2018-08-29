@@ -46,14 +46,13 @@ class fptkController extends Controller
     $syarat_wajib = $request->input('syarat_wajib');
     $syarat_pendukung = $request->input('syarat_pendukung');
     $tanggung_jawab = $request->input('tanggung_jawab');
-    $karakteristik = $request->input('karakteristik');
     
 
 
     $fptkMail = new fptk;
     $fptkMail->id_bagian = $bagian;
     $fptkMail->grade = $jabatan;
-    $fptkMail->jml_sdm = $jml_sdm;
+    $fptkMail->bagian = $jml_sdm;
     $fptkMail->id_cabang = $cabang;
     $fptkMail->keperluan= $keperluan;
     $fptkMail->ket_keperluan = $ket_keperluan;
@@ -66,7 +65,6 @@ class fptkController extends Controller
     $fptkMail->syarat_wajib = $syarat_wajib;
     $fptkMail->syarat_dukung = $syarat_pendukung;
     $fptkMail->uraian_tugas = $tanggung_jawab;
-    $fptkMail->karakteristik = $karakteristik;
 
 
 
@@ -92,7 +90,7 @@ class fptkController extends Controller
 
     // ]);
     $fptkMail->save();
-    Mail::to('it.bprmaa@gmail.com')->send(new fptkMail($fptkMail));
+    // Mail::to('it.bprmaa@gmail.com')->send(new fptkMail($fptkMail));
    
     Session::flash('success_massage','Berhasil disimpan.');
     return redirect('/fptk');
@@ -114,20 +112,25 @@ class fptkController extends Controller
     $statusawal = DB::table('fptk')
             ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
             ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
-            ->where('fptk.status','=',0)
-            ->orderBy('fptk.id','asc')->get();
+            ->where('fptk.status','=',NULL)
+            ->orderBy('fptk.id','desc')->get();
     $statusakhir = DB::table('fptk')
     ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
     ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
     ->where('fptk.status','=',1)
-    ->orderBy('fptk.id','asc')->get();
+    ->orderBy('fptk.id','desc')->get();
+     $noacc = DB::table('fptk')
+    ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
+    ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
+    ->where('fptk.status','=',0)
+    ->orderBy('fptk.id','desc')->get();
     $akhir = DB::table('fptk')
     ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
     ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
     ->where('fptk.status','=',2)
-    ->orderBy('fptk.id','asc')->get();
+    ->orderBy('fptk.id','desc')->get();
     $users = DB::table('fptk')->where('status','=',0)->count();
-    return view('home_fptk', compact('statusawal','statusakhir','users','akhir'));
+    return view('home_fptk', compact('statusawal','statusakhir','users','akhir','noacc'));
   }
 
   public function viewfptk(){
@@ -173,6 +176,16 @@ class fptkController extends Controller
     // $fptk = fptk::find($id);
     return view ('ubah-fptk', compact('fptk'));
   }
+  public function detail($id)
+  {
+    $fptk = DB::table('fptk')
+    ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
+    ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
+    ->where('fptk.id','=',$id)->first();
+    // $fptk = fptk::find($id);
+    return view ('detailfptk', compact('fptk'));
+  }
+
 
   public function updatefptk(Request $request,$id)
   {
@@ -226,15 +239,26 @@ class fptkController extends Controller
   public function updateproses(Request $request)
   {
       $id = $request->input("id");
+      $status = $request->input("hasil");
         $carbon = Carbon::today();
       $format = $carbon->format('Y-m-d H:i:s');
+      if($status == "ACC"){
           DB::table('fptk')->where('id','=',$id)->update([
               
-              'status_acc' => $request->hasil,
+              'status_acc' => $status,
               'keterangan_acc' => $request->ket,
+              'status' => '1',
               'tgl_acc' => $request->tgl
               ]);
-
+    }elseif ($status == "Tidak ACC") {
+     DB::table('fptk')->where('id','=',$id)->update([
+              
+              'status_acc' => $status,
+              'keterangan_acc' => $request->ket,
+              'status' => '0',
+              'tgl_acc' => $request->tgl
+              ]);
+    }
      
     Session::flash('success_massage','Data Pelamar, berhasil di edit');
     return redirect('/home_fptk');
@@ -243,15 +267,27 @@ class fptkController extends Controller
   public function updateall(Request $request)
     {
         $ids = $request->check;
-        
-        
+         $hasil = $request->input("hasil");
+          $ket = $request->input("ket");
+         $tgl = $request->input("tgl");
+
 
         for($i = 0; $i <= count($ids); $i++) {
-
+ if($hasil == "ACC"){
           DB::table('fptk')->whereIn('id', $ids)->update(array(
                     'status' => '1',
+                    'status_acc' => $hasil,
+                    'keterangan_acc' => $ket,
+                    'tgl_acc' => $tgl
                 ));
-  
+  }elseif ($hasil == "Tidak ACC") {
+      DB::table('fptk')->whereIn('id', $ids)->update(array(
+                    'status' => '0',
+                    'status_acc' => $hasil,
+                    'keterangan_acc' => $ket,
+                    'tgl_acc' => $tgl
+                ));
+  }
   
       }
       return redirect('/home_fptk');

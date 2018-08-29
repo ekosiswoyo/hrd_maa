@@ -29,6 +29,7 @@ Route::post('/fptk', 'fptkController@store');
 Route::get('/printfptk',  'fptkController@makePDF');
 Route::get('/home_fptk','fptkController@view');
 Route::get('/data-fptk/{id}/ubah', 'fptkController@ubahfptk');
+Route::get('/data-fptk/{id}/detail', 'fptkController@detail');
 Route::post('/data-fptk/{id}', 'fptkController@updatefptk');
 Route::get('/data-fptk/{id}/proses', 'fptkController@proses');
 Route::delete('/data-fptk/deleteData/{id}',['uses' => 'fptkController@destroy']);
@@ -36,6 +37,7 @@ Route::get('/data-fptk','fptkController@viewfptk');
 Route::get('/printfptk/{id}','fptkController@print');
 Route::get('/pelamar','PelamarController@index');
 Route::get('/pelamar/{idnik}/ubah', 'PelamarController@ubahpelamar');
+Route::get('/pelamar/{idnik}/detail', 'PelamarController@detailpelamar');
 Route::get('/pelamar/{idnik}/proses','PelamarController@proses');
 Route::get('/pelamar/{idnik}/unproses','PelamarController@unproses');
 Route::post('/pelamar/{idnik}', 'PelamarController@updatepelamar');
@@ -66,5 +68,7 @@ Route::post('/seleksi/{id}', 'SeleksiController@update');
 Route::delete('/seleksi/deleteData/{id}',['uses' => 'SeleksiController@destroy']);
 Route::get('/tambahseleksi', 'SeleksiController@view');
 Route::post('/tambahseleksi', 'SeleksiController@store');
+Route::post('/data_pelamar/proses','PelamarController@updateproses');
+Route::post('/data_pelamar/prosessatu','PelamarController@prosessatu');
 
 

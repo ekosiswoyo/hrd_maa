@@ -30,9 +30,40 @@
                                 </h3>
                             </div>
                             <div class="panel-body table-responsive">
-                                    <form action="/pelamar/updateall" method="POST">
+                                    <form action="/pelamar/updateall"  style="background: #ffffff;" method="POST"  id="contact">
                                         {{csrf_field()}}
-                                        <button type="submit" style="margin-bottom: 10px" class="btn btn-primary delete_all" >Proses Data yang di Pilih</button>
+                                         <div class="modal fade in" id="width" tabindex="-1" role="dialog" aria-hidden="false">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                <h4 class="modal-title">Proses FPTK</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                    <input type="hidden" name="id" id="id" class="modal_hiddenid" value="">
+
+                                                        {{ csrf_field() }}
+                                                        <div class="form-group"  style="background: #ffffff;">
+                                                                <label>Pilih FPTK</label>
+                                                                <select name="fptk" class="form-control" title="Pilih FPTK" required>
+                                                                    
+                                                                    @foreach ($fptk as $fptks)
+                                                                    <option value="{{$fptks->id}}">{{$fptks->id}} - {{$fptks->grade}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                        </div>
+                                                   
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                                                <button type="submit" id="submitContact" form="contact" class="btn btn-primary">Save changes</button>
+                                            </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-href="#width" href="#width">Proses data yang di Pilih</a>
+                                        {{-- <button type="submit" style="margin-bottom: 10px" class="btn btn-primary delete_all" >Proses Data yang di Pilih</button> --}}
                                         <a href="/pelamar" style="margin-left:15px;"><button type="button" style="margin-bottom: 10px;" class="btn btn-responsive button-alignment btn-info">Tambah Data Pelamar</button></a>
                                 <table class="table table-striped table-bordered" id="table2">
                                        
@@ -45,7 +76,8 @@
                                             <th>Tempat,Tanggal Lahir</th>
                                             <th>Posisi</th>
                                             <th>Tanggal Masuk Lamaran</th>
-                                            <th>Proses</th>
+                                            {{-- <th>Proses FPTK</th> --}}
+                                            {{-- <th>Proses</th> --}}
                                             <th>Ubah</th>
                                             <th>Hapus</th>
                                         </tr>
@@ -61,7 +93,8 @@
                                             <td>{{$views->tempat_lahir}},{{$views->tanggal_lahir}}</td>
                                             <td>{{$views->nama_lowongan}}</td>
                                             <td>{{$views->tgl_masuk_lamaran}}</td>
-                                            <td><a href="/pelamar/{{$views->nik}}/proses"><button type="button" class="btn btn-responsive button-alignment btn-warning">Proses</button></a></td>
+                                            {{-- <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-id="{{$views->nik}}" data-nik="{{$views->nik}}" data-href="#full-width" href="#full-width">Proses FPTK</a></td> --}}
+                                            {{-- <td><a href="/pelamar/{{$views->nik}}/proses"><button type="button" class="btn btn-responsive button-alignment btn-warning">Proses</button></a></td> --}}
                                             <td><a href="/pelamar/{{$views->nik}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
                                             <td><button type="button" onClick="deleteData({{$views->nik}})"  data-id=" {{$views->nik}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td>
                                         </tr>
@@ -76,7 +109,37 @@
                 </div>
                 <!-- row-->
                 
-               
+                <div class="modal fade in" id="full-width" tabindex="-1" role="dialog" aria-hidden="false">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title">Proses FPTK</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form role="form" action="{{url('data_pelamar/proses')}}"  style="background: #ffffff;" method="POST" id="contact">
+                                        <input type="hidden" name="id" id="id" class="modal_hiddenid" value="">
+
+                                        {{ csrf_field() }}
+                                        <div class="form-group">
+                                                <label>Pilih FPTK</label>
+                                                <select name="fptk" class="form-control" title="Pilih FPTK" required>
+                                                    
+                                                    @foreach ($fptk as $fptks)
+                                                    <option value="{{$fptks->id}}">{{$fptks->id}} - {{$fptks->grade}}</option>
+                                                    @endforeach
+                                                </select>
+                                        </div>
+                                       
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                                    <button type="submit" id="submitContact" form="contact" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 
                 
                 <!-- /.modal ends here -->
@@ -103,8 +166,10 @@
                                                         <th>Nama</th>
                                                         <th>Tempat,Tanggal Lahir</th>
                                                         <th>Posisi</th>
+                                                        <th>FPTK</th>
                                                         {{--  <th>Tanggal Masuk Lamaran</th>  --}}
                                                         <th>UnProses</th>
+                                                        {{-- <tH>Pindah</th> --}}
                                                         <th>Ubah</th>
                                                         <th>Hapus</th>
                                                         <th>Riwayat</th>
@@ -119,13 +184,15 @@
                                                 <td>{{$views->nama}}</td>
                                                 <td>{{$views->tempat_lahir}},{{$views->tanggal_lahir}}</td>
                                                 <td>{{$views->nama_lowongan}}</td>
+                                                <td>{{$views->id}} - {{$views->grade}}</td>
                                                 {{--  <td>{{$views->tgl_masuk_lamaran}}</td>  --}}
                                                 <td><a href="/pelamar/{{$views->nik}}/unproses"><button type="button" class="btn btn-responsive button-alignment btn-warning">UnProses</button></a></td>
+                                                {{-- <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-id="{{$views->nik}}" data-nik="{{$views->nik}}" data-href="#fullwidth" href="#fullwidth">Pindah</a></td>  --}}
                                                 <td><a href="/pelamar/{{$views->nik}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
                                                 <td><button type="button" onClick="deleteData({{$views->nik}})"  data-id=" {{$views->nik}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td>
                                                 <td><a href="/riwayat/{{$views->nik}}"><button type="button" class="btn btn-responsive button-alignment btn-warning">Riwayat</button></a></td>
                                                 {{--  <td><a href="/pelamar/{{$views->nik}}/kerja"><button type="button" class="btn btn-responsive button-alignment btn-primary">Diterima</button></a></td>  --}}
-                                                <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-nik="{{$views->nik}}" data-href="#full-width" href="#full-width">Diterima</a></td>
+                                                <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-nik="{{$views->nik}}" data-href="#full-width" href="#fullwidth">Diterima</a></td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -142,7 +209,7 @@
                     
                     
                     <!-- /.modal ends here -->
-                    <div class="modal fade in" id="full-width" tabindex="-1" role="dialog" aria-hidden="false">
+                    <div class="modal fade in" id="fullwidth" tabindex="-1" role="dialog" aria-hidden="false">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -186,7 +253,7 @@
                                 </div>
                                 <div class="panel-body table-responsive">
                                        
-                                    <table class="table table-striped table-bordered" id="table3">
+                                    <table class="table table-striped table-bordered" id="table6">
                                       
                                         <thead>
                                             <tr>
@@ -228,7 +295,7 @@
                     
                     
                     <!-- /.modal ends here -->
-                    <div class="modal fade in" id="full-width" tabindex="-1" role="dialog" aria-hidden="false">
+              {{--       <div class="modal fade in" id="full-width" tabindex="-1" role="dialog" aria-hidden="false">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -254,7 +321,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                    
                     
                     
@@ -268,13 +335,20 @@
 
 @section('script')
 <script>
-        $(document).ready(function(){
-            $(document).on('click','.openModal',function(){
+      $(document).ready(function(){
+        $(document).on('click','.openModal',function(){
+            $('.modal_hiddenid').val($(this).data('id'))
+
+
+
+        });
+         $(document).on('click','.openModal',function(){
                 $('.modal_hiddennik').val($(this).data('nik'))
 
 
 
             });
-          })
+      })
+       
 </script>
 @endsection

@@ -40,9 +40,8 @@
                                             <th>Nama Jabatan/Grade</th>
                                             <th>Divisi</th>
                                             <th>Keperluan</th>
-                                            <th>Jumlah SDM</th>
+                                            <th>Bagian</th>
                                             <th>Ubah</th>
-                                            <th>Hapus</th>
                                             <th>Cetak</th>
                                         </tr>
                                     </thead>
@@ -53,7 +52,7 @@
                                             <td>{{$views->grade}}</td>
                                             <td>{{$views->nama_bagian}}</td>
                                             <td>{{$views->keperluan}}</td>
-                                            <td>{{$views->jml_sdm}}</td>
+                                            <td>{{$views->bagian}}</td>
                                             <td><a href="/data-fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
                                             <td><button type="button" onClick="deleteData({{$views->id}})"  data-id=" {{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td>
                                             <td><a href="/printfptk/{{$views->id}}"><button type="button" class="btn btn-responsive button-alignment btn-info">Cetak</button></a></td>
@@ -92,9 +91,7 @@
                                                 <th>Nama Jabatan/Grade</th>
                                                 <th>Divisi</th>
                                                 <th>Keperluan</th>
-                                                <th>Jumlah SDM</th>
-                                                <th>Ubah</th>
-                                                <th>Hapus</th>
+                                                <th>Bagian</th>
                                                 <th>Cetak</th>
                                             </tr>
                                         </thead>
@@ -105,9 +102,7 @@
                                                 <td>{{$views->grade}}</td>
                                                 <td>{{$views->nama_bagian}}</td>
                                                 <td>{{$views->keperluan}}</td>
-                                                <td>{{$views->jml_sdm}}</td>
-                                                <td><a href="/data-fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
-                                                <td><button type="button" onClick="deleteData({{$views->id}})"  data-id="{{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td>
+                                                <td>{{$views->Bagian}}</td>
                                                 <td><a href="/printfptk/{{$views->id}}"><button type="button" class="btn btn-responsive button-alignment btn-info">Cetak</button></a></td>
                                             </tr>
                                             @endforeach

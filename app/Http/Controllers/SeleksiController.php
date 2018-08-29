@@ -19,7 +19,7 @@ class SeleksiController extends Controller
   
     public function index()
     {
-        $view = DB::table('jns_tes')->get();
+        $view = DB::table('jns_tes')->where('kategori','=','Tes')->get();
     $no = 1;
     return view('seleksi', compact('view','no'));
     }
@@ -37,6 +37,7 @@ class SeleksiController extends Controller
             $seleksi = new Seleksi();
             
             $seleksi->nama_tes = $value;
+            $seleksi->kategori = 'Tes';
             $seleksi->save();
           }
 

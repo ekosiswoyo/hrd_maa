@@ -36,7 +36,7 @@
                                     <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $fptk->grade}}">
                                 </div>
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="jml_sdm">Jumlah SDM</label>
-                                    <input type="text" class="form-control" id="jml_sdm" name="jml_sdm" placeholder="Jumlah SDM yang dibutuhkan" value="{{ $fptk->jml_sdm}}">
+                                    <input type="text" class="form-control" id="jml_sdm" name="jml_sdm" placeholder="Jumlah SDM yang dibutuhkan" value="{{ $fptk->bagian}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="keperluan">Keperluan</label><br>
@@ -128,9 +128,8 @@
                                 </div>
                                 
                                 <label for="pengalaman">Minimal Pengalaman Kerja</label>
-                                <div class="form-group input-group">
-                                    <input type="text" name ="min_pengalaman" class="form-control" value="{{ $fptk->min_pengalaman}}">
-                                    <span class="input-group-addon">Tahun</span>
+                                <div class="form-group">
+                                    <input type="text" name ="min_pengalaman" class="form-control" value="{{ $fptk->min_pengalaman}} Tahun">
                                 </div>
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="ket_keperluan">Persyaratan Pekerjaan/Wajib</label>
                                     <textarea class="form-control" id="textarea" name="syarat_wajib" placeholder="Persyaratan Pekerjaan" >{{ $fptk->syarat_wajib}}</textarea>
@@ -141,9 +140,9 @@
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="ket_keperluan">Uraian Tugas / Tanggung Jawab</label>
                                     <textarea class="form-control" id="textarea" name="tanggung_jawab" placeholder="Uraian Tugas / Tanggung Jawab" >{{ $fptk->uraian_tugas}}</textarea>
                                 </div>
-                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="ket_keperluan">Karakteristrik Pekerjaan</label>
+                                {{-- <div class="form-group ui-draggable-handle" style="position: static;"><label for="ket_keperluan">Karakteristrik Pekerjaan</label>
                                     <textarea class="form-control" id="textarea" name="karakteristik" placeholder="Karakteristrik Pekerjaan" >{{ $fptk->karakteristik}}</textarea>
-                                </div>
+                                </div> --}}
                                 <button type="submit" class="btn btn-responsive button-alignment btn-danger" style="margin-bottom:7px;">Simpan</button>
                                 
                                
