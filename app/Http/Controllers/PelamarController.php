@@ -211,8 +211,9 @@ class PelamarController extends Controller
                 ->where('pelamar.status_akhir','2')
                 ->orderBy('pelamar.tgl_masuk_lamaran','desc')->get();
         $fptk = DB::table('fptk')->where('status','=','1')->orderBy('id','desc')->get();
+        $tes = DB::table('jns_tes')->where('kategori','=','Tes')->orderBy('id')->get();
         $no = 1;
-        return view('data_pelamar', compact('view','status','no','akhir','fptk'));
+        return view('data_pelamar', compact('view','status','no','akhir','fptk','tes'));
     }
 
     public function ubahpelamar($idnik)
@@ -422,7 +423,13 @@ public function prosesseleksi()
                 ->join('pelamar','activity.nik','=','pelamar.nik')
                 ->join('jns_tes','activity.id_seleksi','=','jns_tes.id')
                 ->join('lowongan','pelamar.id_lowongan','=','lowongan.id')
+                ->where('id_seleksi','>','3')
                 ->groupBy('jns_tes.id')
+                ->get();
+        $menu = DB::table('jns_tes')
+                ->where('id','>',3)
+                ->orderBy('id','desc')
+
                 ->get();
         // $chart = SampleChart::database(activity::with('jns_tes')->select('id')->get(), 'pie', 'fusioncharts')
         //         ->title('Grafik persentase jumlah karyawan per Kantor')
@@ -434,7 +441,7 @@ public function prosesseleksi()
         $chart = new SampleChart;
         // $chart->dataset('Sample', 'line', [100, 65, 84, 45, 90])->options(['borderColor' => '#ff0000'])->width(50);
 
-        return view('prosesseleksi', ['chart' => $chart],compact('pelamar','no'));
+        return view('prosesseleksi', ['chart' => $chart],compact('pelamar','no','menu'));
     }
 public function proseleksi($id)
     {
@@ -468,9 +475,12 @@ public function proseleksi($id)
         ->where('activity.status','!=','1')
         ->whereNotNull('activity.hasil')
         ->get();
+        $menu = DB::table('jns_tes')
+                ->where('id','>',3)
+                ->orderBy('id','desc')
+                ->get();
 
-
-        return view('proseleksi', compact('proses','pelamar','hasil','no'));
+        return view('proseleksi', compact('proses','pelamar','hasil','no','menu'));
     }
     public function pass(Request $request,$id)
     {
@@ -486,6 +496,8 @@ public function proseleksi($id)
     public function updateseleksi(Request $request)
     {
         $id = $request->input("id");
+                $fptk = $request->input("fptk");
+
         if($request->hasil == '1'){
             $carbon = Carbon::today();
   $format = $carbon->format('Y-m-d H:i:s');
@@ -498,6 +510,7 @@ public function proseleksi($id)
 
             $activity = new Activity();
             $activity->nik = $request->nik;
+            $activity->id_fptk = $fptk;
             $activity->id_seleksi = $request->selectbasic; 
             $activity->tgl_panggilan = $format;
             $activity->save();
@@ -547,9 +560,9 @@ public function proseleksi($id)
     public function updateall(Request $request)
     {
         $ids = $request->select;
-                 $id = $request->input("fptk");
+        $id = $request->input("fptk");
 
-        
+        $test = $request->input("test");
         
         $carbon = Carbon::today();
         $format = $carbon->format('Y-m-d H:i:s');
@@ -564,10 +577,19 @@ public function proseleksi($id)
         
                 
       }
-      foreach($ids as $key){
+       foreach($ids as $key){
       DB::table('activity')->insert(
         ['nik' => $key,
         'id_seleksi' => 1,
+        'id_fptk' => $id,
+        'tgl_panggilan' => $format
+        ]
+    );
+}
+      foreach($ids as $key){
+      DB::table('activity')->insert(
+        ['nik' => $key,
+        'id_seleksi' => $test,
         'id_fptk' => $id,
         'tgl_panggilan' => $format
         ]
@@ -595,7 +617,7 @@ public function proseleksi($id)
       foreach($ids as $key){
       DB::table('activity')->insert(
         ['nik' => $key,
-        'id_seleksi' => 3,
+        'id_seleksi' => 2,
         'id_fptk' => NULL
         ]
     );
