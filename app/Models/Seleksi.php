@@ -9,6 +9,8 @@ class Seleksi extends Model
 {
     protected $table = 'jns_tes';
     protected $fillable = ['nama_tes'];
+        protected $dates = ['created_at','updated_at'];
+
 
     public function activity()
     {

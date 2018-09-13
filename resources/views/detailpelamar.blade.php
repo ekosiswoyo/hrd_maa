@@ -19,7 +19,7 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                     <!--section starts-->
-                    <h1>Form Wizards</h1>
+                    <h1>Detail Data Diri Pelamar</h1>
                     <ol class="breadcrumb">
                         <li>
                             <a href="/index">
@@ -29,7 +29,7 @@
                         <li>
                             <a href="/data_pelamar">Data Pelamar</a>
                         </li>
-                        <li class="active">Tambah Data Pelamar</li>
+                        <li class="active">Detail Data Diri Pelamar</li>
                     </ol>
                 </section>
             <!--section ends-->
@@ -60,6 +60,7 @@
                                             <li>
                                                 <a href="#tab4" data-toggle="tab">Upload File</a>
                                             </li>
+                                           
                                         </ul>
                                         <div class="tab-content">
                                             <div class="tab-pane" id="tab1">
@@ -255,7 +256,10 @@
             <!-- content -->
         </aside>
         @endsection
-        <SCRIPT language=Javascript>
+        @section('script')
+      
+        <script language=Javascript>
+           
             <!--
             function isNumberKey(evt)
             {
@@ -266,5 +270,6 @@
                return true;
             }
             //-->
-         </SCRIPT>
+         </script>
          <script src="{{ asset('js/pages/form_wizard.js')}}" type="text/javascript"></script>
+         @endsection

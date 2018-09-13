@@ -41,7 +41,9 @@
                                             <th>Divisi</th>
                                             <th>Keperluan</th>
                                             <th>Bagian</th>
+                                            <th>Detail</th>
                                             <th>Ubah</th>
+                                            {{-- <th>Hapus</th> --}}
                                             <th>Cetak</th>
                                         </tr>
                                     </thead>
@@ -49,13 +51,14 @@
                                     <tbody>@foreach ($statusawal as $views)
                                         <tr> 
                                             <td>{{$views->id}}</td>
-                                            <td>{{$views->grade}}</td>
+                                            <td>{{$views->grade}} {{$views->jabatan}}</td>
                                             <td>{{$views->nama_bagian}}</td>
                                             <td>{{$views->keperluan}}</td>
                                             <td>{{$views->bagian}}</td>
+                                            <td><a href="/data-fptk/{{$views->id}}/detail"><button type="button" class="btn btn-responsive button-alignment btn-primary">Detail</button></a></td>
                                             <td><a href="/data-fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
-                                            <td><button type="button" onClick="deleteData({{$views->id}})"  data-id=" {{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td>
-                                            <td><a href="/printfptk/{{$views->id}}"><button type="button" class="btn btn-responsive button-alignment btn-info">Cetak</button></a></td>
+                                            {{-- <td><button type="button" onClick="deleteData({{$views->id}})"  data-id=" {{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td>
+ --}}                                            <td><a href="/printfptk/{{$views->id}}"><button type="button" class="btn btn-responsive button-alignment btn-info">Cetak</button></a></td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -72,54 +75,114 @@
                 
                 <!-- /.modal ends here -->
             </section>
-            <section class="content">
-                    <!-- row-->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="panel panel-success filterable" style="overflow:auto;">
-                                <div class="panel-heading" style="background-color: #418bca;border-color: #418bca;">
-                                    <h3 class="panel-title">
-                                        <i class="livicon" data-name="tasks" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> DATA FPTK SUDAH DI PROSES
-                                    </h3>
-                                </div>
-                                <div class="panel-body table-responsive">
-                                    <table class="table table-striped table-bordered" id="table3">
-                                      
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama Jabatan/Grade</th>
-                                                <th>Divisi</th>
-                                                <th>Keperluan</th>
-                                                <th>Bagian</th>
-                                                <th>Cetak</th>
-                                            </tr>
-                                        </thead>
-                                       
-                                        <tbody>@foreach ($statusakhir as $views)
-                                            <tr> 
-                                                <td>{{$views->id}}</td>
-                                                <td>{{$views->grade}}</td>
-                                                <td>{{$views->nama_bagian}}</td>
-                                                <td>{{$views->keperluan}}</td>
-                                                <td>{{$views->Bagian}}</td>
-                                                <td><a href="/printfptk/{{$views->id}}"><button type="button" class="btn btn-responsive button-alignment btn-info">Cetak</button></a></td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                       
-                                    </table>
-                                </div>
+              <section class="content">
+                <!-- row-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-success filterable" style="overflow:auto;">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <i class="livicon" data-name="tasks" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> DATA FPTK DALAM PROSES
+                                </h3>
+                            </div>
+                            <div class="panel-body table-responsive">
+                                <table class="table table-striped table-bordered" id="table4">
+                                  
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Jabatan/Grade</th>
+                                            <th>Divisi</th>
+                                            <th>Keperluan</th>
+                                            <th>Bagian</th>
+                                            <th>Detail</th>
+                                            {{-- <th>Ubah</th> --}}
+                                            <th>Cetak</th>
+                                            <th>Data Pelamar</th>
+                                        </tr>
+                                    </thead>
+                                   
+                                    <tbody>@foreach ($statusakhir as $views)
+                                        <tr> 
+                                            <td>{{$views->id}}</td>
+                                            <td>{{$views->grade}} {{$views->jabatan}}</td>
+                                            <td>{{$views->nama_bagian}}</td>
+                                            <td>{{$views->keperluan}}</td>
+                                            <td>{{$views->bagian}}</td>
+                                            <td><a href="/data-fptk/{{$views->id}}/detail"><button type="button" class="btn btn-responsive button-alignment btn-primary">Detail</button></a></td>
+                                            {{-- <td><a href="/data-fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
+                                            <td><button type="button" onClick="deleteData({{$views->id}})"  data-id=" {{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td> --}}
+                                            <td><a href="/printfptk/{{$views->id}}"><button type="button" class="btn btn-responsive button-alignment btn-info">Cetak</button></a></td>
+                                            <td><a href="/data-fptk/{{$views->id}}/pelamar"><button type="button" class="btn btn-responsive button-alignment btn-primary">Data Pelamar</button></a></td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                   
+                                </table>
                             </div>
                         </div>
                     </div>
-                    <!-- row-->
-                    
-                   
-                    
-                    
-                    <!-- /.modal ends here -->
-                </section>
+                </div>
+                <!-- row-->
+                
+               
+                
+                
+                <!-- /.modal ends here -->
+            </section>
+             <section class="content">
+                <!-- row-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-success filterable" style="overflow:auto;">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <i class="livicon" data-name="tasks" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> DATA FPTK TIDAK DI ACC
+                                </h3>
+                            </div>
+                            <div class="panel-body table-responsive">
+                                <table class="table table-striped table-bordered" id="table6">
+                                  
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Jabatan/Grade</th>
+                                            <th>Divisi</th>
+                                            <th>Keperluan</th>
+                                            <th>Bagian</th>
+                                            <th>Detail</th>
+                                            {{-- <th>Ubah</th>
+                                            <th>Cetak</th> --}}
+                                        </tr>
+                                    </thead>
+                                   
+                                    <tbody>@foreach ($noacc as $views)
+                                        <tr> 
+                                            <td>{{$views->id}}</td>
+                                            <td>{{$views->grade}} {{$views->jabatan}}</td>
+                                            <td>{{$views->nama_bagian}}</td>
+                                            <td>{{$views->keperluan}}</td>
+                                            <td>{{$views->bagian}}</td>
+                                            <td><a href="/data-fptk/{{$views->id}}/detail"><button type="button" class="btn btn-responsive button-alignment btn-primary">Detail</button></a></td>
+                                            {{-- <td><a href="/data-fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
+                                            <td><button type="button" onClick="deleteData({{$views->id}})"  data-id=" {{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td>
+                                            <td><a href="/printfptk/{{$views->id}}"><button type="button" class="btn btn-responsive button-alignment btn-info">Cetak</button></a></td> --}}
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                   
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- row-->
+                
+               
+                
+                
+                <!-- /.modal ends here -->
+            </section>
             <!-- content -->
         </aside>
 @endsection

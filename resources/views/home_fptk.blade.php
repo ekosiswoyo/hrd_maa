@@ -90,7 +90,7 @@
                                             {{-- <th>Keterangan</th> --}}
                                             <th>Detail</th>
                                             <th>ACC</th>
-                                            <th>Ubah</th>
+                                            {{-- <th>Ubah</th> --}}
                                             {{-- <th>Hapus</th> --}}
                                             <th>Cetak</th>
                                             {{-- <th>Proses</th> --}}
@@ -101,7 +101,7 @@
                                         <tr> 
                                             <td><input type="checkbox" name="check[]" class="sub_chk" value="{{$views->id}}"></td>
                                             {{-- <td>{{$views->id}}</td> --}}
-                                            <td>{{$views->id}} - {{$views->grade}}</td>
+                                            <td>{{$views->id}} - {{$views->grade}} {{$views->jabatan}}</td>
                                             <td>{{$views->nama_bagian}}</td>
                                             <td>{{$views->keperluan}}</td>
                                             <td>{{$views->bagian}}</td>
@@ -109,7 +109,7 @@
                                             <td><a href="/data-fptk/{{$views->id}}/detail"><button type="button" class="btn btn-responsive button-alignment btn-primary">Detail</button></a></td>
                                             {{-- <td>{{$views->keterangan_acc}}</td> --}}
                                             <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-id="{{$views->id}}" data-nik="{{$views->id}}" data-href="#full-width" href="#full-width">Hasil</a></td>
-                                            <td><a href="/data-fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
+                                            {{-- <td><a href="/data-fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td> --}}
                                             {{-- <td><button type="button" onClick="deleteData({{$views->id}})"  data-id=" {{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td> --}}
                                             <td><a href="/printfptk/{{$views->id}}"><button type="button" class="btn btn-responsive button-alignment btn-info">Cetak</button></a></td>
                                             {{-- <td><form method="post" > {{csrf_field()}}<a href="/data-fptk/{{$views->id}}/proses"><button type="button" class="btn btn-responsive button-alignment btn-danger">Proses</button></a></form></td> --}}
@@ -209,13 +209,13 @@
                                         <tbody>@foreach ($statusakhir as $views)
                                             <tr> 
                                                 <td><input type="checkbox" name="selesai[]" class="sub_chk" value="{{$views->id}}"></td>
-                                                <td>{{$views->id}} - {{$views->grade}}</td>
+                                                <td>{{$views->id}} - {{$views->grade}} {{$views->jabatan}}</td>
                                                 <td>{{$views->nama_bagian}}</td>
                                                 <td>{{$views->keperluan}}</td>
                                                 <td>{{$views->bagian}}</td>
                                                 <td>{{$views->tgl_acc}}</td>
                                                 <td>{{$views->keterangan_acc}}</td>
-                                                  <td><a href="/data-fptk/{{$views->id}}/detail"><button type="button" class="btn btn-responsive button-alignment btn-primary">Detail</button></a></td>
+                                                  <td><a href="/data-fptk/{{$views->id}}/detailproses"><button type="button" class="btn btn-responsive button-alignment btn-primary">Detail</button></a></td>
                                                 
                                                 <td><a href="/data-fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
                                                 {{-- <td><button type="button" onClick="deleteData({{$views->id}})"  data-id="{{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td> --}}
@@ -269,7 +269,7 @@
                                        
                                         <tbody>@foreach ($akhir as $views)
                                             <tr> 
-                                                <td>{{$views->id}} - {{$views->grade}}</td>
+                                                <td>{{$views->id}} - {{$views->grade}} {{$views->jabatan}}</td>
                                                 <td>{{$views->nama_bagian}}</td>
                                                 <td>{{$views->keperluan}}</td>
                                                 <td>{{$views->bagian}}</td>
@@ -323,7 +323,7 @@
                                         <tbody>@foreach ($noacc as $views)
                                             <tr> 
                                                 <td><input type="checkbox" name="selesai[]" class="sub_chk" value="{{$views->id}}"></td>
-                                                <td>{{$views->grade}}</td>
+                                                <td>{{$views->grade}} {{$views->jabatan}}</td>
                                                 <td>{{$views->nama_bagian}}</td>
                                                 <td>{{$views->keperluan}}</td>
                                                 <td>{{$views->bagian}}</td>

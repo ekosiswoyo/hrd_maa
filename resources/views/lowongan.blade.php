@@ -7,14 +7,14 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <!--section starts-->
-                <h1>Data Pelamar</h1>
+                <h1>Data Lowongan Kerja</h1>
                 <ol class="breadcrumb">
                     <li>
                         <a href="/index">
                             <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Halaman Utama
                         </a>
                     </li>
-                    <li class="active">Data Lowongan</li>
+                    <li class="active">Data Lowongan Kerja</li>
                 </ol>
             </section>
             <!--section ends-->

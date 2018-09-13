@@ -47,17 +47,19 @@
 <td width="15" style="border-collapse:collapse;border-spacing:0;font-family:&quot;Arial&quot;,sans-serif;color:#999;line-height:1.5;margin:0;padding:0"></td>
 <td align="left" width="550" style="border-collapse:collapse;border-spacing:0;font-family:&quot;Arial&quot;,sans-serif;color:#999;line-height:1.5;margin:0;padding:0">
 <table align="left" width="100%" style="border-collapse:collapse;border-spacing:0;margin:0;padding:0">
-{{--  <tbody><tr>
+<tbody><tr>
 <td style="border-collapse:collapse;border-spacing:0;font-family:&quot;Arial&quot;,sans-serif;color:#999;line-height:1.5;margin:0;padding:0">
-<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Ada Ide Kreatif baru yang diinputkan melalui web karyawan <a href="http://bprmaa.co.id/"><font color = "#ff0000">bprmaa.co.id</font></a></p>
-<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Nomor Induk Pegawai : <b>{{$ide_kreatif->user->nip}}</b></p>
-<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Nama Pegawai : <b>{{$ide_kreatif->user->nama}}</b></p>
-<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0"><b>Isi Ide Kreatif :</b></p>
-<div style="border: 1px #eee solid;padding: 5px;background-color: snow;text-align: left;"> <p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0;text-align:justify;">{{$ide_kreatif->pesan}}</p></div>
-<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Untuk melihat semua ide yang masuk, anda bisa membuka menu ide kreatif di <a href="http://bprmaa.co.id/"><font color = "#ff0000">bprmaa.co.id</font></a></p>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Dear Direksi,</p>
+
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Anda mendapatkan Kritik dan Saran yang diinputkan melalui web karyawan <a href="http://bprmaa.co.id/"><font color = "#ff0000">bprmaa.co.id</font></a></p>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Nomor Induk Pegawai : <b>NIP</b></p>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Nama Pegawai : <b>NAMA</b></p>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0"><b>Isi Saran & Kritik :</b></p>
+<div style="border: 1px #eee solid;padding: 5px;background-color: snow;text-align: left;"> <p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0;text-align:justify;">PESAN</p></div>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Untuk melihat semua kritik dan saran yang masuk anda membuka menu kritik dan saran di <a href="http://bprmaa.co.id/"><font color = "#ff0000">bprmaa.co.id</font></a></p>
 </td>
 </tr>
-</tbody></table>  --}}
+</tbody></table>
 <table width="100%" style="border-collapse:collapse;border-spacing:0;margin:0;padding:0">
 <tbody><tr>
 <td id="m_1431744762140668971thanksContainer" style="border-collapse:collapse;border-spacing:0;font-family:&quot;Arial&quot;,sans-serif;color:#999;line-height:1.5;margin:0;padding:0">

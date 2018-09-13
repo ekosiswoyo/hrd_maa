@@ -11,6 +11,8 @@ class Pengalaman extends Model
 {
     protected $table = 'pengalaman_kerja';
     protected $fillable = ['nik','posisi','nm_perusahaan','jangka_kerja'];
+        protected $dates = ['created_at','updated_at'];
+
 
     public function pelamar()
     {

@@ -11,15 +11,15 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class fptkMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $fptkMail;
+    public $fptk;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(App\Models\fptk $fptkMail)
+    public function __construct(fptk $fptk)
     {
-        $this->fptkMail = $fptkMail;
+        $this->fptk = $fptk;
     }
 
     /**

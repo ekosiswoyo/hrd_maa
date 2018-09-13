@@ -1,3 +1,4 @@
+
 @extends('layouts.header')
 
 @section('content')
@@ -225,7 +226,7 @@
                 @elseif (Session::has('errors'))
                 <div class="alert alert-success alert-dismissable margin5" style="margin-top: 5px;margin-left: 5px;margin-right:  5px;">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <strong>Errors:</strong> NIK Pelamar sudah terdaftar.
+                        <strong>NIK Pelamar sudah terdaftar.</strong>
                 </div>
                 @endif
             <!-- Content Header (Page header) -->
@@ -276,6 +277,7 @@
                                         <div class="tab-content">
                                             <div class="tab-pane" id="tab1">
                                                 <h2 class="hidden">&nbsp;</h2>
+                                                <input id="id" name="id" type="hidden" value="{{$abc}}">
                                                 <div class="form-group">
                                                     <label for="nik" class="control-label">NIK</label>
                                                     <input id="nik" name="nik" type="text" placeholder="Masukan NIK" class="form-control" required>

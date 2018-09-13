@@ -55,7 +55,7 @@
                                         <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Halaman Utama
                                     </a>
                                 </li>
-                        <li class="active">Proses Seleksi</li>
+                        {{-- <li class="active">Proses Seleksi</li> --}}
                     </ol>
                 </section>
                 {{-- {!! $chart->container() !!} --}}
@@ -65,7 +65,7 @@
                              <div class="dropdown">
                             <button onclick="myFunction()" style="float:right;margin-left:33px" class="dropbtn">Pilih Jenis Tes</button>
                               <div id="myDropdown" class="dropdown-content">
-                                @foreach (App\Models\Seleksi::get() as $nama)
+                                @foreach ($menu as $nama)
                                 <a href="/proses/seleksi/{{$nama->id}}">{{$nama->nama_tes}}</a>
                                 @endforeach
 

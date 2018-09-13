@@ -30,7 +30,7 @@
                                     <input type="text" class="form-control" id="cabang" name="cabang" value="{{ $fptk->nama_cabang}}" readonly>
                                 </div>
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Nama Jabatan/Grade</label>
-                                    <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $fptk->grade}} {{$fptk->jabatan}}" readonly>
+                                    <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $fptk->grade}} {{$views->jabatan}}" readonly>
                                 </div>
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="jml_sdm">Bagian</label>
                                     <input type="text" class="form-control" id="jml_sdm" name="jml_sdm" placeholder="Bagian" value="{{ $fptk->bagian}}" readonly>
@@ -76,55 +76,12 @@
                                 {{-- <div class="form-group ui-draggable-handle" style="position: static;"><label for="ket_keperluan">Karakteristrik Pekerjaan</label>
                                     <textarea class="form-control" id="textarea" name="karakteristik" placeholder="Karakteristrik Pekerjaan" >{{ $fptk->karakteristik}}</textarea>
                                 </div> --}}
-@if (Auth::user()->nip == '017010632')
-                                <div class="form-group">
-                                                <label for="keperluan">Hasil</label><br>
 
-                                                <label class="radio-inline" for="keperluan-0">
-                                                    <input type="radio" onclick="document.getElementById('selectbasic').disabled = false;" name="hasil" id="hasil-0" value="ACC" >
-                                                    ACC
-                                                </label> 
-                                                <label class="radio-inline" for="hasil-1">
-                                                    <input type="radio" name="hasil" id="hasil-1" value="Tidak ACC"  onclick="document.getElementById('selectbasic').disabled = true;" >
-                                                    Tidak ACC
-                                                </label>
-                                            </div>
-                                        <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Keterangan</label>
-                                            <input type="text" class="form-control ket" id="ket" name="ket" value="">
-                                        </div>
-                                        <label>Tanggal ACC</label>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="tgl" id="tgl" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
-                                        </div>
-
-                                <button type="submit" class="btn btn-responsive button-alignment btn-primary" style="margin-bottom:7px;">Simpan</button>
+                                
+                               
                                 <a href="/home_fptk"><button class="btn btn-responsive button-alignment btn-danger" style="margin-bottom:7px;">Kembali</button></a>
-                                @elseif (Auth::user()->nip == '017050599')
-                                    <div class="form-group">
-                                                <label for="keperluan">Hasil</label><br>
-
-                                                <label class="radio-inline" for="keperluan-0">
-                                                    <input type="radio" onclick="document.getElementById('selectbasic').disabled = false;" name="hasil" id="hasil-0" value="ACC" >
-                                                    ACC
-                                                </label> 
-                                                <label class="radio-inline" for="hasil-1">
-                                                    <input type="radio" name="hasil" id="hasil-1" value="Tidak ACC"  onclick="document.getElementById('selectbasic').disabled = true;" >
-                                                    Tidak ACC
-                                                </label>
-                                            </div>
-                                        <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Keterangan</label>
-                                            <input type="text" class="form-control ket" id="ket" name="ket" value="">
-                                        </div>
-                                        <label>Tanggal ACC</label>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="tgl" id="tgl" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
-                                        </div>
-
-                                <button type="submit" class="btn btn-responsive button-alignment btn-primary" style="margin-bottom:7px;">Simpan</button>
-                                <a href="/home_fptk"><button class="btn btn-responsive button-alignment btn-danger" style="margin-bottom:7px;">Kembali</button></a>
-                                @else
- <a href="/data-fptk"><button class="btn btn-responsive button-alignment btn-danger" style="margin-bottom:7px;">Kembali</button></a>
-                                @endif
+                               
+                                    
                             
                             </form>
                             </div>

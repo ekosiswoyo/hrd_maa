@@ -28,8 +28,21 @@
                                 {{--  <div class="form-group ui-draggable-handle" style="position: static;"><label for="bagian">Divisi/Department</label>  --}}
                                     <input type="hidden" class="form-control" id="bagian" name="bagian" value="{{ Auth::user()->bagian ? Auth::user()->bagian->id_bagian : '' }}">
                                 {{--  </div>  --}}
-                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Nama Jabatan/Grade</label>
+                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Posisi yang diminta</label>
                                     <input type="text" class="form-control" id="jabatan" name="jabatan" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Grade</label>
+                                    <select name="grade" class="form-control" title="Pilih Grade.." required>
+                                        {{-- <option value="" required>-- Pilih Lokasi Kerja --</option> --}}
+                                       
+                                        <option value="Staff">Staff</option>
+                                        <option value="Kasie">Kasie</option>
+                                        <option value="Kabag">Kabag</option>
+                                        <option value="Kepala Satuan Kerja">Kepala Satuan Kerja</option>
+                                        <option value="Kepala Cabang">Kepala Cabang</option>
+                                        <option value="Kadiv">Kadiv</option>
+                                    </select>
                                 </div>
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="jml_sdm">Bagian</label>
                                     <input type="text" class="form-control" id="jml_sdm" name="jml_sdm" placeholder="Bagian yang dibutuhkan" required>
@@ -63,10 +76,10 @@
                                         <input type="radio" name="stat_kar" id="stat_kar-0" class="flat-red" value="kontrak" required>
                                         Kontrak
                                     </label> 
-                                    <label class="radio-inline" for="stat_kar-1">
+                                    {{-- <label class="radio-inline" for="stat_kar-1">
                                         <input type="radio" name="stat_kar" id="stat_kar-1" class="flat-red" value="tetap">
                                         Tetap
-                                    </label>
+                                    </label> --}}
                                 </div>
                                 <div class="form-group">
                                     <label for="jns_kel">Jenis Kelamin</label><br>
@@ -128,7 +141,7 @@
                                 
                                 <label for="pengalaman">Minimal Pengalaman Kerja</label>
                                 <div class="form-group">
-                                    <input type="text" name ="min_pengalaman" class="form-control" >
+                                    <input type="number" name ="min_pengalaman" max="20" class="form-control" >
                                 </div>
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="ket_keperluan">Syarat Kemampuan Minimal</label>
                                     <textarea class="form-control" id="textarea" name="syarat_wajib" placeholder="Persyaratan Pekerjaan" required></textarea>

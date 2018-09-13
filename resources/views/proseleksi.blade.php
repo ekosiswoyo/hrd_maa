@@ -64,7 +64,7 @@
                     <div class="dropdown">
                             <button onclick="myFunction()" style="float:right;margin-left:33px" class="dropbtn">Pilih Jenis Tes</button>
                               <div id="myDropdown" class="dropdown-content">
-                                @foreach (App\Models\Seleksi::get() as $nama)
+                                @foreach ($menu as $nama)
                                 <a href="/proses/seleksi/{{$nama->id}}">{{$nama->nama_tes}}</a>
                                 @endforeach
 
@@ -79,14 +79,16 @@
                                         <i class="livicon" data-name="tasks" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> DATA PELAMAR PROSES SELEKSI                                   </h3>
                                 </div>
                                 <div class="panel-body table-responsive">
-                                    <table class="table table-striped table-bordered" id="table3">
+                                    <table class="table table-striped table-bordered" id="table6">
                                       
                                             <thead>
                                                     <tr>
                                                         <th>No</th>
                                                         <th>NIK</th>
                                                         <th>Nama</th>
+                                                       
                                                         <th>Posisi</th>
+                                                         <th>ID. FPTK</th>
                                                         <th>Jenis Tes</th>
                                                         <th>Keterangan</th></th>
                                                         <th>Tanggal Panggilan</th>
@@ -99,11 +101,13 @@
                                                         <td>{{$no++}}</td> 
                                                         <td>{{$views->nik}}</td>
                                                         <td>{{$views->nama}}</td>
+                                                       
                                                         <td>{{$views->nama_lowongan}}</td>
+                                                         <td>{{$views->id_fptk}}</td>
                                                         <td>{{$views->nama_tes}}</td>
                                                         <td>Belum Tes</td>
                                                         <td>{{$views->tgl_panggilan}}</td>
-                                                        <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-id="{{$views->id_ac}}" data-nik="{{$views->nik}}" data-href="#full-width" href="#full-width">Hasil</a></td>
+                                                        <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-id="{{$views->id_ac}}" data-nik="{{$views->nik}}" data-fptk="{{$views->id_fptk}}" data-href="#full-width" href="#full-width">Hasil</a></td>
 
                                                     </tr>
                                                     @endforeach
@@ -143,6 +147,7 @@
                                             <th>NIK</th>
                                             <th>Nama</th>
                                             <th>Posisi</th>
+                                            <th>ID. FPTK</th>
                                             <th>Jenis Tes</th>
                                             <th>Hasil</th></th>
                                             <th>Keterangan</th>
@@ -159,6 +164,7 @@
                                             <td>{{$views->nik}}</td>
                                             <td>{{$views->nama}}</td>
                                             <td>{{$views->nama_lowongan}}</td>
+                                             <td>{{$views->id_fptk}}</td>
                                             <td>{{$views->nama_tes}}</td>
                                             <td>{{$views->hasil == '1' ? 'Lulus' : 'Tidak Lulus' }}</td>
                                             <td>{{$views->keterangan}}</td>
@@ -186,6 +192,7 @@
                                     <form role="form" action="{{url('proses/seleksi/update')}}" method="POST" id="contactForm">
                                         <input type="hidden" name="id" id="id" class="modal_hiddenid" value="">
                                         <input type="hidden" name="nik" id="nik" class="modal_hiddennik" value="">
+                                         <input type="hidden" name="fptk" id="fptk" class="modal_hiddenfptk" value="">
 
                                         {{ csrf_field() }}
                                         <div class="form-group">
@@ -205,7 +212,7 @@
                                         </div>
                                         <label for="jabatan">Seleksi Selanjutnya</label>
                                             <select id="selectbasic" name="selectbasic" class="form-control">
-                                                @foreach (App\Models\Seleksi::get() as $nama)
+                                                @foreach ($menu as $nama)
                                                 <option value="{{$nama->id}}">{{$nama->nama_tes}}</option>
                                                 @endforeach
                                               </select>
@@ -246,6 +253,7 @@
                                                         <th>NIK</th>
                                                         <th>Nama</th>
                                                         <th>Posisi</th>
+                                                        <th>ID. FPTK</th>
                                                         <th>Jenis Tes</th>
                                                         <th>Hasil</th></th>
                                                         <th>Tanggal Panggilan</th>
@@ -258,6 +266,7 @@
                                                         <td>{{$views->nik}}</td>
                                                         <td>{{$views->nama}}</td>
                                                         <td>{{$views->nama_lowongan}}</td>
+                                                         <td>{{$views->id_fptk}}</td>
                                                         <td>{{$views->nama_tes}}</td>
                                                         <td>{{$views->hasil == '1' ? 'Lulus' : 'Tidak Lulus' }}</td>
                                                         <td>{{$views->tgl_panggilan}}</td>
@@ -292,6 +301,8 @@
             $(document).on('click','.openModal',function(){
                 $('.modal_hiddenid').val($(this).data('id'))
                 $('.modal_hiddennik').val($(this).data('nik'))
+                $('.modal_hiddenfptk').val($(this).data('fptk'))
+
 
 
 

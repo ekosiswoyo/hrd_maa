@@ -41,15 +41,20 @@ bootstrap.min.css') }} "rel="stylesheet">
                     <td>Divisi/Department/Cabang</td>
                     <td>{{ $xyz->nama_bagian}} / {{$xyz->nama_cabang}}</td>
                 </tr>
+               <tr>
+                    <td>{{++$no}}</td>
+                    <td>Posisi yang diminta</td>
+                    <td>{{$xyz->jabatan}}</td>
+                </tr>
                 <tr>
                     <td>{{++$no}}</td>
-                    <td>Nama Jabatan/Grade</td>
+                    <td>Grade</td>
                     <td>{{$xyz->grade}}</td>
                 </tr>
                 <tr>
                     <td>{{++$no}}</td>
-                    <td>Jumlah SDM yang diminta</td>
-                    <td>{{$xyz->jml_sdm}}</td>
+                    <td>Bagian yang diminta</td>
+                    <td>{{$xyz->bagian}}</td>
                 </tr>
                 <tr>
                     <td>{{++$no}}</td>
@@ -111,20 +116,20 @@ bootstrap.min.css') }} "rel="stylesheet">
                     <td>Uraian Tugas & Tanggung Jawab</td>
                     <td>{{$xyz->uraian_tugas}}</td>
                 </tr>
-                <tr>
-                    <td>{{++$no}}</td>
-                    <td>Karakteristik Pekerjaan</td>
-                    <td>{{$xyz->karakteristik}}</td>
-                </tr>
-                <tr>
+               
+                {{-- <tr>
                     <td colspan="3">Gambarkan struktur organisasi secara lengkap di unit kerja termasuk atasan dan bawahan sesuai dengan posisi yang diminta : <br><br><br><br><br><br><br></td>
                     
-                </tr>
+                </tr> --}}
                 <tr>
                     <td style="border:0px;" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yang mengajukan<br><br><br><br></td>
                     <td style="border:0px;">Mengetahui&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Menyetujui, <br><br><br><br></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="border:0px;">...........&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...........</td>
+                    <td style="border:0px;">SIGIT ARIE H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LENY ARJANY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HENGKY TANTO S</td>
                 </tr>
                 <tr>
                     <td colspan="2" style="border:0px;">User&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kabag/Kadiv/Kacab</td>

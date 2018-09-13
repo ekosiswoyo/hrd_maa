@@ -11,6 +11,8 @@ class Activity extends Model
 {
     protected $table = 'activity';
     protected $fillable = ['nik','id_seleksi','hasil','keterangan','tgl_panggilan','tanggal'];
+    protected $dates = ['created_at','updated_at'];
+
 
     public function seleksi()
     {

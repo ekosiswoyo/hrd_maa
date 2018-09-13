@@ -221,7 +221,7 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                     <!--section starts-->
-                    <h1>Form Wizards</h1>
+                   <h1>Form Ubah Data Pelamar</h1>
                     <ol class="breadcrumb">
                         <li>
                             <a href="/index">
@@ -231,7 +231,7 @@
                         <li>
                             <a href="/data_pelamar">Data Pelamar</a>
                         </li>
-                        <li class="active">Tambah Data Pelamar</li>
+                        <li class="active">Form Ubah Data Pelamar</li>
                     </ol>
                 </section>
             <!--section ends-->

@@ -8,7 +8,7 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                     <!--section starts-->
-                   <h1>Form Ubah Data Pelamar</h1>
+                    <h1>Detail File Pelamar</h1>
                     <ol class="breadcrumb">
                         <li>
                             <a href="/index">
@@ -18,7 +18,7 @@
                         <li>
                             <a href="/data_pelamar">Data Pelamar</a>
                         </li>
-                        <li class="active">Form Ubah Data Pelamar</li>
+                        <li class="active">Detail File Pelamar</li>
                     </ol>
                 </section>
             <!--section ends-->
@@ -56,40 +56,12 @@
                                             <div class="tab-pane active" id="tab4">
                                                 <h2 class="hidden">&nbsp;</h2>
                                                 
-                                                <label>Silahkan upload file pendukung</label>
-                                                <input type="hidden" name="id" value="{{$file->nik}}">
-                                                <div class="form-group">
-                                                    <label class="control-label">CV</label>                                                    
-                                                        
-                                                            <input type="file" id="cv" name="cv">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label">FOTO</label>                                                    
-                                                        
-                                                            <input type="file" id="foto" name="foto">
-                                                        
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label">KTP</label>                                                    
-                                                        
-                                                            <input type="file" id="ktp" name="ktp">
-                                                        
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label">KK</label>                                                  
-                                                        
-                                                            <input type="file" id="kk" name="kk">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label">IJAZAH</label>                                                   
-                                                        
-                                                            <input type="file" id="ijazah" name="ijazah">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label">SURAT PENGALAMAN KERJA</label>                                                   
-                                                        
-                                                            <input type="file" id="srt" name="srt">
-                                                </div>
+                                                 <i class="fa fa-download"></i>&nbsp CV <a style="color:#3c8dbc !important;" href="{{asset('storage/lampiran/' . $pelamar->cv)}}">{{$pelamar->cv}}</a><br>
+                                                 <i class="fa fa-download"></i>&nbsp FOTO <a style="color:#3c8dbc !important;" href="{{asset('storage/lampiran/' . $pelamar->foto)}}">{{$pelamar->foto}}</a><br>
+                                                 <i class="fa fa-download"></i>&nbsp KTP <a style="color:#3c8dbc !important;" href="{{asset('storage/lampiran/' . $pelamar->ktp)}}">{{$pelamar->ktp}}</a><br>
+                                                 <i class="fa fa-download"></i>&nbsp KK <a style="color:#3c8dbc !important;" href="{{asset('storage/lampiran/' . $pelamar->kk)}}">{{$pelamar->kk}}</a><br>
+                                                 <i class="fa fa-download"></i>&nbsp IJAZAH <a style="color:#3c8dbc !important;" href="{{asset('storage/lampiran/' . $pelamar->ijazah)}}">{{$pelamar->ijazah}}</a><br>
+                                                 <i class="fa fa-download"></i>&nbsp SURAT PENGALAMAN KERJA <a style="color:#3c8dbc !important;" href="{{asset('storage/lampiran/' . $pelamar->srt_pengalaman)}}">{{$pelamar->srt_pengalaman}}</a><br>
                                                 
                                             </div>
                                             <ul class="pager wizard">
@@ -97,7 +69,7 @@
                                                     <a href="{{ URL::previous() }}">Previous</a>
                                                 </li>
                                                 <li class="next">
-                                                    <button type="submit" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Finish</button>
+                                                    <a href="/data_pelamar" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Finish</a>
                                                     {{-- <button type="submit" style="float:right;color: #3c8dbc !important;display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px">Next</button> --}}
                                                 </li>
                                                 {{--  <li class="next finish">
@@ -135,6 +107,11 @@
         @endsection
         @section('script')
         <script type="text/javascript">
+// Popup window code
+    function newPopup(url) {
+    popupWindow = window.open(
+        url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+      }
             $(document).ready(function() {
                 $(".add-more").click(function(){ 
                     var html = $(".copy").html();

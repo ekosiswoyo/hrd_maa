@@ -64,16 +64,7 @@
             <!--section ends-->
             
             <section class="content">
-                    <div class="dropdown">
-                            <button onclick="myFunction()" style="float:right;margin-left:33px" class="dropbtn">Pilih Jenis Tes</button>
-                              <div id="myDropdown" class="dropdown-content">
-                                @foreach (App\Models\Seleksi::get() as $nama)
-                                <a href="/proses/seleksi/{{$nama->id}}">{{$nama->nama_tes}}</a>
-                                @endforeach
-
-                              </div>
-                            
-                            </div>
+                    
                 <!-- row-->
                 <div class="row">
                     <div class="col-lg-12">
@@ -105,7 +96,13 @@
                                             <td>{{$views->nama_lowongan}}</td>
                                             <td>{{$views->tgl_panggilan}}</td>
                                             <td>{{$views->nama_tes}}</td>
-                                            <td>{{$views->hasil == '1' ? 'Lulus' : 'Tidak Lulus' }}</td>
+                                            @if($views->hasil == '0')
+                                            <td>Tidak Lulus</td>
+                                            @elseif($views->hasil == '1')
+                                            <td>Lulus</td>
+                                            @else
+                                            <td>{{$views->hasil}}</td>
+                                            @endif
                                             <td>{{$views->keterangan}}</td>
 
                                         </tr>

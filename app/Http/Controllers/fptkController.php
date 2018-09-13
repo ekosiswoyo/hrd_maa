@@ -33,6 +33,7 @@ class fptkController extends Controller
    
     $bagian = $request->input('bagian');
     $jabatan = $request->input('jabatan');
+    $grade = $request->input('grade');
     $jml_sdm = $request->input('jml_sdm');
     $cabang = $request->input('cabang');
     $keperluan = $request->input('keperluan');
@@ -49,22 +50,23 @@ class fptkController extends Controller
     
 
 
-    $fptkMail = new fptk;
-    $fptkMail->id_bagian = $bagian;
-    $fptkMail->grade = $jabatan;
-    $fptkMail->bagian = $jml_sdm;
-    $fptkMail->id_cabang = $cabang;
-    $fptkMail->keperluan= $keperluan;
-    $fptkMail->ket_keperluan = $ket_keperluan;
-    $fptkMail->status_karyawan = $stat_kar;
-    $fptkMail->jns_kel = $jns_kel;
-    $fptkMail->stat_pernikahan = $stat_nikah;
-    $fptkMail->pend = $pendidikan;
-    $fptkMail->pengalaman_kerja = $pengalaman;
-    $fptkMail->min_pengalaman = $min_pengalaman;
-    $fptkMail->syarat_wajib = $syarat_wajib;
-    $fptkMail->syarat_dukung = $syarat_pendukung;
-    $fptkMail->uraian_tugas = $tanggung_jawab;
+    $fptk = new fptk;
+    $fptk->id_bagian = $bagian;
+    $fptk->jabatan = $jabatan;
+    $fptk->grade = $grade;
+    $fptk->bagian = $jml_sdm;
+    $fptk->id_cabang = $cabang;
+    $fptk->keperluan= $keperluan;
+    $fptk->ket_keperluan = $ket_keperluan;
+    $fptk->status_karyawan = $stat_kar;
+    $fptk->jns_kel = $jns_kel;
+    $fptk->stat_pernikahan = $stat_nikah;
+    $fptk->pend = $pendidikan;
+    $fptk->pengalaman_kerja = $pengalaman;
+    $fptk->min_pengalaman = $min_pengalaman;
+    $fptk->syarat_wajib = $syarat_wajib;
+    $fptk->syarat_dukung = $syarat_pendukung;
+    $fptk->uraian_tugas = $tanggung_jawab;
 
 
 
@@ -89,8 +91,8 @@ class fptkController extends Controller
     //     'karakteristik' => $karakteristik
 
     // ]);
-    $fptkMail->save();
-    // Mail::to('it.bprmaa@gmail.com')->send(new fptkMail($fptkMail));
+    $fptk->save();
+    Mail::to('it.bprmaa@gmail.com')->send(new fptkMail($fptk));
    
     Session::flash('success_massage','Berhasil disimpan.');
     return redirect('/fptk');
@@ -140,7 +142,7 @@ class fptkController extends Controller
             ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
             ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
             ->where('fptk.id_bagian','=',$id)
-            ->where('fptk.status','=',0)
+            ->where('fptk.status','=',NULL)
             ->orderBy('fptk.id','asc')->get();
     $statusakhir = DB::table('fptk')
             ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
@@ -148,7 +150,12 @@ class fptkController extends Controller
             ->where('fptk.id_bagian','=',$id)
             ->where('fptk.status','=',1)
             ->orderBy('fptk.id','asc')->get();
-    return view('data-fptk', compact('id','statusawal','statusakhir'));
+            $noacc = DB::table('fptk')
+    ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
+    ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
+    ->where('fptk.status','=',0)
+    ->orderBy('fptk.id','desc')->get();
+    return view('data-fptk', compact('id','statusawal','statusakhir','noacc'));
   }
 
 
@@ -185,6 +192,15 @@ class fptkController extends Controller
     // $fptk = fptk::find($id);
     return view ('detailfptk', compact('fptk'));
   }
+  public function detailproses($id)
+  {
+    $fptk = DB::table('fptk')
+    ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
+    ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
+    ->where('fptk.id','=',$id)->first();
+    // $fptk = fptk::find($id);
+    return view ('detail-proses', compact('fptk'));
+  }
 
 
   public function updatefptk(Request $request,$id)
@@ -192,8 +208,9 @@ class fptkController extends Controller
     $fptk = fptk::find($id);
   
     $fptk->id_cabang = $request->cabang;
-    $fptk->grade = $request->jabatan;
-    $fptk->jml_sdm = $request->jml_sdm;
+    $fptk->grade = $request->grade;
+    $fptk->jabatan = $request->jabatan;
+    $fptk->bagian = $request->jml_sdm;
     $fptk->keperluan = $request->keperluan;
     $fptk->ket_keperluan = $request->ket_keperluan;
     $fptk->status_karyawan = $request->stat_kar;
@@ -207,7 +224,6 @@ class fptkController extends Controller
 
     $fptk->syarat_dukung = $request->syarat_pendukung;
     $fptk->uraian_tugas = $request->tanggung_jawab;
-    $fptk->karakteristik = $request->karakteristik;
     $fptk->save();
 
     Session::flash('success_massage','Data FPTK, berhasil di edit');
@@ -236,6 +252,17 @@ class fptkController extends Controller
     Session::flash('success_massage','Data FPTK, berhasil di edit');
     return redirect('/home_fptk');
   }
+
+   public function pelamar($id)
+  {
+    $ids = Auth::user()->id_bagian;
+   $pelamar = DB::table('pelamar')
+           ->join('fptk','pelamar.id_fptk','=','fptk.id')
+           ->where('fptk.id_bagian','=',$ids)
+           ->where('fptk.id','=',$id)->get();
+
+        return view('homepelamar',compact('pelamar'));  }
+
   public function updateproses(Request $request)
   {
       $id = $request->input("id");

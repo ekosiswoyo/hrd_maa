@@ -29,8 +29,10 @@ class PelamarController extends Controller
         $this->middleware('auth');
     }
     public function index(){
+       $pelamar = DB::table('pelamar')->max('id');
+       $abc = $pelamar+1;
 
-        return view('/pelamar');
+        return view('/pelamar',compact('pelamar','abc'));
     }
     public function indexs($idnik){
 
@@ -48,6 +50,7 @@ class PelamarController extends Controller
     }
     public function store(Request $request)
     {
+
             $validator = Validator::make(
                 Input::all(),
                 array(
@@ -55,10 +58,10 @@ class PelamarController extends Controller
                     "nama"              => "required"
                 )
             );
-
+              
             if($validator->passes()){
                 $id = Auth::user()->id;
-                
+              $ids = $request->input('id');
                 $nik = $request->input('nik');
                 $nama = $request->input('nama');
                 $tmp_lahir = $request->input('tmp_lahir');
@@ -76,7 +79,9 @@ class PelamarController extends Controller
                 
 
                 $pelamar = new Pelamar([
+                  
                     'nik' => $nik,
+                    'id' => $ids,
                     'nama' => $nama,
                     'tempat_lahir' => $tmp_lahir,
                     'tanggal_lahir' => $tgl_lahir,
@@ -231,6 +236,23 @@ class PelamarController extends Controller
       ->where('pelamar.nik','=',$idnik)->first();
       // $fptk = fptk::find($id);
       return view ('detailpelamar', compact('pelamar'));
+    }
+     public function detailpengalaman($idnik)
+    {
+      $pelamar = DB::table('pengalaman_kerja')
+      ->join('pelamar', 'pengalaman_kerja.nik', '=', 'pelamar.nik')
+      ->where('pengalaman_kerja.nik','=',$idnik)->get();
+       $id = $idnik;
+      // $fptk = fptk::find($id);
+      return view ('detailpengalaman', compact('pelamar','id'));
+    }
+
+    public function detailfile($idnik)
+    {
+      $pelamar = DB::table('upload_file')
+            ->where('nik','=',$idnik)->first();
+      // $fptk = fptk::find($id);
+      return view ('detailfile', compact('pelamar'));
     }
 
     public function ubahpengalaman($idnik)
@@ -438,10 +460,10 @@ public function prosesseleksi()
         //         ->dimensions(0, 375)
         //         // ->responsive(true)
         //         ->groupBy('id','jns_tes.nama_tes');
-        $chart = new SampleChart;
-        // $chart->dataset('Sample', 'line', [100, 65, 84, 45, 90])->options(['borderColor' => '#ff0000'])->width(50);
+        // $chart = new SampleChart;
+        // $chart->dataset('Sample', 'line', [100, 65, 84, 45, 90])->options(['borderColor' => '#ff0000'])->dimensions(0, 250);
 
-        return view('prosesseleksi', ['chart' => $chart],compact('pelamar','no','menu'));
+        return view('prosesseleksi',compact('pelamar','no','menu'));
     }
 public function proseleksi($id)
     {
@@ -449,15 +471,18 @@ public function proseleksi($id)
         $no++;
         $proses = DB::table('activity')
         ->join('pelamar','activity.nik','=','pelamar.nik')
+        ->join('fptk','activity.id_fptk','=','fptk.id')
         ->join('jns_tes','activity.id_seleksi','=','jns_tes.id')
         ->join('lowongan','pelamar.id_lowongan','=','lowongan.id')
         ->where('activity.id_seleksi','=',$id)
         ->where('activity.status','!=','1')
-        ->whereNull('activity.hasil')
+        // ->whereNull('activity.hasil')
+        ->where('activity.hasil','=','Belum Ada Hasil')
         ->get();
 
         $pelamar = DB::table('activity')
         ->join('pelamar','activity.nik','=','pelamar.nik')
+        ->join('fptk','activity.id_fptk','=','fptk.id')
         ->join('jns_tes','activity.id_seleksi','=','jns_tes.id')
         ->join('lowongan','pelamar.id_lowongan','=','lowongan.id')
         ->where('activity.id_seleksi','=',$id)
@@ -468,6 +493,7 @@ public function proseleksi($id)
 
         $hasil = DB::table('activity')
         ->join('pelamar','activity.nik','=','pelamar.nik')
+        ->join('fptk','activity.id_fptk','=','fptk.id')
         ->join('jns_tes','activity.id_seleksi','=','jns_tes.id')
         ->join('lowongan','pelamar.id_lowongan','=','lowongan.id')
         ->where('activity.id_seleksi','=',$id)
@@ -582,6 +608,7 @@ public function proseleksi($id)
         ['nik' => $key,
         'id_seleksi' => 1,
         'id_fptk' => $id,
+        'hasil' => 'Proses Awal Seleksi',
         'tgl_panggilan' => $format
         ]
     );
@@ -601,9 +628,12 @@ public function proseleksi($id)
     public function unprosesall(Request $request)
     {
         $ids = $request->check;
-        
-        
+        $keterangan = $request->input("keterangan");
 
+        $selectbasic = $request->input("selectbasic");
+        $test = $request->input("test");
+        
+        if($keterangan == "2"){
         for($i = 0; $i <= count($ids); $i++) {
 
           DB::table('pelamar')->whereIn('nik', $ids)->update(array(
@@ -618,14 +648,57 @@ public function proseleksi($id)
       DB::table('activity')->insert(
         ['nik' => $key,
         'id_seleksi' => 2,
+        'hasil' => 'UnProses Seleksi',
         'id_fptk' => NULL
         ]
     );
+}
+}elseif ($keterangan == "3") {
+   for($i = 0; $i <= count($ids); $i++) {
+
+          DB::table('pelamar')->whereIn('nik', $ids)->update(array(
+                    'status_akhir' => '1',
+                    'id_fptk'=> $selectbasic
+                ));
+  
+  
+      }
+
+      foreach($ids as $key){
+      DB::table('activity')->insert(
+        ['nik' => $key,
+        'id_seleksi' => 3,
+        'hasil' => 'Pindah FPTK',
+        'id_fptk' =>  $selectbasic
+        ]
+    );
+DB::table('activity')->insert(
+        ['nik' => $key,
+        'id_seleksi' => $test,
+        'hasil' => '',
+        'id_fptk' =>  $selectbasic
+        ]
+    );
+}
 }
       return redirect('/data_pelamar');
 
     }
 
+    public function homepelamar()
+    {
+          $id = Auth::user()->id_bagian;
+           $pelamar = DB::table('pelamar')
+           ->join('fptk','pelamar.id_fptk','=','fptk.id')
+           ->where('fptk.id_bagian','=',$id)->get();
+$statusakhir = DB::table('fptk')
+            ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
+            ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
+            ->where('fptk.id_bagian','=',$id)
+            ->where('fptk.status','=',1)
+            ->orderBy('fptk.id','asc')->get();
+        return view('homepelamar',compact('pelamar','statusakhir'));
+    }
     
   
 }

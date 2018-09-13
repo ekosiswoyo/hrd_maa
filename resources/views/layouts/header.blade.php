@@ -340,6 +340,12 @@
                                         <span class="title">Data FPTK</span>
                                     </a>
                                 </li>
+                               {{--   <li>
+                                    <a href="/homepelamar">
+                                        <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                        <span class="title">Data PELAMAR</span>
+                                    </a>
+                                </li> --}}
                        
                         @endif
                        

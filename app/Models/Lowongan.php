@@ -8,6 +8,8 @@ class Lowongan extends Model
 {
     protected $table = 'lowongan';
     protected $fillable = ['nama_lowongan'];
+        protected $dates = ['created_at','updated_at'];
+
 
     public function pelamar()
   {

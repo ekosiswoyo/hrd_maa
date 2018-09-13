@@ -32,11 +32,14 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Nama Jabatan/Grade</label>
-                                    <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $fptk->grade}}">
+                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Posisi yang diminta</label>
+                                    <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $fptk->jabatan}}">
                                 </div>
-                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="jml_sdm">Jumlah SDM</label>
-                                    <input type="text" class="form-control" id="jml_sdm" name="jml_sdm" placeholder="Jumlah SDM yang dibutuhkan" value="{{ $fptk->bagian}}">
+                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Grade</label>
+                                    <input type="text" class="form-control" id="grade" name="grade" value="{{ $fptk->grade}}">
+                                </div>
+                                <div class="form-group ui-draggable-handle" style="position: static;"><label for="jml_sdm">Bagian</label>
+                                    <input type="text" class="form-control" id="jml_sdm" name="jml_sdm" placeholder="Bagian" value="{{ $fptk->bagian}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="keperluan">Keperluan</label><br>
