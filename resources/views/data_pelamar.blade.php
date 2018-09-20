@@ -80,6 +80,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>Id</th>
                                             <th>NIK</th>
                                             <th>Nama</th>
                                             <th>Tempat,Tanggal Lahir</th>
@@ -99,6 +100,7 @@
                                             
                                             
                                             <td><input type="checkbox" name="select[]" value="{{$views->nik}}"></td>
+                                            <td>{{$views->idpelamar}}</td>
                                             <td>{{$views->nik}}</td>
                                             <td>{{$views->nama}}</td>
                                             <td>{{$views->tempat_lahir}},{{$views->tanggal_lahir}}</td>
@@ -224,6 +226,7 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
+                                                <th>Id</th>
                                                         <th>NIK</th>
                                                         <th>Nama</th>
                                                         {{-- <th>Tempat,Tanggal Lahir</th> --}}
@@ -243,6 +246,8 @@
                                         <tbody>@foreach ($status as $views)
                                             <tr>
                                                 <td><input type="checkbox" name="check[]" class="sub_chk" value="{{$views->nik}}"></td>
+                                                                                            <td>{{$views->idpelamar}}</td>
+
                                                 <td>{{$views->nik}}</td>
                                                 <td>{{$views->nama}}</td>
                                                 {{-- <td>{{$views->tempat_lahir}},{{$views->tanggal_lahir}}</td> --}}
@@ -323,6 +328,7 @@
                                       
                                         <thead>
                                             <tr>
+                                                <th>Id</th>
                                                         <th>NIK</th>
                                                         <th>Nama</th>
                                                         <th>Tempat,Tanggal Lahir</th>
@@ -338,6 +344,8 @@
                                        
                                         <tbody>@foreach ($akhir as $views)
                                             <tr>
+                                                                                            <td>{{$views->idpelamar}}</td>
+
                                                 <td>{{$views->nik}}</td>
                                                 <td>{{$views->nama}}</td>
                                                 <td>{{$views->tempat_lahir}},{{$views->tanggal_lahir}}</td>

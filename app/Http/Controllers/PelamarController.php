@@ -13,6 +13,8 @@ use Carbon\Carbon;
 // use Charts;
 
 use App\Charts\SampleChart;
+use App\Charts\seleksi;
+// use ConsoleTVs\Charts\Facades\Charts;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +31,7 @@ class PelamarController extends Controller
         $this->middleware('auth');
     }
     public function index(){
-       $pelamar = DB::table('pelamar')->max('id');
+       $pelamar = DB::table('pelamar')->max('idpelamar');
        $abc = $pelamar+1;
 
         return view('/pelamar',compact('pelamar','abc'));
@@ -61,7 +63,7 @@ class PelamarController extends Controller
               
             if($validator->passes()){
                 $id = Auth::user()->id;
-              $ids = $request->input('id');
+              $idpelamar = $request->input('idpelamar');
                 $nik = $request->input('nik');
                 $nama = $request->input('nama');
                 $tmp_lahir = $request->input('tmp_lahir');
@@ -77,11 +79,11 @@ class PelamarController extends Controller
                 $hp = $request->input('hp');
                 $pend = $request->input('pend');
                 
-
+                // dd($request);
                 $pelamar = new Pelamar([
                   
                     'nik' => $nik,
-                    'id' => $ids,
+                    'idpelamar' => $idpelamar,
                     'nama' => $nama,
                     'tempat_lahir' => $tmp_lahir,
                     'tanggal_lahir' => $tgl_lahir,
@@ -460,10 +462,34 @@ public function prosesseleksi()
         //         ->dimensions(0, 375)
         //         // ->responsive(true)
         //         ->groupBy('id','jns_tes.nama_tes');
-        // $chart = new SampleChart;
-        // $chart->dataset('Sample', 'line', [100, 65, 84, 45, 90])->options(['borderColor' => '#ff0000'])->dimensions(0, 250);
+//         $chart = new seleksi;
+// $chart->labels(['One', 'Two', 'Three', 'Four']);
+// $chart->dataset('My dataset', 'line', [1, 2, 3, 4]);
+// $chart->dataset('My dataset 2', 'line', [4, 3, 2, 1]);
+// $chart->height(50);
+// $chart->width(50);
 
-        return view('prosesseleksi',compact('pelamar','no','menu'));
+                $proses = DB::table('activity')
+        ->join('pelamar','activity.nik','=','pelamar.nik')
+        ->join('fptk','activity.id_fptk','=','fptk.id')
+        ->join('jns_tes','activity.id_seleksi','=','jns_tes.id')
+        ->join('lowongan','pelamar.id_lowongan','=','lowongan.id')
+        ->where('activity.status','!=','1')
+        // ->whereNull('activity.hasil')
+        ->where('activity.hasil','=','Belum Ada Hasil')
+        ->get();
+ $hasil = DB::table('activity')
+        ->join('pelamar','activity.nik','=','pelamar.nik')
+        ->join('fptk','activity.id_fptk','=','fptk.id')
+        ->join('jns_tes','activity.id_seleksi','=','jns_tes.id')
+        ->join('lowongan','pelamar.id_lowongan','=','lowongan.id')
+        ->where('activity.hasil','=','1')
+        ->where('activity.status','!=','1')
+        ->whereNotNull('activity.hasil')
+        ->get();
+
+
+        return view('prosesseleksi',compact('pelamar','no','menu','proses','hasil'));
     }
 public function proseleksi($id)
     {
@@ -531,20 +557,22 @@ public function proseleksi($id)
                 
                 'hasil' => $request->hasil,
                 'keterangan' => $request->ket,
-                'tanggal' => $request->tgl
+                'tanggal' => $request->tgl,
+                'tgl_panggilan' => $request->tgl_panggilan
                 ]);
 
             $activity = new Activity();
             $activity->nik = $request->nik;
             $activity->id_fptk = $fptk;
             $activity->id_seleksi = $request->selectbasic; 
-            $activity->tgl_panggilan = $format;
+            $activity->tgl_panggilan = $request->tgl_panggilan;
             $activity->save();
         }else{
             DB::table('activity')->where('id_ac','=',$id)->update([
                 
                 'hasil' => $request->hasil,
-                'keterangan' => $request->ket
+                'keterangan' => $request->ket,
+
                 ]);
         }
      

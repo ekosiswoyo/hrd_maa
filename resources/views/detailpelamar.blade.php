@@ -66,6 +66,9 @@
                                             <div class="tab-pane" id="tab1">
                                                 <h2 class="hidden">&nbsp;</h2>
                                                 <div class="form-group">
+                                                    <input id="idpelamar" name="idpelamar" type="text" placeholder="Masukan NIK" class="form-control" value="{{ $pelamar->idpelamar}}" readonly>
+                                                </div>
+                                                <div class="form-group">
                                                     <input id="nik" name="nik" type="hidden" placeholder="Masukan NIK" class="form-control" value="{{ $pelamar->nik}}">
                                                 </div>
                                                 <div class="form-group">

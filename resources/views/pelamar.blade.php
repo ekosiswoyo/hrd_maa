@@ -277,7 +277,7 @@
                                         <div class="tab-content">
                                             <div class="tab-pane" id="tab1">
                                                 <h2 class="hidden">&nbsp;</h2>
-                                                <input id="id" name="id" type="hidden" value="{{$abc}}">
+                                                <input id="idpelamar" name="idpelamar" type="hidden" value="{{$abc}}">
                                                 <div class="form-group">
                                                     <label for="nik" class="control-label">NIK</label>
                                                     <input id="nik" name="nik" type="text" placeholder="Masukan NIK" class="form-control" required>

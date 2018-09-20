@@ -1,6 +1,7 @@
 {{--  {{dd($pelamar)}}  --}}
 @extends('layouts.header')
 @section('css')
+{{-- {!! Charts::styles() !!} --}}
 <style>
     .dropbtn {
         background-color: #3498DB;
@@ -55,13 +56,10 @@
                                         <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Halaman Utama
                                     </a>
                                 </li>
-                        {{-- <li class="active">Proses Seleksi</li> --}}
                     </ol>
                 </section>
-                {{-- {!! $chart->container() !!} --}}
-            <!--section ends-->
-           <section class="content">
-                {{-- {!! $chart->script() !!}        --}}
+        {{--    <section class="content">
+                </div>
                              <div class="dropdown">
                             <button onclick="myFunction()" style="float:right;margin-left:33px" class="dropbtn">Pilih Jenis Tes</button>
                               <div id="myDropdown" class="dropdown-content">
@@ -120,8 +118,40 @@
                 
                 
                 <!-- /.modal ends here -->
+            </section> --}}
+            <section class="content">
+                <div class="row">
+                     @foreach ($menu as $nama)
+                    <div class="col-lg-3 col-md-6 col-sm-6 margin_10 animated fadeInLeftBig">
+                        <!-- Trans label pie charts strats here-->
+                        <div class="lightbluebg no-radius">
+                           <a href="/proses/seleksi/{{$nama->id}}"> <div class="panel-body squarebox square_boxs">
+                                <div class="col-xs-12 pull-left nopadmar">
+                                    <div class="row">
+                                        <div class="square_box col-xs-7 text-right">
+                                            <h4 style="color:#fff;">{{$nama->nama_tes}}</h3>
+                                            <div class="number" id=""></div>
+                                        </div>
+                                        <i class="livicon  pull-right" data-name="list-ol" data-l="true" data-c="#fff" data-hc="#fff" data-s="70"></i>
+                                    </div>
+                                    {{-- <div class="row">
+                                        <div class="col-xs-6">
+                                            <small class="stat-label" style="color:#fff;">Proses Seleksi</small>
+                                            <h4 id="">{{$menu->count()}}</h4>
+                                        </div>
+                                        
+                                        <div class="col-xs-6 text-right">
+                                            <small class="stat-label" style="color:#fff;">Lolos Seleksi</small>
+                                            <h4 id=""></h4>
+                                        </div>
+                                    </div> --}}
+                                </div>
+                            </div></a>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
             </section>
-           
             
         </aside>
 
@@ -154,4 +184,11 @@
 @endsection
 @section('script')
  <script src="path/to/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.6/highcharts.js" charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/fusioncharts@3.12.2/fusioncharts.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.2/echarts-en.min.js" charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/frappe-charts@1.1.0/dist/frappe-charts.min.iife.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.7/c3.min.js"></script>
 @endsection

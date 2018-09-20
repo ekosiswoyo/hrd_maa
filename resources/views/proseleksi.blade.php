@@ -106,7 +106,7 @@
                                                          <td>{{$views->id_fptk}}</td>
                                                         <td>{{$views->nama_tes}}</td>
                                                         <td>Belum Tes</td>
-                                                        <td>{{$views->tgl_panggilan}}</td>
+                                                        {{date('d-m-Y', strtotime($views->tgl_panggilan))}}
                                                         <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-id="{{$views->id_ac}}" data-nik="{{$views->nik}}" data-fptk="{{$views->id_fptk}}" data-href="#full-width" href="#full-width">Hasil</a></td>
 
                                                     </tr>
@@ -151,8 +151,8 @@
                                             <th>Jenis Tes</th>
                                             <th>Hasil</th></th>
                                             <th>Keterangan</th>
-                                            <th>Tanggal Panggilan</th>
-                                            <th>Tanggal Lulus Tes</th>
+                                            <th>Tanggal Tes</th>
+                                            <th>Tanggal Panggilan Tes Selanjutnya</th>
                                             {{--  <th>Lulus</th>  --}}
                                             {{--  <th>Tidak Lulus</th>  --}}
                                         </tr>
@@ -168,8 +168,9 @@
                                             <td>{{$views->nama_tes}}</td>
                                             <td>{{$views->hasil == '1' ? 'Lulus' : 'Tidak Lulus' }}</td>
                                             <td>{{$views->keterangan}}</td>
-                                            <td>{{$views->tgl_panggilan}}</td>
-                                            <td>{{$views->tanggal}}</td>
+
+                                            <td>{{date('d-m-Y', strtotime($views->tanggal))}}</td>
+                                            <td>{{date('d-m-Y', strtotime($views->tgl_panggilan))}}</td>
 
                                         </tr>
                                         @endforeach
@@ -196,14 +197,19 @@
 
                                         {{ csrf_field() }}
                                         <div class="form-group">
+                                            <label>Tanggal Tes dilakukan</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="tgl" id="tgl" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
+                                        </div>
+                                       
                                                 <label for="keperluan">Hasil</label><br>
 
                                                 <label class="radio-inline" for="keperluan-0">
-                                                    <input type="radio" onclick="document.getElementById('selectbasic').disabled = false;" name="hasil" id="hasil-0" value="1" required>
+                                                    <input type="radio" onclick="document.getElementById('selectbasic').disabled = false;document.getElementById('tgl_panggilan').disabled = false;" name="hasil" id="hasil-0" value="1" required>
                                                     Lulus
                                                 </label> 
                                                 <label class="radio-inline" for="hasil-1">
-                                                    <input type="radio" name="hasil" id="hasil-1" value="0"  onclick="document.getElementById('selectbasic').disabled = true;" >
+                                                    <input type="radio" name="hasil" id="hasil-1" value="0"  onclick="document.getElementById('selectbasic').disabled = true;document.getElementById('tgl_panggilan').disabled = true;" >
                                                     Tidak Lulus
                                                 </label>
                                             </div>
@@ -216,11 +222,11 @@
                                                 <option value="{{$nama->id}}">{{$nama->nama_tes}}</option>
                                                 @endforeach
                                               </select>
-                                        <label>Tanggal Tes</label>
+                                               <label>Tanggal Panggilan Tes Selanjutnya</label>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="tgl" id="tgl" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
+                                            <input type="text" class="form-control" name="tgl_panggilan" id="tgl_panggilan" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
                                         </div>
-                                       
+                                        
                                   </form>
                                 </div>
                                 <div class="modal-footer">
@@ -269,7 +275,7 @@
                                                          <td>{{$views->id_fptk}}</td>
                                                         <td>{{$views->nama_tes}}</td>
                                                         <td>{{$views->hasil == '1' ? 'Lulus' : 'Tidak Lulus' }}</td>
-                                                        <td>{{$views->tgl_panggilan}}</td>
+                                                        {{date('d-m-Y', strtotime($views->tgl_panggilan))}}
                                                         
                                                     </tr>
                                                     @endforeach

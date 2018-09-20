@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pelamar extends Model
 {
     protected $table = 'pelamar';
-    protected $fillable = ['nik','nama','tempat_lahir','tanggal_lahir','jns_kel','stat_pernikahan','id_lowongan','alamat_ktp','alamat_domisili',
+    protected $fillable = ['idpelamar','nik','nama','tempat_lahir','tanggal_lahir','jns_kel','stat_pernikahan','id_lowongan','alamat_ktp','alamat_domisili',
     'telp','hp','pend_terakhir','tgl_masuk_lamaran','tgl_masuk_kerja','status_akhir'];
     protected $dates = ['created_at','updated_at'];
 

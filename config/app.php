@@ -193,6 +193,7 @@ return [
     */
 
     'aliases' => [
+        // 'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
         'PDF'  => Barryvdh\DomPDF\Facade::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
