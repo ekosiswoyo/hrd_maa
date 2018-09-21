@@ -49,14 +49,21 @@
 <table align="left" width="100%" style="border-collapse:collapse;border-spacing:0;margin:0;padding:0">
 <tbody><tr>
 <td style="border-collapse:collapse;border-spacing:0;font-family:&quot;Arial&quot;,sans-serif;color:#999;line-height:1.5;margin:0;padding:0">
-<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Dear Direksi,</p>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Dear Bagian SDM,</p>
 
-<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Anda mendapatkan Kritik dan Saran yang diinputkan melalui web karyawan <a href="http://bprmaa.co.id/"><font color = "#ff0000">bprmaa.co.id</font></a></p>
-<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Nomor Induk Pegawai : <b>NIP</b></p>
-<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Nama Pegawai : <b>NAMA</b></p>
-<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0"><b>Isi Saran & Kritik :</b></p>
-<div style="border: 1px #eee solid;padding: 5px;background-color: snow;text-align: left;"> <p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0;text-align:justify;">PESAN</p></div>
-<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Untuk melihat semua kritik dan saran yang masuk anda membuka menu kritik dan saran di <a href="http://bprmaa.co.id/"><font color = "#ff0000">bprmaa.co.id</font></a></p>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Anda mendapatkan FPTK baru yang diinputkan melalui Web Recruitment Karyawan <a href="http://bprmaa.co.id/"><font color = "#ff0000">bprmaa.co.id</font></a></p>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Posisi yang diminta : <b>{{$fptk->jabatan}}</b></p>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Grade : <b>{{$fptk->grade}}</b></p>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Keperluan : <b>{{$fptk->keperluan}}</b></p>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Ket. Keperluan : <b>{{$fptk->ket_keperluan}}</b></p>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Status Karyawan : <b>{{$fptk->status_karyawan}}</b></p>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Jenis Kelamin : <b>{{$fptk->jns_kel}}</b></p>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Status Pernikahan : <b>{{$fptk->stat_pernikahan}}</b></p>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Pendidikan : <b>{{$fptk->pend}}</b></p>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Syarat Kemampuan Minimal : <b>{{$fptk->syarat_wajib}}</b></p>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Syarat Pendukung : <b>{{$fptk->syarat_dukung}}</b></p>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Uraian Tugas : <b>{{$fptk->uraian_tugas}}</b></p>
+<p style="font-family:&quot;Arial&quot;,sans-serif;color:#555;line-height:1.5;font-size:14px;margin:0;padding:0">Untuk melihat semua FPTK yang masuk anda membuka menu Recruitment di <a href="http://bprmaa.co.id/"><font color = "#ff0000">bprmaa.co.id</font></a></p>
 </td>
 </tr>
 </tbody></table>

@@ -129,14 +129,17 @@
                                 <div class="form-group">
                                     <label for="pengalaman">Pengalaman Kerja</label><br>
                                     <label>
-                                        <input type="checkbox" name="pengalaman" value="Pengalaman Kerja" id="pengalamankerja" class="flat-red"/>
+                                        <input type="radio" name="pengalaman" value="Pengalaman Kerja" id="pengalamankerja" class="flat-red"/>
                                         Pengalaman Kerja
                                     </label>
                                     <label>
-                                        <input type="checkbox" name="pengalaman" id="freshgraduate" value="Fresh Graduate" class="flat-red" />
+                                        <input type="radio" name="pengalaman" id="freshgraduate" value="Fresh Graduate" class="flat-red" />
                                         Fresh Graduate
                                     </label>
-                                    
+                                    <label>
+                                        <input type="radio" name="pengalaman" id="freshgraduate" value="Pengalaman Kerja & Fresh Graduate" class="flat-red" />
+                                        Pengalaman Kerja & Fresh Graduate
+                                    </label>
                                 </div>
                                 
                                 <label for="pengalaman">Minimal Pengalaman Kerja</label>

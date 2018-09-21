@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'bprmaa@bprmaa.co.id'),
+        'address' => env('MAIL_FROM_ADDRESS', 'noreplay.bprmaa@gmail.com'),
         'name' => env('MAIL_FROM_NAME', 'BPRMAA'),
     ],
 
@@ -100,6 +100,8 @@ return [
     */
 
     'sendmail' => '/usr/sbin/sendmail -bs',
+
+    'pretend' => false,
 
     /*
     |--------------------------------------------------------------------------
