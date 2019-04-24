@@ -207,12 +207,28 @@ class PelamarController extends Controller
         $view = DB::table('pelamar')
                 ->join('lowongan', 'pelamar.id_lowongan', '=', 'lowongan.id')
                 ->where('pelamar.status_akhir','0')
+                ->orWhere('pelamar.status_akhir','1')
                 ->orderBy('pelamar.tgl_masuk_lamaran','desc')->get();
-        $status = DB::table('pelamar')
-                ->join('lowongan', 'pelamar.id_lowongan', '=', 'lowongan.id')
-                ->join('fptk','pelamar.id_fptk','=','fptk.id')
-                ->where('pelamar.status_akhir','1')
-                ->orderBy('pelamar.tgl_masuk_lamaran','desc')->get();
+
+      //           $pelamar = DB::table('fptk_pelamar')
+      // ->join('pelamar', 'fptk_pelamar.nik', '=', 'pelamar.nik')
+      // ->join('fptk','fptk_pelamar.idfptk','=','fptk.id')
+      // ->where('fptk_pelamar.nik','=',$idnik)->get();
+$status = DB::table('fptk_pelamar')
+      ->join('pelamar', 'fptk_pelamar.nik', '=', 'pelamar.nik')
+      ->join('lowongan', 'pelamar.id_lowongan', '=', 'lowongan.id')
+      ->join('fptk','fptk_pelamar.idfptk','=','fptk.id')
+      ->where('fptk_pelamar.status','=','0')
+      ->groupBy('fptk_pelamar.nik')
+      ->get();
+        // $status = DB::table('pelamar')
+        //         ->join('lowongan', 'pelamar.id_lowongan', '=', 'lowongan.id')
+        //         // ->join('fptk_pelamar','pelamar.nik','=','fptk_pelamar.nik')
+        //         // ->join('fptk','fptk_pelamar.idfptk','=','fptk.id')
+        //         // ->join('fptk','pelamar.id_fptk','=','fptk.id')
+        //         ->where('pelamar.status_akhir','1')
+        //         ->orderBy('pelamar.tgl_masuk_lamaran','desc')->get();
+
         $akhir = DB::table('pelamar')
                 ->join('lowongan', 'pelamar.id_lowongan', '=', 'lowongan.id')
                 ->where('pelamar.status_akhir','2')
@@ -239,6 +255,27 @@ class PelamarController extends Controller
       // $fptk = fptk::find($id);
       return view ('detailpelamar', compact('pelamar'));
     }
+
+     public function fptkpelamar($idnik)
+    {
+      $fptk = DB::table('fptk')->where('status','=','1')->orderBy('id','desc')->get();
+       $tes = DB::table('jns_tes')->where('kategori','=','Tes')->orderBy('id')->get();
+      $pelamar = DB::table('fptk_pelamar')
+      ->join('pelamar', 'fptk_pelamar.nik', '=', 'pelamar.nik')
+      ->join('fptk','fptk_pelamar.idfptk','=','fptk.id')
+      ->where('fptk_pelamar.status','=','0')
+      ->where('fptk_pelamar.nik','=',$idnik)->get();
+
+       $namas = DB::table('fptk_pelamar')
+      ->join('pelamar', 'fptk_pelamar.nik', '=', 'pelamar.nik')
+      ->join('fptk','fptk_pelamar.idfptk','=','fptk.id')
+        ->where('fptk_pelamar.status','=','0')
+      ->where('fptk_pelamar.nik','=',$idnik)->first();
+      
+      // $fptk = fptk::find($id);
+      return view ('fptkpelamar', compact('pelamar','namas','fptk','tes'));
+    }
+
      public function detailpengalaman($idnik)
     {
       $pelamar = DB::table('pengalaman_kerja')
@@ -452,8 +489,7 @@ public function prosesseleksi()
                 ->get();
         $menu = DB::table('jns_tes')
                 ->where('id','>',3)
-                ->orderBy('id','desc')
-
+                ->orderBy('id','asc')
                 ->get();
         // $chart = SampleChart::database(activity::with('jns_tes')->select('id')->get(), 'pie', 'fusioncharts')
         //         ->title('Grafik persentase jumlah karyawan per Kantor')
@@ -504,6 +540,7 @@ public function proseleksi($id)
         ->where('activity.status','!=','1')
         // ->whereNull('activity.hasil')
         ->where('activity.hasil','=','Belum Ada Hasil')
+        // ->groupBy('activity.nik')
         ->get();
 
         $pelamar = DB::table('activity')
@@ -529,7 +566,7 @@ public function proseleksi($id)
         ->get();
         $menu = DB::table('jns_tes')
                 ->where('id','>',3)
-                ->orderBy('id','desc')
+                ->orderBy('id','asc')
                 ->get();
 
         return view('proseleksi', compact('proses','pelamar','hasil','no','menu'));
@@ -547,8 +584,9 @@ public function proseleksi($id)
 
     public function updateseleksi(Request $request)
     {
-        $id = $request->input("id");
+                $id = $request->input("id");
                 $fptk = $request->input("fptk");
+                $pivot = $request->input("pivot");
 
         if($request->hasil == '1'){
             $carbon = Carbon::today();
@@ -562,6 +600,7 @@ public function proseleksi($id)
                 ]);
 
             $activity = new Activity();
+            $activity->id_pivot = $pivot;
             $activity->nik = $request->nik;
             $activity->id_fptk = $fptk;
             $activity->id_seleksi = $request->selectbasic; 
@@ -595,9 +634,16 @@ public function proseleksi($id)
     public function kerja(Request $request,$id)
     {
         $nik = $request->input("nik");
+        $fptk = $request->input("fptk");
 
         DB::table('activity')
         ->where('nik','=',$nik)
+        ->update([
+            'status' =>'1'
+        ]);
+
+        DB::table('activity')
+        ->where('id_fptk','=',$fptk)
         ->update([
             'status' =>'1'
         ]);
@@ -608,24 +654,74 @@ public function proseleksi($id)
             'status_akhir' =>'2',
             'tgl_masuk_kerja' => $request->tgl
         ]);
+
+        DB::table('fptk_pelamar')
+        ->where('nik','=',$nik)
+        ->where('idfptk','=',$fptk)
+        ->update([
+            'status' =>'2'
+        ]);
+        DB::table('fptk_pelamar')
+       ->where('nik','=',$nik)
+        ->where('idfptk','!=',$fptk)
+        ->update([
+            'status' =>'1'
+        ]);
+        DB::table('fptk_pelamar')
+       ->where('nik','!=',$nik)
+        ->where('idfptk','=',$fptk)
+        ->update([
+            'status' =>'1'
+        ]);
   
+  
+        DB::table('fptk')
+        ->where('id', $fptk)
+        ->update([
+               'status' => '2'
+        ]);
         return redirect('/proses');
     }
+
+    public function report()
+    {
+
+     
+      $pelamar = DB::table('fptk')
+                ->join('fptk_pelamar','fptk.id','=','fptk_pelamar.idfptk')
+                ->select('fptk_pelamar.idfptk', DB::raw('count(*) as jumlah'))
+                ->groupBy('fptk_pelamar.idfptk')
+                ->get();
+
+      $report = DB::table('activity')
+                // ->join('fptk_pelamar','activity.id_fptk','=','fptk_pelamar.idfptk')
+                ->join('fptk','activity.id_fptk','=','fptk.id')
+                ->join('jns_tes','activity.id_seleksi','=','jns_tes.id')
+                ->select('*','activity.id_seleksi','activity.id_fptk',DB::raw('count(*) as jumlahfptk'))
+                // ->where('activity.hasil','=',1)
+                ->groupBy('activity.id_seleksi')
+                ->orderBy('activity.id_seleksi')
+                // ->havingRaw('activity.id_seleksi = 1')
+                ->get();
+
+      $seleksi = DB::table('jns_tes')->get();
+
+      return view('report', compact('pelamar','report','seleksi'));
+    }
+
     public function updateall(Request $request)
     {
         $ids = $request->select;
         $id = $request->input("fptk");
 
         $test = $request->input("test");
-        
-        $carbon = Carbon::today();
-        $format = $carbon->format('Y-m-d H:i:s');
+         $gel = $request->input("gel");
+        $format = $request->input("tgl_tes");
       
         for($i = 0; $i <= count($ids); $i++) {
 
         DB::table('pelamar')->whereIn('nik', $ids)->update(array(
-                'status_akhir' => '1',
-                'id_fptk' => $id
+                'status_akhir' => '1'
             ));
 
         
@@ -637,7 +733,16 @@ public function proseleksi($id)
         'id_seleksi' => 1,
         'id_fptk' => $id,
         'hasil' => 'Proses Awal Seleksi',
+        'id_pivot' => NULL,
         'tgl_panggilan' => $format
+        ]
+    );
+}
+ foreach($ids as $key){
+      DB::table('fptk_pelamar')->insert(
+        ['nik' => $key,
+        'idfptk' => $id,
+        'gelombang' => $gel
         ]
     );
 }
@@ -646,11 +751,13 @@ public function proseleksi($id)
         ['nik' => $key,
         'id_seleksi' => $test,
         'id_fptk' => $id,
+                'id_pivot' => NULL,
         'tgl_panggilan' => $format
         ]
     );
 }
       return redirect('/data_pelamar');
+
 
     }
     public function unprosesall(Request $request)
@@ -664,11 +771,14 @@ public function proseleksi($id)
         if($keterangan == "2"){
         for($i = 0; $i <= count($ids); $i++) {
 
+  
           DB::table('pelamar')->whereIn('nik', $ids)->update(array(
-                    'status_akhir' => '0',
-                    'id_fptk'=> NULL
+                    'status_akhir' => '0'
                 ));
   
+   DB::table('fptk_pelamar')->whereIn('nik', $ids)->update(array(
+                    'status' => '3'
+                ));
   
       }
 
@@ -680,13 +790,16 @@ public function proseleksi($id)
         'id_fptk' => NULL
         ]
     );
+
 }
 }elseif ($keterangan == "3") {
    for($i = 0; $i <= count($ids); $i++) {
 
-          DB::table('pelamar')->whereIn('nik', $ids)->update(array(
-                    'status_akhir' => '1',
-                    'id_fptk'=> $selectbasic
+          // DB::table('pelamar')->whereIn('nik', $ids)->update(array(
+          //           'status_akhir' => '1'
+          //       ));
+   DB::table('fptk_pelamar')->whereIn('nik', $ids)->update(array(
+                    'idfptk' => $selectbasic
                 ));
   
   

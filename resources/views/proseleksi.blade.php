@@ -58,11 +58,14 @@
                     <li class="active">Proses Seleksi</li>
                 </ol>
             </section>
+
+
             <!--section ends-->
             <section class="content">
                     <!-- row-->
                     <div class="dropdown">
-                            <button onclick="myFunction()" style="float:right;margin-left:33px" class="dropbtn">Pilih Jenis Tes</button>
+
+                            <button onclick="myFunction()" style="float:right;margin-left:33px" class="dropbtn">Pilih Jenis Tes <i class="fa fa-caret-down"></i></button>
                               <div id="myDropdown" class="dropdown-content">
                                 @foreach ($menu as $nama)
                                 <a href="/proses/seleksi/{{$nama->id}}">{{$nama->nama_tes}}</a>
@@ -106,8 +109,8 @@
                                                          <td>{{$views->id_fptk}}</td>
                                                         <td>{{$views->nama_tes}}</td>
                                                         <td>Belum Tes</td>
-                                                        {{date('d-m-Y', strtotime($views->tgl_panggilan))}}
-                                                        <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-id="{{$views->id_ac}}" data-nik="{{$views->nik}}" data-fptk="{{$views->id_fptk}}" data-href="#full-width" href="#full-width">Hasil</a></td>
+                                                        <td>{{date('d-m-Y', strtotime($views->tgl_panggilan))}}</td>
+                                                        <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-id="{{$views->id_ac}}" data-nik="{{$views->nik}}" data-pivot="{{$views->id_pivot}}" data-fptk="{{$views->id_fptk}}" data-href="#full-width" href="#full-width">Hasil</a></td>
 
                                                     </tr>
                                                     @endforeach
@@ -194,7 +197,7 @@
                                         <input type="hidden" name="id" id="id" class="modal_hiddenid" value="">
                                         <input type="hidden" name="nik" id="nik" class="modal_hiddennik" value="">
                                          <input type="hidden" name="fptk" id="fptk" class="modal_hiddenfptk" value="">
-
+                                        <input type="hidden" name="pivot" id="pivot" class="modal_hiddenpivot" value="">
                                         {{ csrf_field() }}
                                         <div class="form-group">
                                             <label>Tanggal Tes dilakukan</label>
@@ -204,13 +207,17 @@
                                        
                                                 <label for="keperluan">Hasil</label><br>
 
-                                                <label class="radio-inline" for="keperluan-0">
+                                                <label class="radio-inline" for="hasil-0">
                                                     <input type="radio" onclick="document.getElementById('selectbasic').disabled = false;document.getElementById('tgl_panggilan').disabled = false;" name="hasil" id="hasil-0" value="1" required>
                                                     Lulus
                                                 </label> 
                                                 <label class="radio-inline" for="hasil-1">
                                                     <input type="radio" name="hasil" id="hasil-1" value="0"  onclick="document.getElementById('selectbasic').disabled = true;document.getElementById('tgl_panggilan').disabled = true;" >
                                                     Tidak Lulus
+                                                </label>
+                                                 <label class="radio-inline" for="hasil-2">
+                                                    <input type="radio" name="hasil" id="hasil-2" value="2"  onclick="document.getElementById('selectbasic').disabled = true;document.getElementById('tgl_panggilan').disabled = true;" >
+                                                   Lulus Tes Terakhir
                                                 </label>
                                             </div>
                                         <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Keterangan</label>
@@ -275,7 +282,7 @@
                                                          <td>{{$views->id_fptk}}</td>
                                                         <td>{{$views->nama_tes}}</td>
                                                         <td>{{$views->hasil == '1' ? 'Lulus' : 'Tidak Lulus' }}</td>
-                                                        {{date('d-m-Y', strtotime($views->tgl_panggilan))}}
+                                                        <td>{{date('d-m-Y', strtotime($views->tgl_panggilan))}}</td>
                                                         
                                                     </tr>
                                                     @endforeach
@@ -308,7 +315,7 @@
                 $('.modal_hiddenid').val($(this).data('id'))
                 $('.modal_hiddennik').val($(this).data('nik'))
                 $('.modal_hiddenfptk').val($(this).data('fptk'))
-
+                $('.modal_hiddenpivot').val($(this).data('pivot'))
 
 
 

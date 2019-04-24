@@ -1,4 +1,4 @@
-
+{{-- {{dd($status)}} --}} 
 @extends('layouts.header')
 
 @section('content')
@@ -51,7 +51,10 @@
                                                                     <option value="{{$fptks->id}}">{{$fptks->id}} - {{$fptks->grade}} {{$fptks->jabatan}}</option>
                                                                     @endforeach
                                                                 </select>
-                                                        </div>
+                                                        </div><label>Gelombang</label>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="gel" id="gel" placeholder="Gelombang">
+                                            </div>
                                                           <div class="form-group"  style="background: #ffffff;">
                                                                 <label>Jenis Tes</label>
                                                                 <select name="test" class="form-control" title="Jenis Tes" required>
@@ -61,6 +64,12 @@
                                                                     @endforeach
                                                                 </select>
                                                         </div>
+                                                        <label>Tanggal Tes Panggilan</label>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="tgl_tes" id="tgl_tes" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
+                                            </div>
+                                                        
+                                           
                                                    
                                             </div>
                                             <div class="modal-footer">
@@ -83,7 +92,7 @@
                                             <th>Id</th>
                                             <th>NIK</th>
                                             <th>Nama</th>
-                                            <th>Tempat,Tanggal Lahir</th>
+                                            {{-- <th>Tempat,Tanggal Lahir</th> --}}
                                             <th>Posisi</th>
                                             <th>Tanggal Masuk Lamaran</th>
                                             <th>Pendidikan</th>
@@ -103,7 +112,7 @@
                                             <td>{{$views->idpelamar}}</td>
                                             <td>{{$views->nik}}</td>
                                             <td>{{$views->nama}}</td>
-                                            <td>{{$views->tempat_lahir}},{{$views->tanggal_lahir}}</td>
+                                            {{-- <td>{{$views->tempat_lahir}},{{$views->tanggal_lahir}}</td> --}}
                                             <td>{{$views->nama_lowongan}}</td>
                                             <td>{{$views->tgl_masuk_lamaran}}</td> 
                                             <td>{{$views->pend_terakhir}}</td>
@@ -231,14 +240,15 @@
                                                         <th>Nama</th>
                                                         {{-- <th>Tempat,Tanggal Lahir</th> --}}
                                                         <th>Posisi</th>
-                                                        <th>FPTK</th>
-                                                        <th>Pendidikan</th>
+                                                        
+                                                        {{-- <th>Pendidikan</th> --}}
+                                                        <th>Detail FPTK</th>
                                                         {{--  <th>Tanggal Masuk Lamaran</th>  --}}
                                                         <th>Detail</th>
                                                         {{-- <tH>Pindah</th> --}}
                                                         <th>Ubah</th>
                                                         <th>Hapus</th>
-                                                        <th>Riwayat</th>
+                                                        {{-- <th>Riwayat</th> --}}
                                                         <th>Diterima</th>
                                             </tr>
                                         </thead>
@@ -252,16 +262,16 @@
                                                 <td>{{$views->nama}}</td>
                                                 {{-- <td>{{$views->tempat_lahir}},{{$views->tanggal_lahir}}</td> --}}
                                                 <td>{{$views->nama_lowongan}}</td>
-                                                <td>{{$views->id}} - {{$views->grade}} {{$views->jabatan}}</td>
-                                                <td>{{$views->pend_terakhir}}</td>
-
+                                                {{-- <td>{{$views->id}} - {{$views->grade}} {{$views->jabatan}}</td> --}}
+                                                {{-- <td>{{$views->pend_terakhir}}</td> --}}
+ <td><a href="/pelamar/{{$views->nik}}/fptkpelamar"><button type="button" class="btn btn-responsive button-alignment btn-warning">Detail FPTK</button></a></td>
                                                 {{--  <td>{{$views->tgl_masuk_lamaran}}</td>  --}}
                                                 <td><a href="/pelamar/{{$views->nik}}/detail"><button type="button" class="btn btn-responsive button-alignment btn-warning">Detail</button></a></td>
                                                 {{-- <td><a href="/pelamar/{{$views->nik}}/unproses"><button type="button" class="btn btn-responsive button-alignment btn-warning">UnProses</button></a></td> --}}
                                                 {{-- <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-id="{{$views->nik}}" data-nik="{{$views->nik}}" data-href="#fullwidth" href="#fullwidth">Pindah</a></td>  --}}
                                                 <td><a href="/pelamar/{{$views->nik}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
                                                 <td><button type="button" onClick="deleteData({{$views->nik}})"  data-id=" {{$views->nik}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td>
-                                                <td><a href="/riwayat/{{$views->nik}}"><button type="button" class="btn btn-responsive button-alignment btn-warning">Riwayat</button></a></td>
+                                               {{--  <td><a href="/riwayat/{{$views->nik}}"><button type="button" class="btn btn-responsive button-alignment btn-warning">Riwayat</button></a></td> --}}
                                                 {{--  <td><a href="/pelamar/{{$views->nik}}/kerja"><button type="button" class="btn btn-responsive button-alignment btn-primary">Diterima</button></a></td>  --}}
                                                 <td><a class="btn btn-raised btn-info btn-large openModal" data-toggle="modal" data-nik="{{$views->nik}}" data-href="#full-width" href="#fullwidth">Diterima</a></td>
                                             </tr>
@@ -297,6 +307,7 @@
                                             <div class="form-group">
                                                 <input type="text" class="form-control" name="tgl" id="tgl" data-mask="9999-99-99" placeholder="YYYY-MM-DD">
                                             </div>
+                                           
                                            
                                       </form>
                                     </div>
@@ -411,6 +422,7 @@
 @endsection
 
 @section('script')
+
 <script>
       $(document).ready(function(){
         $(document).on('click','.openModal',function(){

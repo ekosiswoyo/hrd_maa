@@ -23,13 +23,17 @@ Route::post('/pelamar/unproses', 'PelamarController@unprosesall');
 Route::post('/data-fptk/selesai', 'fptkController@selesaiall');
 Route::get('/index', 'HomeController@index')->name('index');
 Route::post('/fptk/proses/update','fptkController@updateproses');
+Route::get('/report', 'PelamarController@report');
+Route::post('/report', 'fptkController@reportpdf');
 
 Route::get('/homepelamar', 'PelamarController@homepelamar');
 Route::get('/fptk', 'fptkController@index');
 Route::post('/fptk', 'fptkController@store');
 Route::get('/printfptk',  'fptkController@makePDF');
+Route::get('/printfptknon',  'fptkController@makePDFnon');
 Route::get('/home_fptk','fptkController@view');
 Route::get('/data-fptk/{id}/ubah', 'fptkController@ubahfptk');
+Route::get('/data-fptk/{id}/pelamarfptk', 'fptkController@pelamarfptk');
 Route::get('/data-fptk/{id}/pelamar', 'fptkController@pelamar');
 Route::get('/data-fptk/{id}/detail', 'fptkController@detail');
 Route::get('/data-fptk/{id}/detailproses', 'fptkController@detailproses');
@@ -68,6 +72,8 @@ Route::get('/proses/seleksi/{id}', 'PelamarController@proseleksi');
 Route::post('/proses/seleksi/update','PelamarController@updateseleksi');
 Route::get('/riwayat/{id}','PelamarController@riwayat');
 Route::post('/pelamar/{id}/kerja','PelamarController@kerja');
+Route::post('/pelamar/{id}/kerjafptk','fptkController@kerjafptk');
+
 Route::get('/seleksi','SeleksiController@index');
 Route::get('/seleksi/{id}/ubah', 'SeleksiController@ubah');
 Route::post('/seleksi/{id}', 'SeleksiController@update');
@@ -76,5 +82,5 @@ Route::get('/tambahseleksi', 'SeleksiController@view');
 Route::post('/tambahseleksi', 'SeleksiController@store');
 Route::post('/data_pelamar/proses','PelamarController@updateproses');
 Route::post('/data_pelamar/prosessatu','PelamarController@prosessatu');
-
-
+Route::get('/cetakfptk', 'fptkController@cetakfptk');
+Route::get('/pelamar/{idnik}/fptkpelamar', 'PelamarController@fptkpelamar');

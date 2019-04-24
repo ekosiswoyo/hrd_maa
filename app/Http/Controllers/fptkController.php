@@ -25,6 +25,67 @@ class fptkController extends Controller
   {
     return view('/fptk');
   }
+   public function cetakfptk()
+  {
+    return view('/cetakfptk');
+  }
+
+public function kerjafptk(Request $request,$id)
+    {
+        $fptk = $request->input("fptk");
+        $pelamar = $request->input("pelamar");
+
+        DB::table('activity')
+        ->where('id_fptk','=',$fptk)
+        ->update([
+            'status' =>'1'
+        ]);
+
+        DB::table('pelamar')
+        ->where('nik','=',$pelamar)
+        ->update([
+            'status_akhir' =>'2',
+            'tgl_masuk_kerja' => $request->tgl
+        ]);
+
+        DB::table('fptk_pelamar')
+        ->where('nik','=',$pelamar)
+        ->where('idfptk','=',$fptk)
+        ->update([
+            'status' =>'2'
+        ]);
+        DB::table('fptk_pelamar')
+        ->where('nik','!=',$pelamar)
+        ->where('idfptk','=',$fptk)
+        ->update([
+            'status' =>'1'
+        ]);
+        DB::table('fptk_pelamar')
+       ->where('nik','=',$pelamar)
+        ->where('idfptk','!=',$fptk)
+        ->update([
+            'status' =>'1'
+        ]);
+  
+        DB::table('fptk')
+        ->where('id', $fptk)
+        ->update([
+               'status' => '2'
+        ]);
+        return redirect('/proses');
+    }
+  public function pelamarfptk($id)
+  {
+    $pelamar = DB::table('fptk_pelamar')
+      ->join('pelamar', 'fptk_pelamar.nik', '=', 'pelamar.nik')
+      ->join('fptk','fptk_pelamar.idfptk','=','fptk.id')
+      ->where('fptk_pelamar.idfptk','=',$id)->get();
+     $nama = DB::table('fptk_pelamar')
+      ->join('pelamar', 'fptk_pelamar.nik', '=', 'pelamar.nik')
+      ->join('fptk','fptk_pelamar.idfptk','=','fptk.id')
+      ->where('fptk_pelamar.idfptk','=',$id)->first();
+    return view('pelamarfptk',compact('pelamar','nama'));
+  }
 
   public function store(Request $request)
   {
@@ -35,6 +96,7 @@ class fptkController extends Controller
     $jabatan = $request->input('jabatan');
     $grade = $request->input('grade');
     $jml_sdm = $request->input('jml_sdm');
+    $divisikerja = $request->input('divisikerja');
     $cabang = $request->input('cabang');
     $keperluan = $request->input('keperluan');
     $ket_keperluan = $request->input('ket_keperluan');
@@ -55,6 +117,7 @@ class fptkController extends Controller
     $fptk->jabatan = $jabatan;
     $fptk->grade = $grade;
     $fptk->bagian = $jml_sdm;
+    $fptk->divisi = $divisikerja;
     $fptk->id_cabang = $cabang;
     $fptk->keperluan= $keperluan;
     $fptk->ket_keperluan = $ket_keperluan;
@@ -92,10 +155,58 @@ class fptkController extends Controller
 
     // ]);
     $fptk->save();
-    Mail::to('it.bprmaa@gmail.com')->send(new fptkMail($fptk));
+    Mail::to('recruit.bprmaa@gmail.com')->send(new fptkMail($fptk));
    
     Session::flash('success_massage','Berhasil disimpan.');
     return redirect('/fptk');
+  }
+
+  public function reportpdf(Request $request){
+    $tglawal = $request->input('tglawal');
+    $tglakhir = $request->input('tglakhir');
+    
+    $noreportall = 0;
+    $reportall = DB::table('activity')
+                // ->join('fptk_pelamar','activity.id_fptk','=','fptk_pelamar.idfptk')
+                ->join('fptk','activity.id_fptk','=','fptk.id')
+                ->join('jns_tes','activity.id_seleksi','=','jns_tes.id')
+                ->select('*','activity.id_seleksi','activity.id_fptk',DB::raw('count(*) as jumlahfptk'))
+                ->whereBetween('fptk.tgl_acc', [$tglawal, $tglakhir])
+                // ->where('activity.hasil','=',1)
+                ->groupBy('activity.id_seleksi','activity.id_fptk')
+                ->orderBy('activity.id_fptk')
+                // ->havingRaw('activity.id_seleksi = 1')
+                ->get();
+    $noreport = 0;       
+    $report = DB::table('activity')
+                // ->join('fptk_pelamar','activity.id_fptk','=','fptk_pelamar.idfptk')
+                ->join('fptk','activity.id_fptk','=','fptk.id')
+                ->join('jns_tes','activity.id_seleksi','=','jns_tes.id')
+                ->select('*','activity.id_seleksi','activity.id_fptk',DB::raw('count(*) as jumlahfptk'))
+                ->where('activity.hasil','=','1')
+                ->whereBetween('fptk.tgl_acc', [$tglawal, $tglakhir])
+                ->groupBy('activity.id_seleksi','activity.id_fptk')
+                ->orderBy('activity.id_fptk')
+                // ->havingRaw('activity.id_seleksi = 1')
+                ->get();
+    $noreportnon = 0;
+    $reportnon = DB::table('activity')
+                // ->join('fptk_pelamar','activity.id_fptk','=','fptk_pelamar.idfptk')
+                ->join('fptk','activity.id_fptk','=','fptk.id')
+                ->join('jns_tes','activity.id_seleksi','=','jns_tes.id')
+                ->select('*','activity.id_seleksi','activity.id_fptk',DB::raw('count(*) as jumlahfptk'))
+                ->where('activity.hasil','=','0')
+                ->whereBetween('fptk.tgl_acc', [$tglawal, $tglakhir])
+                ->groupBy('activity.id_seleksi','activity.id_fptk')
+                ->orderBy('activity.id_fptk')
+                // ->havingRaw('activity.id_seleksi = 1')
+                ->get();
+
+
+    $pdf = PDF::loadView('printreport',compact ('reportall','report','reportnon','noreportall','noreport','noreportnon','tglawal','tglakhir'));
+    $pdf->setPaper('A4', 'landscape');
+            
+    return $pdf->download('reportall.pdf');
   }
 
   public function makePDF(){ 
@@ -103,8 +214,21 @@ class fptkController extends Controller
     $abc = DB::table('fptk')
           ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
           ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
+          ->where('fptk.divisi','=','Bisnis')
           ->orderBy('fptk.id','desc')->take(1)->get();
     $pdf = PDF::loadView('printfptk',compact ('abc','no'));
+    
+            
+            return $pdf->download('fptk.pdf');
+  }
+  public function makePDFnon(){ 
+    $no = 0;
+    $abc = DB::table('fptk')
+          ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
+          ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
+          ->where('fptk.divisi','=','NonBisnis')
+          ->orderBy('fptk.id','desc')->take(1)->get();
+    $pdf = PDF::loadView('printfptknon',compact ('abc','no'));
     
             
             return $pdf->download('fptk.pdf');
@@ -150,9 +274,10 @@ class fptkController extends Controller
             ->where('fptk.id_bagian','=',$id)
             ->where('fptk.status','=',1)
             ->orderBy('fptk.id','asc')->get();
-            $noacc = DB::table('fptk')
+    $noacc = DB::table('fptk')
     ->join('bagians', 'fptk.id_bagian', '=', 'bagians.id_bagian')
     ->join('cabangs', 'fptk.id_cabang', '=', 'cabangs.id_cabang')
+    ->where('fptk.id_bagian','=',$id)
     ->where('fptk.status','=',0)
     ->orderBy('fptk.id','desc')->get();
     return view('data-fptk', compact('id','statusawal','statusakhir','noacc'));

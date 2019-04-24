@@ -28,7 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $fptk = DB::table('fptk')->where('status','=',0)->get();
+        $fptk = DB::table('fptk')->where('status','=',NULL)->get();
         $proses = DB::table('fptk')->where('status','=',1)->get();
         $selesai = DB::table('fptk')->where('status','=',2)->get();
         $pelamar = DB::table('pelamar')->where('status_akhir','=',0)->get();

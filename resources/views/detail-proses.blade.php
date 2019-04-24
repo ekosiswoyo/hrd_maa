@@ -30,7 +30,7 @@
                                     <input type="text" class="form-control" id="cabang" name="cabang" value="{{ $fptk->nama_cabang}}" readonly>
                                 </div>
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="jabatan">Nama Jabatan/Grade</label>
-                                    <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $fptk->grade}} {{$views->jabatan}}" readonly>
+                                    <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $fptk->grade}} {{$fptk->jabatan}}" readonly>
                                 </div>
                                 <div class="form-group ui-draggable-handle" style="position: static;"><label for="jml_sdm">Bagian</label>
                                     <input type="text" class="form-control" id="jml_sdm" name="jml_sdm" placeholder="Bagian" value="{{ $fptk->bagian}}" readonly>

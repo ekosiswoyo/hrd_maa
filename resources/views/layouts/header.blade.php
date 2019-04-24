@@ -172,18 +172,18 @@
                             </li>
                             <!-- Menu Body -->
                             
-                            <li>
+                            {{-- <li>
                                 <a href="view_user.html"> <i class="livicon" data-name="user" data-s="18"></i> My Profile </a>
                             </li>
                             <li role="presentation"></li>
                             <li>
                                 <a href="user_profile.html"><i class="livicon" data-name="gears" data-s="18"></i> Account Settings </a>
-                            </li>
+                            </li> --}}
                             <!-- Menu Footer-->
                             <li class="user-footer">
-                                <div class="pull-left">
+                                {{-- <div class="pull-left">
                                     <a href="lockscreen.html"> <i class="livicon" data-name="lock" data-s="18"></i> Lock </a>
-                                </div>
+                                </div> --}}
                                 <div class="pull-right">
                                     <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -223,10 +223,24 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/printfptk">
+                                <a href="#">
                                     <i class="livicon" data-name="printer" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
                                     <span class="title">Cetak FPTK TERAKHIR</span>
+                                    <span class="fa arrow"></span>
                                 </a>
+                                 <ul class="sub-menu">
+                                <li>
+                                    <a href="/printfptk">
+                                        <i class="fa fa-angle-double-right"></i> Bisnis
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/printfptknon">
+                                        <i class="fa fa-angle-double-right"></i> Non Bisnis
+                                    </a>
+                                </li>
+                                
+                            </ul>
                             </li>
                         <li>
                             <a href="/home_fptk">
@@ -251,13 +265,19 @@
                             <li>
                                     <a href="/seleksi">
                                         <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
-                                        <span class="title">Data Jenis Tes</span>
+                                        <span class="title">Data Jenis Proses</span>
                                     </a>
                             </li>
                             <li>
                                     <a href="/proses">
                                         <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
                                         <span class="title">Proses Seleksi</span>
+                                    </a>
+                            </li>
+                             <li>
+                                    <a href="/report">
+                                        <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                        <span class="title">Laporan</span>
                                     </a>
                             </li>
                             
@@ -277,10 +297,24 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/printfptk">
+                                <a href="#">
                                     <i class="livicon" data-name="printer" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
                                     <span class="title">Cetak FPTK TERAKHIR</span>
+                                    <span class="fa arrow"></span>
                                 </a>
+                                <ul class="sub-menu">
+                                <li>
+                                    <a href="/printfptk">
+                                        <i class="fa fa-angle-double-right"></i> Bisnis
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/printfptknon">
+                                        <i class="fa fa-angle-double-right"></i> Non Bisnis
+                                    </a>
+                                </li>
+                                
+                            </ul>
                             </li>
                         <li>
                                 <a href="/home_fptk">
@@ -305,7 +339,7 @@
                                 <li>
                                         <a href="/seleksi">
                                             <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
-                                            <span class="title">Data Jenis Tes</span>
+                                            <span class="title">Data Jenis Proses</span>
                                         </a>
                                 </li>
                                 <li>
@@ -314,7 +348,12 @@
                                             <span class="title">Proses Seleksi</span>
                                         </a>
                                 </li>
-                                
+                                 <li>
+                                    <a href="/report">
+                                        <i class="livicon" data-name="table" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
+                                        <span class="title">Laporan</span>
+                                    </a>
+                            </li>
                         @else
                         <li>
                                 <a href="/index">
@@ -329,10 +368,24 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/printfptk">
+                                <a href="#">
                                     <i class="livicon" data-name="printer" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
                                     <span class="title">Cetak FPTK TERAKHIR</span>
+                                    <span class="fa arrow"></span>
                                 </a>
+                                <ul class="sub-menu">
+                                <li>
+                                    <a href="/printfptk">
+                                        <i class="fa fa-angle-double-right"></i> Bisnis
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/printfptknon">
+                                        <i class="fa fa-angle-double-right"></i> Non Bisnis
+                                    </a>
+                                </li>
+                                
+                            </ul>
                             </li>
                             <li>
                                     <a href="/data-fptk">
@@ -419,7 +472,7 @@
     <script src="{{ asset('vendors/bootstrapwizard/jquery.bootstrap.wizard.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendors/bootstrapvalidator/js/bootstrapValidator.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/pages/form_wizard.js') }}" type="text/javascript"></script>
-    <script src="path/to/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+    {{-- <script src="path/to/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.6/highcharts.js" charset="utf-8"></script>
 <script src="https://cdn.jsdelivr.net/npm/fusioncharts@3.12.2/fusioncharts.js" charset="utf-8"></script>

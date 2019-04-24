@@ -7,14 +7,14 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <!--section starts-->
-                <h1>Data Jenis Tes</h1>
+                <h1>Data Jenis Proses</h1>
                 <ol class="breadcrumb">
                     <li>
                         <a href="index.html">
                             <i class="livicon" data-name="home" data-size="14" data-loop="true"></i> Halaman Utama
                         </a>
                     </li>
-                    <li class="active">Data Jenis Tes</li>
+                    <li class="active">Data Jenis Proses</li>
                 </ol>
             </section>
             <!--section ends-->
@@ -26,13 +26,13 @@
                         <div class="panel panel-success filterable" style="overflow:auto;">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
-                                    <i class="livicon" data-name="tasks" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> Data Jenis Tes BPR MAA
+                                    <i class="livicon" data-name="tasks" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> Data Jenis Proses BPR MAA
                                 </h3>
                             </div>
                            
                             <div class="panel-body table-responsive">
                                 <table class="table table-striped table-bordered" id="table2">
-                                        <a href="/tambahseleksi" style="margin-left:15px;"><button type="button" class="btn btn-responsive button-alignment btn-info">Tambah Data Jenis Tes</button></a>
+                                        <a href="/tambahseleksi" style="margin-left:15px;"><button type="button" class="btn btn-responsive button-alignment btn-info">Tambah Data Jenis Proses</button></a>
                                     <thead>
                                             
                                         <tr>

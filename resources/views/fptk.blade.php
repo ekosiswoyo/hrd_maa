@@ -48,6 +48,18 @@
                                     <input type="text" class="form-control" id="jml_sdm" name="jml_sdm" placeholder="Bagian yang dibutuhkan" required>
                                 </div>
                                 <div class="form-group">
+                                    <label for="jns_kel">Divisi</label><br>
+                                <label class="radio-inline" for="div-0">
+                                    <input type="radio" name="divisikerja" id="div-0" class="flat-red" value="Bisnis" required>
+                                    Bisnis
+                                </label> 
+                                <label class="radio-inline" for="div-1">
+                                    <input type="radio" name="divisikerja" id="div-1" class="flat-red" value="NonBisnis">
+                                    Non Bisnis (Operasional & Non Operasional)
+                                </label>
+                                
+                                </div>
+                                <div class="form-group">
                                     <label>Lokasi Kerja</label>
                                     <select name="cabang" class="form-control" title="Pilih Lokasi Kerja.." required>
                                         {{-- <option value="" required>-- Pilih Lokasi Kerja --</option> --}}
@@ -136,10 +148,10 @@
                                         <input type="radio" name="pengalaman" id="freshgraduate" value="Fresh Graduate" class="flat-red" />
                                         Fresh Graduate
                                     </label>
-                                    <label>
+                                    {{-- <label>
                                         <input type="radio" name="pengalaman" id="freshgraduate" value="Pengalaman Kerja & Fresh Graduate" class="flat-red" />
                                         Pengalaman Kerja & Fresh Graduate
-                                    </label>
+                                    </label> --}}
                                 </div>
                                 
                                 <label for="pengalaman">Minimal Pengalaman Kerja</label>

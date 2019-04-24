@@ -22,6 +22,7 @@
             <section class="content">
                 <!-- row-->
                 <div class="row">
+                    
                     <div class="col-lg-12">
                         <div class="panel panel-success filterable" style="overflow:auto;">
                             
@@ -50,7 +51,7 @@
                                                        <div class="form-group">
                                                 <label for="keperluan">Hasil</label><br>
 
-                                                <label class="radio-inline" for="keperluan-0">
+                                                <label class="radio-inline" for="hasil-0"">
                                                     <input type="radio" onclick="document.getElementById('selectbasic').disabled = false;" name="hasil" id="hasil-0" value="ACC" required>
                                                     ACC
                                                 </label> 
@@ -199,7 +200,8 @@
                                                 <th>Keperluan</th>
                                                 <th>Bagian</th>
                                                 <th>Tanggal ACC</th>
-                                                <th>Keterangan</th>
+                                                {{-- <th>Keterangan</th> --}}
+                                                <th>Pelamar</th>
                                                 <th>Detail</th>
                                                 <th>Ubah</th>
                                                 <th>Cetak</th>
@@ -214,8 +216,9 @@
                                                 <td>{{$views->keperluan}}</td>
                                                 <td>{{$views->bagian}}</td>
                                                 <td>{{$views->tgl_acc}}</td>
-                                                <td>{{$views->keterangan_acc}}</td>
-                                                  <td><a href="/data-fptk/{{$views->id}}/detailproses"><button type="button" class="btn btn-responsive button-alignment btn-primary">Detail</button></a></td>
+                                                {{-- <td>{{$views->keterangan_acc}}</td> --}}
+                                                  <td><a href="/data-fptk/{{$views->id}}/pelamarfptk"><button type="button" class="btn btn-responsive button-alignment btn-primary">Pelamar</button></a></td>
+                                                 <td><a href="/data-fptk/{{$views->id}}/detailproses"><button type="button" class="btn btn-responsive button-alignment btn-primary">Detail</button></a></td>
                                                 
                                                 <td><a href="/data-fptk/{{$views->id}}/ubah"><button type="button" class="btn btn-responsive button-alignment btn-primary">Ubah</button></a></td>
                                                 {{-- <td><button type="button" onClick="deleteData({{$views->id}})"  data-id="{{$views->id}}" class="btn btn-responsive button-alignment btn-danger">Hapus</button></td> --}}
